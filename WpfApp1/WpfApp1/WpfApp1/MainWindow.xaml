@@ -1,19 +1,17 @@
-﻿<Window x:Class="TicTacToe.MainWindow"
+﻿<Window x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TicTacToe"
+        xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Tic-Tac-Toe" Height="450" Width="800"
-        FontFamily="Segoe UI Light"
-        Background="{StaticResource BackgroundColor}"
+        Title="XO" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
     <Viewbox>
-       <Grid>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="300"/>
             </Grid.RowDefinitions>
 
             <StackPanel x:Name="TurnPanel"
@@ -44,42 +42,11 @@
                 </UniformGrid>
 
                 <Line x:Name="Line"
-                      Stroke="{StaticResource LineColor}"
                       StrokeThickness="10"
                       StrokeStartLineCap="Round"
                       StrokeEndLineCap="Round"
                       Visibility="Hidden"/>
             </Canvas>
-
-            <Grid x:Name="EndScreen"
-                  Grid.RowSpan="2"
-                  Background="{StaticResource BackgroundColor}"
-                  Visibility="Hidden">
-
-                <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center">
-                        <TextBlock x:Name="ResultText"
-                                   FontSize="54"
-                                   Text="Winner: "
-                                   Margin="0,0,0,15"/>
-                        <Image x:Name="WinnerImage"
-                               Height="75"
-                               Source="Assets/X15.png"/>
-                    </StackPanel>
-
-                    <Button Content="Play Again"
-                            Background="{StaticResource ButtonColor}"
-                            FontSize="34"
-                            Width="200"
-                            Margin="0,20,0,0"
-                            Padding="0,0,0,5"
-                            BorderBrush="Black"
-                            Click="Button_Click"/>
-                </StackPanel>
-            </Grid>
-        </Grid> 
+        </Grid>
     </Viewbox>
-    
 </Window>
