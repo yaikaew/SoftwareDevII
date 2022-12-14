@@ -51,7 +51,6 @@
 
   <ItemGroup>
     <Resource Include="Asset\Grid.png" />
-    <Resource Include="Asset\Icon.png" />
     <Resource Include="Asset\O0.png" />
     <Resource Include="Asset\O1.png" />
     <Resource Include="Asset\O10.png" />

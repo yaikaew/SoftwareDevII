@@ -6,22 +6,25 @@
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d"
         Title="Tic-Tac-Toe" Height="450" Width="800"
-        FontFamily="Bahnschrift SemiBold"
+        FontFamily="Segoe UI Light"
         Background="{StaticResource BackgroundColor}"
         WindowStartupLocation="CenterScreen">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="68*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <StackPanel x:Name="TurnPanel"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
+                <TextBlock FontSize="54"
+                           Text="Player:"
+                           Margin="0,0,0,15"/>
                 <Image x:Name="PlayerImage"
                        Source="Asset/X15.png"
-                       Height="75" Margin="253,0,0,30"/>
+                       Height="75"/>
             </StackPanel>
 
             <Canvas x:Name="GameCanvas"
@@ -34,7 +37,7 @@
                          Height="300"
                          Rows="3"
                          Columns="3"
-                         MouseDown="GameGrid_MouseDown" HorizontalAlignment="Center" VerticalAlignment="Center">
+                         MouseDown="GameGrid_MouseDown">
                     <UniformGrid.Background>
                         <ImageBrush ImageSource="Asset/Grid.png"/>
                     </UniformGrid.Background>
@@ -76,10 +79,6 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
-            <TextBlock FontSize="54"
-                           Text="Player :"
-                           Margin="10,15,124,325" FontFamily="Bahnschrift SemiBold SemiCondensed" Foreground="#FF516433" Grid.RowSpan="2"
-                           />
         </Grid>
     </Viewbox>
 
