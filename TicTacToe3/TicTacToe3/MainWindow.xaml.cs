@@ -22,7 +22,7 @@ namespace TicTacToe
     {
         public string LoadCurrentPlayer ;
         public string TurnPassed ;
-        private  Dictionary<Player, ImageSource> imageSources = new()
+        public Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
             { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
@@ -49,7 +49,7 @@ namespace TicTacToe
         };
 
         private Image[,] imageControls = new Image[5, 5];
-        private GameState gameState = new GameState();
+        public GameState gameState = new GameState();
 
         public MainWindow()
         {
@@ -183,6 +183,20 @@ namespace TicTacToe
 
         private void LoadOnMoveMade(int r, int c, char PlayerMarked ,string LoadCurrentPlayer)
         {
+            if (string.Equals(LoadCurrentPlayer[0], 'X'))
+            {
+                gameState.CurrentPlayer = Player.X;
+                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+ 
+
+            }
+            else if (string.Equals(LoadCurrentPlayer[0], 'O'))
+            {
+                gameState.CurrentPlayer = Player.O;
+                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+   
+            }
+
 
             if (string.Equals(PlayerMarked, 'X'))
             {
@@ -196,7 +210,6 @@ namespace TicTacToe
                 gameState.GameGrid[r, c] = Player.O;
                 Player player = gameState.GameGrid[r, c];
                 imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
-                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
             }
 
@@ -305,16 +318,6 @@ namespace TicTacToe
             //Load CurrentPlayer
             StreamReader reader_currentplayer = new StreamReader("C:\\TicTacToe\\SaveCurrentPlayer.txt");
             LoadCurrentPlayer = reader_currentplayer.ReadLine();
-            //if (string.Equals(LoadCurrentPlayer,'X')) 
-            //{
-            //    gameState.CurrentPlayer = Player.X;
-            //    PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-            //}
-            //else if (string.Equals(LoadCurrentPlayer,'O'))
-            //{
-            //    gameState.CurrentPlayer = Player.O;
-            //    PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-            //}
             
             Trace.WriteLine(LoadCurrentPlayer[0]);
 
@@ -322,7 +325,7 @@ namespace TicTacToe
             StreamReader reader_TurnPassed = new StreamReader("C:\\TicTacToe\\TurnPassed.txt");
             TurnPassed = reader_TurnPassed.ReadLine();
             int turn_passed = (int)Char.GetNumericValue(TurnPassed, 0);
-            //gameState.TurnsPassed = turn_passed;
+            gameState.TurnsPassed = turn_passed;
 
             //Load Grid Marked
 
@@ -337,6 +340,7 @@ namespace TicTacToe
                 //Read the next line
                 grid = reader.ReadLine();
             }
+
             //close the file
             reader.Close();
             reader_currentplayer.Close();
