@@ -10,12 +10,25 @@
         Background="{StaticResource BackgroundColor}"
         WindowStartupLocation="CenterScreen">
     <Viewbox>
-        <Grid>
+        <Grid Width="1168">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
+            <Button Content="SaveGame"
+                            Background="{StaticResource ButtonColor}"
+                            FontSize="34"
+                            Width="200"
+                            Padding="0,0,0,5"			
+                            BorderBrush="Black"
+                            Click="SaveGame" Margin="934,94,34,359" Grid.Row="1"/>
+            <Button Content="LoadGame"
+                            Background="{StaticResource ButtonColor}"
+                            FontSize="34"
+                            Width="200"
+                            Padding="0,0,0,5"			
+                            BorderBrush="Black"
+                            Click="LoadGame" Margin="934,202,34,251" Grid.Row="1"/>
             <StackPanel x:Name="TurnPanel"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
@@ -25,16 +38,17 @@
                 <Image x:Name="PlayerImage"
                        Source="Asset/X15.png"
                        Height="75"/>
+
             </StackPanel>
 
             <Canvas x:Name="GameCanvas"
                     Grid.Row="1"
-                    Width="300"
-                    Height="300"
+                    Width="500"
+                    Height="500"
                     Margin="20">
                 <UniformGrid x:Name="GameGrid"
-                         Width="300"
-                         Height="300"
+                         Width="500"
+                         Height="500"
                          Rows="3"
                          Columns="3"
                          MouseDown="GameGrid_MouseDown">

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 
 namespace TicTacToe
 {
     public class GameState
     {
+        public int generic_value = 3;
         public Player[,] GameGrid { get; private set; }
         public Player CurrentPlayer { get; private set; }
         public int TurnsPassed { get; private set; }
@@ -15,7 +17,7 @@ namespace TicTacToe
 
         public GameState()
         {
-            GameGrid = new Player[3, 3];
+            GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
             GameOver = false;
@@ -28,7 +30,7 @@ namespace TicTacToe
 
         private bool IsGridFull()
         {
-            return TurnsPassed == 9;
+            return TurnsPassed == (generic_value * generic_value);
         }
 
         private void SwitchPlayer()
@@ -38,6 +40,7 @@ namespace TicTacToe
 
         private bool AreSquaresMarked((int, int)[] squares, Player player)
         {
+  
             foreach ((int r, int c) in squares)
             {
                 if (GameGrid[r, c] != player)
@@ -49,8 +52,27 @@ namespace TicTacToe
             return true;
         }
 
+        //private void SaveGame()
+        //{
+        //    // Set the file path and name for the saved game
+        //    string filePath = "C:\TicTacToe\savedGame.txt";
+        //    // Open the file for writing
+        //    StreamWriter writer = new StreamWriter(filePath);
+
+        //    foreach ((int r, int c) in GameGrid)
+        //    {
+        //        writer.Write("test" + " ");
+        //        Console.WriteLine("Game has been saved");
+        //    }
+
+        //    writer.Close();
+        //}
+
+   
         private bool DidMoveWin(int r, int c, out WinInfo winInfo)
         {
+            // Check win here !!
+
             (int, int)[] row = new[] { (r, 0), (r, 1), (r, 2) };
             (int, int)[] col = new[] { (0, c), (1, c), (2, c) };
             (int, int)[] mainDiag = new[] { (0, 0), (1, 1), (2, 2) };
@@ -124,10 +146,9 @@ namespace TicTacToe
                 MoveMade?.Invoke(r, c);
             }
         }
-
         public void Reset()
         {
-            GameGrid = new Player[3, 3];
+            GameGrid = new Player[5, 5];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
             GameOver = false;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +47,7 @@ namespace TicTacToe
             To = 1
         };
 
-        private readonly Image[,] imageControls = new Image[3, 3];
+        private readonly Image[,] imageControls = new Image[5, 5];
         private readonly GameState gameState = new GameState();
 
         public MainWindow()
@@ -61,9 +63,9 @@ namespace TicTacToe
 
         private void SetupGameGrid()
         {
-            for (int r = 0; r < 3; r++)
+            for (int r = 0; r < gameState.generic_value; r++)
             {
-                for (int c = 0; c < 3; c++)
+                for (int c = 0; c < gameState.generic_value; c++)
                 {
                     Image imageControl = new Image();
                     GameGrid.Children.Add(imageControl);
@@ -122,8 +124,8 @@ namespace TicTacToe
 
         private (Point, Point) FindLinePoints(WinInfo winInfo)
         {
-            double squareSize = GameGrid.Width / 3;
-            double margin = squareSize / 2;
+            double squareSize = GameGrid.Width / gameState.generic_value;
+            double margin = squareSize / gameState.generic_value;
 
             if (winInfo.Type == WinType.Row)
             {
@@ -173,6 +175,20 @@ namespace TicTacToe
         private void OnMoveMade(int r, int c)
         {
             Player player = gameState.GameGrid[r, c];
+            Trace.WriteLine(gameState.GameGrid[r, c].GetType());
+            imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+            PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            Trace.WriteLine(gameState.CurrentPlayer.GetType());
+        }
+
+        private void LoadOnMoveMade(int r, int c, string CurrentPlayer)
+        {
+            if (string.Equals(CurrentPlayer,'X'))
+            {
+                Player player = Player.X;
+
+            }
+            Player player = gameState.GameGrid[r, c];
             imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
         }
@@ -195,9 +211,9 @@ namespace TicTacToe
 
         private async void OnGameRestarted()
         {
-            for (int r = 0; r < 3; r++)
+            for (int r = 0; r < gameState.generic_value; r++)
             {
-                for (int c = 0; c < 3; c++)
+                for (int c = 0; c < gameState.generic_value; c++)
                 {
                     imageControls[r, c].BeginAnimation(Image.SourceProperty, null);
                     imageControls[r, c].Source = null;
@@ -210,7 +226,7 @@ namespace TicTacToe
 
         private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            double squareSize = GameGrid.Width / 3;
+            double squareSize = GameGrid.Width / gameState.generic_value;
             Point clickPosition = e.GetPosition(GameGrid);
             int row = (int)(clickPosition.Y / squareSize);
             int col = (int)(clickPosition.X / squareSize);
@@ -219,10 +235,52 @@ namespace TicTacToe
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             if (gameState.GameOver)
             {
                 gameState.Reset();
             }
+        }
+        private void SaveGame(object sender, RoutedEventArgs e)
+        {
+            FileStream file = new FileStream("C:\\TicTacToe\\SaveGame.txt", FileMode.Create); // create file
+            StreamWriter writer = new StreamWriter(file);
+
+            //writer.WriteLine("Hello World");
+
+
+            for (int i = 0; i < (gameState.generic_value) ; i++) 
+            { 
+                for (int j = 0; j < (gameState.generic_value); j++)
+                {
+                    writer.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
+                    
+                    //Trace.WriteLine(i + "," + j + "," + gameState.GameGrid[i,j]);
+                }
+            }
+
+            writer.Close();
+            file.Close();
+
+        }
+
+        private void LoadGame(object sender, RoutedEventArgs e)
+        {
+            String line;
+            StreamReader reader = new StreamReader("C:\\TicTacToe\\SaveGame.txt");
+            line = reader.ReadLine();
+            
+            while (line != null)
+            {
+                //write the lie to console window
+                Trace.WriteLine(line);
+                //OnMoveMade(line[0], line[2]);
+                //Read the next line
+                line = reader.ReadLine();
+            }
+            //close the file
+            reader.Close();
+            Console.ReadLine();
         }
     }
 }
