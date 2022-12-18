@@ -175,22 +175,40 @@ namespace TicTacToe
         private void OnMoveMade(int r, int c)
         {
             Player player = gameState.GameGrid[r, c];
-            Trace.WriteLine(gameState.GameGrid[r, c].GetType());
             imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-            Trace.WriteLine(gameState.CurrentPlayer.GetType());
+
         }
 
-        private void LoadOnMoveMade(int r, int c, string CurrentPlayer)
+        private void LoadOnMoveMade(int r, int c, char CurrentPlayer)
         {
-            if (string.Equals(CurrentPlayer,'X'))
+            if (string.Equals(CurrentPlayer, 'X'))
             {
-                Player player = Player.X;
+                gameState.GameGrid[r, c] = Player.X;
+                gameState.CurrentPlayer = Player.X;
+                Player player = gameState.GameGrid[r, c];
+                imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+                gameState.CurrentPlayer = Player.O;
 
             }
-            Player player = gameState.GameGrid[r, c];
-            imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
-            PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            else if (string.Equals(CurrentPlayer, 'O'))
+            {
+                gameState.GameGrid[r, c] = Player.O;
+                gameState.CurrentPlayer = Player.O;
+                Player player = gameState.GameGrid[r, c];
+                imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+                gameState.CurrentPlayer = Player.X;
+            }
+            else
+            {
+                gameState.GameGrid[r, c] = Player.None;
+            }
+
+            //Player player = gameState.GameGrid[r, c];
+            //imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+            //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
         }
 
         private async void OnGameEnded(GameResult gameResult)
@@ -272,9 +290,17 @@ namespace TicTacToe
             
             while (line != null)
             {
-                //write the lie to console window
-                Trace.WriteLine(line);
-                //OnMoveMade(line[0], line[2]);
+                //Change char to int 
+                int row = (int)Char.GetNumericValue(line,0);
+                int col = (int)Char.GetNumericValue(line,2);
+ 
+                //write the line to console window
+
+                Trace.WriteLine(line[0].GetType());
+                
+
+                LoadOnMoveMade(row, col, line[4]);
+
                 //Read the next line
                 line = reader.ReadLine();
             }
