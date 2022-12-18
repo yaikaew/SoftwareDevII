@@ -8,12 +8,13 @@ namespace TicTacToe
         public int generic_value = 3;
         public Player[,] GameGrid { get; private set; }
         public Player CurrentPlayer { get;  set; }
-        public int TurnsPassed { get; private set; }
+        public int TurnsPassed { get;  set; }
         public bool GameOver { get; private set; }
-
         public event Action<int, int> MoveMade;
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
+
+        
 
         public GameState()
         {

@@ -20,8 +20,9 @@ namespace TicTacToe
 {
     public partial class MainWindow : Window
     {
-
-        private readonly Dictionary<Player, ImageSource> imageSources = new()
+        public string LoadCurrentPlayer ;
+        public string TurnPassed ;
+        private  Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
             { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
@@ -47,8 +48,8 @@ namespace TicTacToe
             To = 1
         };
 
-        private readonly Image[,] imageControls = new Image[5, 5];
-        private readonly GameState gameState = new GameState();
+        private Image[,] imageControls = new Image[5, 5];
+        private GameState gameState = new GameState();
 
         public MainWindow()
         {
@@ -180,35 +181,27 @@ namespace TicTacToe
 
         }
 
-        private void LoadOnMoveMade(int r, int c, char CurrentPlayer)
+        private void LoadOnMoveMade(int r, int c, char PlayerMarked ,string LoadCurrentPlayer)
         {
-            if (string.Equals(CurrentPlayer, 'X'))
+
+            if (string.Equals(PlayerMarked, 'X'))
             {
                 gameState.GameGrid[r, c] = Player.X;
-                gameState.CurrentPlayer = Player.X;
                 Player player = gameState.GameGrid[r, c];
                 imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
-                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-                gameState.CurrentPlayer = Player.O;
 
             }
-            else if (string.Equals(CurrentPlayer, 'O'))
+            else if (string.Equals(PlayerMarked, 'O'))
             {
                 gameState.GameGrid[r, c] = Player.O;
-                gameState.CurrentPlayer = Player.O;
                 Player player = gameState.GameGrid[r, c];
                 imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
                 PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-                gameState.CurrentPlayer = Player.X;
-            }
-            else
-            {
-                gameState.GameGrid[r, c] = Player.None;
+
             }
 
             //Player player = gameState.GameGrid[r, c];
             //imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
-            //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
         }
 
         private async void OnGameEnded(GameResult gameResult)
@@ -261,51 +254,93 @@ namespace TicTacToe
         }
         private void SaveGame(object sender, RoutedEventArgs e)
         {
-            FileStream file = new FileStream("C:\\TicTacToe\\SaveGame.txt", FileMode.Create); // create file
-            StreamWriter writer = new StreamWriter(file);
+            // create file save grid
+            FileStream SaveGame = new FileStream("C:\\TicTacToe\\SaveGame.txt", FileMode.Create);
+           
+            // create file save CurrentPlayer
+            FileStream SaveCurrentPlayer = new FileStream("C:\\TicTacToe\\SaveCurrentPlayer.txt", FileMode.Create);
+            
+            // create file save Turnpassed
+            FileStream SaveTurnPassed = new FileStream("C:\\TicTacToe\\TurnPassed.txt", FileMode.Create);
+            
+            
+            StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
+            StreamWriter writer_SaveCurrentPlayer = new StreamWriter(SaveCurrentPlayer);
+            StreamWriter writer_SaveTurnPassed = new StreamWriter(SaveTurnPassed);
 
-            //writer.WriteLine("Hello World");
 
+            int turn_passed = 0;
 
             for (int i = 0; i < (gameState.generic_value) ; i++) 
             { 
                 for (int j = 0; j < (gameState.generic_value); j++)
                 {
-                    writer.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
-                    
-                    //Trace.WriteLine(i + "," + j + "," + gameState.GameGrid[i,j]);
+                    if (gameState.GameGrid[i, j] != Player.None)
+                    {
+                        writer_SaveGame.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
+                        Trace.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
+                        turn_passed ++;
+                    }
+
                 }
             }
 
-            writer.Close();
-            file.Close();
+            writer_SaveCurrentPlayer.WriteLine(gameState.CurrentPlayer);
+            writer_SaveTurnPassed.WriteLine(turn_passed);
+
+            writer_SaveCurrentPlayer.Close();
+            writer_SaveTurnPassed.Close();
+            writer_SaveGame.Close();
+            SaveGame.Close();
 
         }
 
         private void LoadGame(object sender, RoutedEventArgs e)
         {
-            String line;
+            //Load Grid
+            String grid;
             StreamReader reader = new StreamReader("C:\\TicTacToe\\SaveGame.txt");
-            line = reader.ReadLine();
+            grid = reader.ReadLine();
+
+            //Load CurrentPlayer
+            StreamReader reader_currentplayer = new StreamReader("C:\\TicTacToe\\SaveCurrentPlayer.txt");
+            LoadCurrentPlayer = reader_currentplayer.ReadLine();
+            //if (string.Equals(LoadCurrentPlayer,'X')) 
+            //{
+            //    gameState.CurrentPlayer = Player.X;
+            //    PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            //}
+            //else if (string.Equals(LoadCurrentPlayer,'O'))
+            //{
+            //    gameState.CurrentPlayer = Player.O;
+            //    PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            //}
             
-            while (line != null)
+            Trace.WriteLine(LoadCurrentPlayer[0]);
+
+            //Load TurnPassed
+            StreamReader reader_TurnPassed = new StreamReader("C:\\TicTacToe\\TurnPassed.txt");
+            TurnPassed = reader_TurnPassed.ReadLine();
+            int turn_passed = (int)Char.GetNumericValue(TurnPassed, 0);
+            //gameState.TurnsPassed = turn_passed;
+
+            //Load Grid Marked
+
+            while (grid != null)
             {
                 //Change char to int 
-                int row = (int)Char.GetNumericValue(line,0);
-                int col = (int)Char.GetNumericValue(line,2);
+                int row = (int)Char.GetNumericValue(grid, 0);
+                int col = (int)Char.GetNumericValue(grid, 2);
  
-                //write the line to console window
-
-                Trace.WriteLine(line[0].GetType());
-                
-
-                LoadOnMoveMade(row, col, line[4]);
+                LoadOnMoveMade(row, col, grid[4], LoadCurrentPlayer);
 
                 //Read the next line
-                line = reader.ReadLine();
+                grid = reader.ReadLine();
             }
             //close the file
             reader.Close();
+            reader_currentplayer.Close();
+            reader_TurnPassed.Close();
             Console.ReadLine();
         }
     }
