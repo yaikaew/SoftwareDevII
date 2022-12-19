@@ -313,7 +313,7 @@ namespace TicTacToe
             //Reset grid before load game
             gameState.Reset();
 
-            //Load Grid
+            //Load Grid 
             String grid;
             StreamReader reader = new StreamReader("C:\\TicTacToe\\SaveGame.txt");
             grid = reader.ReadLine();
