@@ -310,7 +310,7 @@ namespace TicTacToe
 
         private void LoadGame(object sender, RoutedEventArgs e)
         {
-            //Reset grid before load game
+            //Reset grid before load games
             gameState.Reset();
 
             //Load Grid 
