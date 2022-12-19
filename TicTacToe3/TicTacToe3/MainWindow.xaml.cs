@@ -48,7 +48,7 @@ namespace TicTacToe
             To = 1
         };
 
-        private Image[,] imageControls = new Image[6, 6];
+        private Image[,] imageControls = new Image[3, 3];
         public GameState gameState = new GameState();
 
         public MainWindow()
@@ -183,14 +183,14 @@ namespace TicTacToe
 
         private void LoadOnMoveMade(int r, int c, char PlayerMarked ,string LoadCurrentPlayer)
         {
-            if (string.Equals(LoadCurrentPlayer[0], 'X'))
+            if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
                 gameState.CurrentPlayer = Player.X;
                 PlayerImage.Source = imageSources[gameState.CurrentPlayer];
  
 
             }
-            else if (string.Equals(LoadCurrentPlayer[0], 'O'))
+            else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
                 gameState.CurrentPlayer = Player.O;
                 PlayerImage.Source = imageSources[gameState.CurrentPlayer];
@@ -198,14 +198,14 @@ namespace TicTacToe
             }
 
 
-            if (string.Equals(PlayerMarked, 'X'))
+            if (string.Equals(PlayerMarked, 'x'))
             {
                 gameState.GameGrid[r, c] = Player.X;
                 Player player = gameState.GameGrid[r, c];
                 imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
 
             }
-            else if (string.Equals(PlayerMarked, 'O'))
+            else if (string.Equals(PlayerMarked, 'o'))
             {
                 gameState.GameGrid[r, c] = Player.O;
                 Player player = gameState.GameGrid[r, c];
@@ -267,42 +267,46 @@ namespace TicTacToe
         }
         private void SaveGame(object sender, RoutedEventArgs e)
         {
-            // create file save grid
-            FileStream SaveGame = new FileStream("C:\\TicTacToe\\SaveGame.txt", FileMode.Create);
-           
-            // create file save CurrentPlayer
-            FileStream SaveCurrentPlayer = new FileStream("C:\\TicTacToe\\SaveCurrentPlayer.txt", FileMode.Create);
-            
-            // create file save Turnpassed
-            FileStream SaveTurnPassed = new FileStream("C:\\TicTacToe\\TurnPassed.txt", FileMode.Create);
-            
-            
+            // create file save all data
+            FileStream SaveGame = new FileStream("C:\\TicTacToe\\save.txt", FileMode.Create);
+              
             StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
-            StreamWriter writer_SaveCurrentPlayer = new StreamWriter(SaveCurrentPlayer);
-            StreamWriter writer_SaveTurnPassed = new StreamWriter(SaveTurnPassed);
-
 
             int turn_passed = 0;
 
+            //Save nxn grid 
+            writer_SaveGame.WriteLine(gameState.generic_value);
+
+            //Save grid that PlayersMarked
             for (int i = 0; i < (gameState.generic_value) ; i++) 
             { 
                 for (int j = 0; j < (gameState.generic_value); j++)
                 {
                     if (gameState.GameGrid[i, j] != Player.None)
                     {
-                        writer_SaveGame.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
-                        Trace.WriteLine(i + "," + j + "," + gameState.GameGrid[i, j]);
+                        writer_SaveGame.Write(gameState.GameGrid[i, j].ToString().ToLower());
+
                         turn_passed ++;
+                    }
+
+                    else
+                    {
+                        writer_SaveGame.Write("n");
+   
+   
                     }
 
                 }
             }
 
-            writer_SaveCurrentPlayer.WriteLine(gameState.CurrentPlayer);
-            writer_SaveTurnPassed.WriteLine(turn_passed);
+            //Save Current_Players
+            writer_SaveGame.WriteLine(" ");
+            writer_SaveGame.WriteLine(gameState.CurrentPlayer.ToString().ToLower());
+            
+            //Save Turn_passed
+            writer_SaveGame.WriteLine(turn_passed);
 
-            writer_SaveCurrentPlayer.Close();
-            writer_SaveTurnPassed.Close();
+
             writer_SaveGame.Close();
             SaveGame.Close();
 
@@ -313,41 +317,50 @@ namespace TicTacToe
             //Reset grid before load games
             gameState.Reset();
 
-            //Load Grid 
-            String grid;
-            StreamReader reader = new StreamReader("C:\\TicTacToe\\SaveGame.txt");
-            grid = reader.ReadLine();
+            //Load save all data 
+            StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
 
-            //Load CurrentPlayer
-            StreamReader reader_currentplayer = new StreamReader("C:\\TicTacToe\\SaveCurrentPlayer.txt");
-            LoadCurrentPlayer = reader_currentplayer.ReadLine();
-            
-            Trace.WriteLine(LoadCurrentPlayer[0]);
+            //Load nxn_array
+            string line;
+            line = reader.ReadLine();
+            int nxn_array = (int)char.GetNumericValue(line, 0);
 
-            //Load TurnPassed
-            StreamReader reader_TurnPassed = new StreamReader("C:\\TicTacToe\\TurnPassed.txt");
-            TurnPassed = reader_TurnPassed.ReadLine();
-            int turn_passed = (int)Char.GetNumericValue(TurnPassed, 0);
-            gameState.TurnsPassed = turn_passed;
+            //Set generic_value = nxn_array
+            gameState.generic_value = nxn_array;
+            Trace.WriteLine("This is "+nxn_array+"X"+nxn_array+" array");
 
             //Load Grid Marked
+            line = reader.ReadLine();
+            //Trace.WriteLine(line);
+            int length = line.Length; length --;
+            int pos = 0; int row = 0; int col = 0;
 
-            while (grid != null)
+            //Load CurrentPlayer
+            string LoadCurrentPlayer;
+            LoadCurrentPlayer = reader.ReadLine();
+            Trace.WriteLine("CurrentPlayer is " + LoadCurrentPlayer);
+
+            while (pos < length)
             {
-                //Change char to int 
-                int row = (int)Char.GetNumericValue(grid, 0);
-                int col = (int)Char.GetNumericValue(grid, 2);
- 
-                LoadOnMoveMade(row, col, grid[4], LoadCurrentPlayer);
+                if (col == nxn_array)
+                {
+                    row++;
+                    Trace.WriteLine("######################");
+                    col= 0;
+                }
+                       
+                char PlayerMarked = line[pos];
 
-                //Read the next line
-                grid = reader.ReadLine();
+                LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
+                
+                Trace.WriteLine(line[pos]+", "+"row = "+row+ ", " + "col = "+col);
+
+                pos++;
+                col++;
             }
 
             //close the file
             reader.Close();
-            reader_currentplayer.Close();
-            reader_TurnPassed.Close();
             Console.ReadLine();
 
 
