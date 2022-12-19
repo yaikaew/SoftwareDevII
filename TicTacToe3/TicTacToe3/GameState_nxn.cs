@@ -6,7 +6,7 @@ namespace TicTacToe
 {
     public class GameState
     {
-        public int generic_value = 5;
+        public int generic_value = 6;
         public Player[,] GameGrid { get; private set; }
         public Player CurrentPlayer { get; set; }
         public int TurnsPassed { get; set; }
@@ -169,7 +169,7 @@ namespace TicTacToe
         }
         public void Reset()
         {
-            GameGrid = new Player[5, 5];
+            GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
             GameOver = false;

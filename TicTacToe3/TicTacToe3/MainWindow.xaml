@@ -49,8 +49,8 @@
                 <UniformGrid x:Name="GameGrid"
                          Width="500"
                          Height="500"
-                         Rows="5"
-                         Columns="5"
+                         Rows="6"
+                         Columns="6"
                          MouseDown="GameGrid_MouseDown">
                     <UniformGrid.Background>
                         <ImageBrush ImageSource="Asset/Grid.png"/>

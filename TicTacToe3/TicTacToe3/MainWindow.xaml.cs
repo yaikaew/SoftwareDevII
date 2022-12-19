@@ -48,7 +48,7 @@ namespace TicTacToe
             To = 1
         };
 
-        private Image[,] imageControls = new Image[5, 5];
+        private Image[,] imageControls = new Image[6, 6];
         public GameState gameState = new GameState();
 
         public MainWindow()
@@ -310,6 +310,9 @@ namespace TicTacToe
 
         private void LoadGame(object sender, RoutedEventArgs e)
         {
+            //Reset grid before load game
+            gameState.Reset();
+
             //Load Grid
             String grid;
             StreamReader reader = new StreamReader("C:\\TicTacToe\\SaveGame.txt");
@@ -346,6 +349,8 @@ namespace TicTacToe
             reader_currentplayer.Close();
             reader_TurnPassed.Close();
             Console.ReadLine();
+
+
         }
     }
 }
