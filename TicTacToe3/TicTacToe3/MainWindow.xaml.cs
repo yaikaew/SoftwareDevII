@@ -22,6 +22,7 @@ namespace TicTacToe
     {
         public string LoadCurrentPlayer ;
         public string TurnPassed ;
+
         public Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
@@ -48,7 +49,7 @@ namespace TicTacToe
             To = 1
         };
 
-        private Image[,] imageControls = new Image[3, 3];
+        private Image[,] imageControls = new Image[3,3];
         public GameState gameState = new GameState();
 
         public MainWindow()
