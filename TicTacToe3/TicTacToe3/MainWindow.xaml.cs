@@ -48,7 +48,7 @@ namespace TicTacToe
             To = 1
         };
 
-        private Image[,] imageControls = new Image[3, 3];
+        private Image[,] imageControls = new Image[5, 5];
         public GameState gameState = new GameState();
 
         public MainWindow()
@@ -60,6 +60,17 @@ namespace TicTacToe
             gameState.MoveMade += OnMoveMade;
             gameState.GameEnded += OnGameEnded;
             gameState.GameRestarted += OnGameRestarted;
+
+            SetupGrid();
+        }
+
+        private void SetupGrid()
+        {
+            for (int r = 1; r < gameState.generic_value; r++)
+            {
+                TheGrid.RowDefinitions.Add(new RowDefinition());
+                TheGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
         }
 
         private void SetupGameGrid()
@@ -362,8 +373,6 @@ namespace TicTacToe
             //close the file
             reader.Close();
             Console.ReadLine();
-
-
         }
     }
 }
