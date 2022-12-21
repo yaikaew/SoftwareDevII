@@ -6,7 +6,7 @@ namespace TicTacToe
 {
     public class GameState
     {
-        public int generic_value = 3;
+        public int generic_value = 5;
         public Player[,] GameGrid { get; private set; }
         public Player CurrentPlayer { get; set; }
         public int TurnsPassed { get; set; }

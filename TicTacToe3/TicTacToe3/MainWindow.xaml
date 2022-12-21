@@ -10,25 +10,26 @@
         Background="{StaticResource BackgroundColor}"
         WindowStartupLocation="CenterScreen">
     <Viewbox>
-        <Grid Width="1168">
+        <Grid Width="1168" ShowGridLines="False" RenderTransformOrigin="0.544,0.502">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <Button Content="SaveGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
                             Width="200"
                             Padding="0,0,0,5"			
                             BorderBrush="Black"
-                            Click="SaveGame" Margin="934,94,34,359" Grid.Row="1"/>
+                            Click="SaveGame" Margin="934,171,34,282" Grid.Row="1"/>
             <Button Content="LoadGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
                             Width="200"
                             Padding="0,0,0,5"			
                             BorderBrush="Black"
-                            Click="LoadGame" Margin="934,202,34,251" Grid.Row="1"/>
+                            Click="LoadGame" Margin="934,286,34,167" Grid.Row="1"/>
             <StackPanel x:Name="TurnPanel"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
@@ -38,22 +39,31 @@
                 <Image x:Name="PlayerImage"
                        Source="Asset/X15.png"
                        Height="75"/>
-
             </StackPanel>
+
+            <Grid x:Name="TheGrid" Width="500" Height="500" Grid.Row ="1" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+            </Grid>
 
             <Canvas x:Name="GameCanvas"
                     Grid.Row="1"
+                    Grid.Column="0"
                     Width="500"
                     Height="500"
                     Margin="20">
                 <UniformGrid x:Name="GameGrid"
                          Width="500"
                          Height="500"
-                         Rows="3"
-                         Columns="3"
+                         Rows="5"
+                         Columns="5"
                          MouseDown="GameGrid_MouseDown">
                     <UniformGrid.Background>
-                        <ImageBrush ImageSource="Asset/Grid.png"/>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#00D2D6C1" Offset="1" />
+                        </LinearGradientBrush>
                     </UniformGrid.Background>
                 </UniformGrid>
 
@@ -93,6 +103,16 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
+            <!--<TextBox Text="EnterN" 
+                Width="137" 
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="934,77,0,0" 
+                Grid.Row="1" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
+            <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
+                    Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>-->
         </Grid>
     </Viewbox>
 
