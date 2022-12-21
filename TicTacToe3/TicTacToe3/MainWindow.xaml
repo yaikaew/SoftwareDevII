@@ -22,14 +22,14 @@
                             Width="200"
                             Padding="0,0,0,5"			
                             BorderBrush="Black"
-                            Click="SaveGame" Margin="934,94,34,359" Grid.Row="1"/>
+                            Click="SaveGame" Margin="934,171,34,282" Grid.Row="1"/>
             <Button Content="LoadGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
                             Width="200"
                             Padding="0,0,0,5"			
                             BorderBrush="Black"
-                            Click="LoadGame" Margin="934,202,34,251" Grid.Row="1"/>
+                            Click="LoadGame" Margin="934,286,34,167" Grid.Row="1"/>
             <StackPanel x:Name="TurnPanel"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
@@ -61,7 +61,9 @@
                          Columns="5"
                          MouseDown="GameGrid_MouseDown">
                     <UniformGrid.Background>
-                        <ImageBrush ImageSource="Asset/Grid.png"/>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#00D2D6C1" Offset="1" />
+                        </LinearGradientBrush>
                     </UniformGrid.Background>
                 </UniformGrid>
 
@@ -101,6 +103,16 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
+            <!--<TextBox Text="EnterN" 
+                Width="137" 
+                Height="40"
+                HorizontalAlignment="Left" 
+                Margin="934,77,0,0" 
+                Grid.Row="1" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
+            <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
+                    Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>-->
         </Grid>
     </Viewbox>
 
