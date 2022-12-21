@@ -66,7 +66,7 @@ namespace TicTacToe
 
         private void SetupGrid()
         {
-            for (int r = 1; r < gameState.generic_value; r++)
+            for (int r = 0; r < gameState.generic_value; r++)
             {
                 TheGrid.RowDefinitions.Add(new RowDefinition());
                 TheGrid.ColumnDefinitions.Add(new ColumnDefinition());

@@ -43,10 +43,8 @@
 
             <Grid x:Name="TheGrid" Width="500" Height="500" Grid.Row ="1" ShowGridLines="True">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
             </Grid>
 
