@@ -48,6 +48,7 @@ namespace TicTacToe
             To = 1
         };
 
+
         private Image[,] imageControls = new Image[5, 5];
         public GameState gameState = new GameState();
 
@@ -62,6 +63,7 @@ namespace TicTacToe
             gameState.GameRestarted += OnGameRestarted;
 
             SetupGrid();
+
         }
 
         private void SetupGrid()
