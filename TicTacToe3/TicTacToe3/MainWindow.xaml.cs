@@ -15,14 +15,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TicTacToe
 {
     public partial class MainWindow : Window
     {
-        public string LoadCurrentPlayer ;
-        public string TurnPassed ;
-
+        public string LoadCurrentPlayer;
+        public string TurnPassed;
+        public int LoadSetupValue = 0;
         public Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
@@ -49,11 +50,13 @@ namespace TicTacToe
             To = 1
         };
 
-        private Image[,] imageControls = new Image[3,3];
+
+        private Image[,] imageControls ;
         public GameState gameState = new GameState();
 
         public MainWindow()
         {
+            imageControls = new Image[gameState.generic_value, gameState.generic_value];
             InitializeComponent();
             SetupGameGrid();
             SetupAnimations();
@@ -61,19 +64,42 @@ namespace TicTacToe
             gameState.MoveMade += OnMoveMade;
             gameState.GameEnded += OnGameEnded;
             gameState.GameRestarted += OnGameRestarted;
+
+            SetupGrid();
+
+        }
+
+        private void SetupGrid()
+        {
+            TheGrid.RowDefinitions.Clear();
+            TheGrid.ColumnDefinitions.Clear();
+
+            for (int r = 0; r < gameState.generic_value; r++)
+            {
+                TheGrid.RowDefinitions.Add(new RowDefinition());
+                TheGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                
+               //TheGrid.ColumnDefinitions.Remove(new ColumnDefinition());
+            }
         }
 
         private void SetupGameGrid()
         {
-            for (int r = 0; r < gameState.generic_value; r++)
-            {
-                for (int c = 0; c < gameState.generic_value; c++)
+            GameGrid.Children.Clear();
+   
+                for (int r = 0; r < gameState.generic_value; r++)
                 {
-                    Image imageControl = new Image();
-                    GameGrid.Children.Add(imageControl);
-                    imageControls[r, c] = imageControl;
+                    for (int c = 0; c < gameState.generic_value; c++)
+                    {
+                        Image imageControl = new Image();
+                        GameGrid.Children.Add(imageControl);
+                        imageControls[r, c] = imageControl;
+
+                    }
+
                 }
-            }
+ 
+
         }
 
         private void SetupAnimations()
@@ -182,20 +208,20 @@ namespace TicTacToe
 
         }
 
-        private void LoadOnMoveMade(int r, int c, char PlayerMarked ,string LoadCurrentPlayer)
+        private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
                 gameState.CurrentPlayer = Player.X;
                 PlayerImage.Source = imageSources[gameState.CurrentPlayer];
- 
+
 
             }
             else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
                 gameState.CurrentPlayer = Player.O;
                 PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-   
+
             }
 
 
@@ -270,7 +296,7 @@ namespace TicTacToe
         {
             // create file save all data
             FileStream SaveGame = new FileStream("C:\\TicTacToe\\save.txt", FileMode.Create);
-              
+
             StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
 
             int turn_passed = 0;
@@ -279,22 +305,22 @@ namespace TicTacToe
             writer_SaveGame.WriteLine(gameState.generic_value);
 
             //Save grid that PlayersMarked
-            for (int i = 0; i < (gameState.generic_value) ; i++) 
-            { 
+            for (int i = 0; i < (gameState.generic_value); i++)
+            {
                 for (int j = 0; j < (gameState.generic_value); j++)
                 {
                     if (gameState.GameGrid[i, j] != Player.None)
                     {
                         writer_SaveGame.Write(gameState.GameGrid[i, j].ToString().ToLower());
 
-                        turn_passed ++;
+                        turn_passed++;
                     }
 
                     else
                     {
                         writer_SaveGame.Write("n");
-   
-   
+
+
                     }
 
                 }
@@ -303,7 +329,7 @@ namespace TicTacToe
             //Save Current_Players
             writer_SaveGame.WriteLine(" ");
             writer_SaveGame.WriteLine(gameState.CurrentPlayer.ToString().ToLower());
-            
+
             //Save Turn_passed
             writer_SaveGame.WriteLine(turn_passed);
 
@@ -315,8 +341,8 @@ namespace TicTacToe
 
         private void LoadGame(object sender, RoutedEventArgs e)
         {
-            //Reset grid before load games
-            gameState.Reset();
+
+  
 
             //Load save all data 
             StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
@@ -328,12 +354,24 @@ namespace TicTacToe
 
             //Set generic_value = nxn_array
             gameState.generic_value = nxn_array;
-            Trace.WriteLine("This is "+nxn_array+"X"+nxn_array+" array");
+            Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
+            LoadSetupValue = nxn_array;
+
+
+
+            //Clear GameGrid 
+            imageControls = new Image[gameState.generic_value, gameState.generic_value];
+            gameState.GameGrid = new Player[gameState.generic_value, gameState.generic_value];
+
+            //Set up GameGrid
+           
+            SetupGrid();
+            SetupGameGrid();
 
             //Load Grid Marked
             line = reader.ReadLine();
             //Trace.WriteLine(line);
-            int length = line.Length; length --;
+            int length = line.Length; length--;
             int pos = 0; int row = 0; int col = 0;
 
             //Load CurrentPlayer
@@ -347,14 +385,14 @@ namespace TicTacToe
                 {
                     row++;
                     Trace.WriteLine("######################");
-                    col= 0;
+                    col = 0;
                 }
-                       
+
                 char PlayerMarked = line[pos];
 
                 LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
-                
-                Trace.WriteLine(line[pos]+", "+"row = "+row+ ", " + "col = "+col);
+
+                Trace.WriteLine(line[pos] + ", " + "row = " + row + ", " + "col = " + col);
 
                 pos++;
                 col++;
@@ -363,8 +401,6 @@ namespace TicTacToe
             //close the file
             reader.Close();
             Console.ReadLine();
-
-
         }
     }
 }

@@ -57,8 +57,6 @@
                 <UniformGrid x:Name="GameGrid"
                          Width="500"
                          Height="500"
-                         Rows="5"
-                         Columns="5"
                          MouseDown="GameGrid_MouseDown">
                     <UniformGrid.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -103,7 +101,8 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
-            <!--<TextBox Text="EnterN" 
+            <TextBox x:Name="TextInput"
+                Text="EnterN" 
                 Width="137" 
                 Height="40"
                 HorizontalAlignment="Left" 
@@ -112,7 +111,7 @@
                 TextWrapping="Wrap" 
                 VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
             <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
-                    Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>-->
+                    Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>
         </Grid>
     </Viewbox>
 

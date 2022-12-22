@@ -6,8 +6,9 @@ namespace TicTacToe
 {
     public class GameState
     {
-        public int generic_value = 5;
-        public Player[,] GameGrid { get; private set; }
+        public int generic_value = 3;
+        
+        public Player[,] GameGrid { get;  set; }
         public Player CurrentPlayer { get; set; }
         public int TurnsPassed { get; set; }
         public bool GameOver { get; private set; }
@@ -75,7 +76,7 @@ namespace TicTacToe
         {
             // Check win here !!
             (int, int)[] row = { };
-            for(int i=0; i<generic_value; i++)
+            for (int i = 0; i < generic_value; i++)
             {
                 row = row.Append((r, i)).ToArray();
             }
@@ -92,7 +93,7 @@ namespace TicTacToe
             (int, int)[] antiDiag = { };
             for (int i = 0; i < generic_value; i++)
             {
-                antiDiag = antiDiag.Append((i, generic_value-i-1)).ToArray();
+                antiDiag = antiDiag.Append((i, generic_value - i - 1)).ToArray();
             }
             /*(int, int)[] row = new[] { (r, 0), (r, 1), (r, 2) };
             (int, int)[] col = new[] { (0, c), (1, c), (2, c) };
