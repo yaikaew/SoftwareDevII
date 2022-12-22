@@ -350,7 +350,7 @@ namespace TicTacToe
             //Load nxn_array
             string line;
             line = reader.ReadLine();
-            int nxn_array = (int)char.GetNumericValue(line, 0);
+            int nxn_array = Convert.ToInt32(line);
 
             //Set generic_value = nxn_array
             gameState.generic_value = nxn_array;
