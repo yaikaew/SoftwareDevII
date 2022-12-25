@@ -15,24 +15,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-<<<<<<< HEAD
-=======
-
-            <TextBox x:Name="EnterN" 
-                Width="137" 
-                Height="50"
-                HorizontalAlignment="Left" 
-                Margin="934,77,0,0" 
-                Grid.Row="1" 
-                TextWrapping="Wrap" 
-                VerticalAlignment="Top" FontSize="20" TextAlignment="Center" FontStyle="Italic"/>
-            <Button Content="Play"
-                    Background="{StaticResource ButtonColor}"
-                    HorizontalAlignment="Left" 
-                    Margin="1084,77,0,0" Grid.Row="1" 
-                    VerticalAlignment="Top" 
-                    Width="50" Height="50" Click="Button_Click_1"/>
->>>>>>> 2b540d74886e721c4c71334a75040e269fa7b7a5
             <Button Content="SaveGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
@@ -119,7 +101,6 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
-<<<<<<< HEAD
             <TextBox x:Name="TextInput"
                 Text="EnterN" 
                 Width="137" 
@@ -132,8 +113,6 @@
             <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
                     Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>
             
-=======
->>>>>>> 2b540d74886e721c4c71334a75040e269fa7b7a5
         </Grid>
     </Viewbox>
 

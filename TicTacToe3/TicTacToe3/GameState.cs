@@ -30,16 +30,11 @@ namespace TicTacToe
     
     public class GameState
     {
-<<<<<<< Updated upstream
+
         public int generic_value = 3;
         
         public Player[,] GameGrid { get;  set; }
-=======
 
-        public int generic_value = 5;
-
-        public Player[,] GameGrid { get; private set; }
->>>>>>> Stashed changes
         public Player CurrentPlayer { get; set; }
         public int TurnsPassed { get; set; }
         public bool GameOver { get; private set; }
