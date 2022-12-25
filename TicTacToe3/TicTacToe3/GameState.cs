@@ -27,7 +27,12 @@ namespace TicTacToe
     {
         None, X, O
     }
-    
+
+    public enum WinType
+    {
+        Row, Column, MainDiagonal, AntiDiagonal
+    }
+
     public class GameState
     {
 
