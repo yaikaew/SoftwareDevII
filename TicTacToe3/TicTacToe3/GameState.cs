@@ -6,8 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-
-
 namespace TicTacToe
 {
     public class WinInfo
@@ -15,7 +13,6 @@ namespace TicTacToe
         public WinType Type { get; set; }
         public int Number { get; set; }
     }
-
 
     public class GameResult
     {
@@ -46,7 +43,6 @@ namespace TicTacToe
         public event Action<int, int> MoveMade;
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
-
 
         public GameState()
         {
@@ -214,10 +210,7 @@ namespace TicTacToe
                     else
                     {
                         writer_SaveGame.Write("n");
-
-
                     }
-
                 }
             }
 
@@ -228,12 +221,8 @@ namespace TicTacToe
             //Save Turn_passed
             writer_SaveGame.WriteLine(turn_passed);
 
-
             writer_SaveGame.Close();
             SaveGame.Close();
-
         }
-   
-
     }
 }
