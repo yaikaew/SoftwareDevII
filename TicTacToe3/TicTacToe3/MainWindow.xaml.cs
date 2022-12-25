@@ -14,8 +14,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Media3D;
 using System.Windows.Media.Animation;
 using System.Security.Cryptography.X509Certificates;
+using Nakov.TurtleGraphics;
+using System.Runtime;
 
 namespace TicTacToe
 {
@@ -23,7 +26,6 @@ namespace TicTacToe
     {
         public string LoadCurrentPlayer;
         public string TurnPassed;
-        public int LoadSetupValue = 0;
         public Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
@@ -50,13 +52,24 @@ namespace TicTacToe
             To = 1
         };
 
+<<<<<<< Updated upstream
 
+        private Canvas[,] Grounds;
         private Image[,] imageControls ;
+=======
+        private Image[,] imageControls ;
+
+>>>>>>> Stashed changes
         public GameState gameState = new GameState();
+  
 
         public MainWindow()
         {
             imageControls = new Image[gameState.generic_value, gameState.generic_value];
+<<<<<<< Updated upstream
+            Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
+=======
+>>>>>>> Stashed changes
             InitializeComponent();
             SetupGameGrid();
             SetupAnimations();
@@ -69,7 +82,7 @@ namespace TicTacToe
 
         }
 
-        private void SetupGrid()
+        public void SetupGrid()
         {
             TheGrid.RowDefinitions.Clear();
             TheGrid.ColumnDefinitions.Clear();
@@ -78,27 +91,26 @@ namespace TicTacToe
             {
                 TheGrid.RowDefinitions.Add(new RowDefinition());
                 TheGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                
-               //TheGrid.ColumnDefinitions.Remove(new ColumnDefinition());
+
             }
         }
 
-        private void SetupGameGrid()
+        public void SetupGameGrid()
         {
             GameGrid.Children.Clear();
+
    
                 for (int r = 0; r < gameState.generic_value; r++)
                 {
                     for (int c = 0; c < gameState.generic_value; c++)
                     {
-                        Image imageControl = new Image();
-                        GameGrid.Children.Add(imageControl);
-                        imageControls[r, c] = imageControl;
+                        Canvas playground = new Canvas();
+                        GameGrid.Children.Add(playground);
+                        Grounds[r, c] = playground;
 
                     }
 
                 }
- 
 
         }
 
@@ -200,10 +212,124 @@ namespace TicTacToe
             await Task.Delay(x2Animation.Duration.TimeSpan);
         }
 
-        private void OnMoveMade(int r, int c)
+        private async void Draw_X (int r , int c)
         {
+            double squareSize = GameGrid.Width / gameState.generic_value;
+
+            Line line = new Line();
+
+            Grounds[r, c].Children.Add(line);
+
+            line.StrokeThickness = 4;
+            line.Stroke = Brushes.Black;
+
+            (Point start, Point end) = (new Point(0, 0), new Point(squareSize, squareSize));
+
+            line.X1 = start.X;
+            line.Y1 = start.Y;
+
+            DoubleAnimation x2Animation = new DoubleAnimation
+            {
+                Duration = TimeSpan.FromSeconds(.25),
+                From = start.X,
+                To = end.X
+            };
+
+            DoubleAnimation y2Animation = new DoubleAnimation
+            {
+                Duration = TimeSpan.FromSeconds(.25),
+                From = start.Y,
+                To = end.Y
+            };
+
+            line.Visibility = Visibility.Visible;
+            line.BeginAnimation(Line.X2Property, x2Animation);
+            line.BeginAnimation(Line.Y2Property, y2Animation);
+
+            // Delay
+
+            await Task.Delay(250);
+
+            Line line2 = new Line();
+
+            Grounds[r, c].Children.Add(line2);
+
+            line2.StrokeThickness = 4;
+            line2.Stroke = Brushes.Black;
+
+
+
+            //##############################################################################
+
+            (Point start2, Point end2) = (new Point(squareSize, 0), new Point(0, squareSize));
+
+            line2.X1 = start2.X;
+            line2.Y1 = start2.Y;
+
+            DoubleAnimation x3Animation = new DoubleAnimation
+            {
+                Duration = TimeSpan.FromSeconds(.25),
+                From = start2.X,
+                To = end2.X
+            };
+
+            DoubleAnimation y3Animation = new DoubleAnimation
+            {
+                Duration = TimeSpan.FromSeconds(.25),
+                From = start2.Y,
+                To = end2.Y
+            };
+
+            line2.Visibility = Visibility.Visible;
+            line2.BeginAnimation(Line.X2Property, x3Animation);
+            line2.BeginAnimation(Line.Y2Property, y3Animation);
+
+
+        }
+
+        private void Draw_O (int r, int c)
+        {
+            double squareSize = GameGrid.Width / gameState.generic_value;
+           
+            //DRAW O 
+
+            Ellipse ellipse = new Ellipse();
+
+
+            // Set the width and height of the Ellipse
+            ellipse.Width = squareSize;
+            ellipse.Height = squareSize;
+
+            // Set the stroke color and thickness of the Ellipse
+            ellipse.Stroke = Brushes.White;
+            ellipse.StrokeThickness = 5;
+
+
+            //TURTLE HERE
+            Grounds[r, c].Children.Add(ellipse);
+        }
+
+
+        // DRAW XO HERE!!
+        private async void OnMoveMade(int r, int c)
+        {
+            //Size of Canvas
+            double squareSize = GameGrid.Width / gameState.generic_value;
+
+            //Get player on Grid
             Player player = gameState.GameGrid[r, c];
-            imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+
+            if (player == Player.X)
+            {
+                Draw_X(r,c);
+            }
+
+            else
+            {
+                Draw_O(r, c);
+            }
+
+            //imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
         }
@@ -229,19 +355,16 @@ namespace TicTacToe
             {
                 gameState.GameGrid[r, c] = Player.X;
                 Player player = gameState.GameGrid[r, c];
-                imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+                Draw_X(r, c);
 
             }
             else if (string.Equals(PlayerMarked, 'o'))
             {
                 gameState.GameGrid[r, c] = Player.O;
                 Player player = gameState.GameGrid[r, c];
-                imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
+                Draw_O(r, c);
 
             }
-
-            //Player player = gameState.GameGrid[r, c];
-            //imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
         }
 
         private async void OnGameEnded(GameResult gameResult)
@@ -262,14 +385,20 @@ namespace TicTacToe
 
         private async void OnGameRestarted()
         {
+            GameGrid.Children.Clear();
+
             for (int r = 0; r < gameState.generic_value; r++)
             {
                 for (int c = 0; c < gameState.generic_value; c++)
                 {
-                    imageControls[r, c].BeginAnimation(Image.SourceProperty, null);
-                    imageControls[r, c].Source = null;
+                    Canvas playground = new Canvas();
+                    GameGrid.Children.Add(playground);
+                    Grounds[r, c] = playground;
+
                 }
             }
+
+            
 
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
             await TransitionToGameScreen();
@@ -294,55 +423,28 @@ namespace TicTacToe
         }
         private void SaveGame(object sender, RoutedEventArgs e)
         {
-            // create file save all data
-            FileStream SaveGame = new FileStream("C:\\TicTacToe\\save.txt", FileMode.Create);
 
-            StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
+            
+            string messageBoxText = "Do you want to save this game?";
+            string caption = "Save game";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxResult result;
 
-            int turn_passed = 0;
+            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            Trace.WriteLine(result);
 
-            //Save nxn grid 
-            writer_SaveGame.WriteLine(gameState.generic_value);
-
-            //Save grid that PlayersMarked
-            for (int i = 0; i < (gameState.generic_value); i++)
+            if (string.Equals(result.ToString(), "Yes"))
             {
-                for (int j = 0; j < (gameState.generic_value); j++)
-                {
-                    if (gameState.GameGrid[i, j] != Player.None)
-                    {
-                        writer_SaveGame.Write(gameState.GameGrid[i, j].ToString().ToLower());
+                gameState.SaveGame();
 
-                        turn_passed++;
-                    }
-
-                    else
-                    {
-                        writer_SaveGame.Write("n");
-
-
-                    }
-
-                }
             }
-
-            //Save Current_Players
-            writer_SaveGame.WriteLine(" ");
-            writer_SaveGame.WriteLine(gameState.CurrentPlayer.ToString().ToLower());
-
-            //Save Turn_passed
-            writer_SaveGame.WriteLine(turn_passed);
-
-
-            writer_SaveGame.Close();
-            SaveGame.Close();
 
         }
 
         private void LoadGame(object sender, RoutedEventArgs e)
         {
 
-  
 
             //Load save all data 
             StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
@@ -355,7 +457,7 @@ namespace TicTacToe
             //Set generic_value = nxn_array
             gameState.generic_value = nxn_array;
             Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
-            LoadSetupValue = nxn_array;
+            //LoadSetupValue = nxn_array;
 
 
 
@@ -364,7 +466,7 @@ namespace TicTacToe
             gameState.GameGrid = new Player[gameState.generic_value, gameState.generic_value];
 
             //Set up GameGrid
-           
+
             SetupGrid();
             SetupGameGrid();
 

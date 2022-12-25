@@ -1,7 +1,7 @@
-﻿namespace TicTacToe
-{
-    public enum Player
-    {
-        None, X, O
-    }
-}
+﻿//namespace TicTacToe
+//{
+//    public enum Player
+//    {
+//        None, X, O
+//    }
+//}
