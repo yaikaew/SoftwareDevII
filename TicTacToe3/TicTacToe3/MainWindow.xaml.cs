@@ -52,15 +52,24 @@ namespace TicTacToe
             To = 1
         };
 
+<<<<<<< Updated upstream
 
         private Canvas[,] Grounds;
         private Image[,] imageControls ;
+=======
+        private Image[,] imageControls ;
+
+>>>>>>> Stashed changes
         public GameState gameState = new GameState();
+  
 
         public MainWindow()
         {
             imageControls = new Image[gameState.generic_value, gameState.generic_value];
+<<<<<<< Updated upstream
             Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
+=======
+>>>>>>> Stashed changes
             InitializeComponent();
             SetupGameGrid();
             SetupAnimations();
