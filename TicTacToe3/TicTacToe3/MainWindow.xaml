@@ -101,18 +101,7 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="TextInput"
-                Text="EnterN" 
-                Width="137" 
-                Height="40"
-                HorizontalAlignment="Left" 
-                Margin="934,77,0,0" 
-                Grid.Row="1" 
-                TextWrapping="Wrap" 
-                VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
-            <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
-                    Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>
-            
+
         </Grid>
     </Viewbox>
 

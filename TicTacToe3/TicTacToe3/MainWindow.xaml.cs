@@ -238,7 +238,6 @@ namespace TicTacToe
                 To = end.Y
             };
 
-            line.Visibility = Visibility.Visible;
             line.BeginAnimation(Line.X2Property, x2Animation);
             line.BeginAnimation(Line.Y2Property, y2Animation);
 
@@ -276,7 +275,6 @@ namespace TicTacToe
                 To = end2.Y
             };
 
-            line2.Visibility = Visibility.Visible;
             line2.BeginAnimation(Line.X2Property, x3Animation);
             line2.BeginAnimation(Line.Y2Property, y3Animation);
 
