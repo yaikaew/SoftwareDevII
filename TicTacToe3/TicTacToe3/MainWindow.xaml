@@ -15,7 +15,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <Button Content="SaveGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
@@ -63,6 +62,7 @@
                             <GradientStop Color="#00D2D6C1" Offset="1" />
                         </LinearGradientBrush>
                     </UniformGrid.Background>
+                    
                 </UniformGrid>
 
                 <Line x:Name="Line"
@@ -112,6 +112,7 @@
                 VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
             <Button Content="Button" HorizontalAlignment="Left" Margin="1094,77,0,0" 
                     Grid.Row="1" VerticalAlignment="Top" Width="40" Height="40"/>
+            
         </Grid>
     </Viewbox>
 

@@ -1,12 +1,35 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+
 
 namespace TicTacToe
 {
+    public class WinInfo
+    {
+        public WinType Type { get; set; }
+        public int Number { get; set; }
+    }
+
+
+    public class GameResult
+    {
+        public Player Winner { get; set; }
+        public WinInfo WinInfo { get; set; }
+    }
+
+    public enum Player
+    {
+        None, X, O
+    }
+    
     public class GameState
     {
-        public int generic_value = 10;
+        public int generic_value = 3;
         
         public Player[,] GameGrid { get;  set; }
         public Player CurrentPlayer { get; set; }
@@ -15,7 +38,6 @@ namespace TicTacToe
         public event Action<int, int> MoveMade;
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
-
 
 
         public GameState()
@@ -55,22 +77,6 @@ namespace TicTacToe
             return true;
         }
 
-        //private void SaveGame()
-        //{
-        //    // Set the file path and name for the saved game
-        //    string filePath = "C:\TicTacToe\savedGame.txt";
-        //    // Open the file for writing
-        //    StreamWriter writer = new StreamWriter(filePath);
-
-        //    foreach ((int r, int c) in GameGrid)
-        //    {
-        //        writer.Write("test" + " ");
-        //        Console.WriteLine("Game has been saved");
-        //    }
-
-        //    writer.Close();
-        //}
-
 
         private bool DidMoveWin(int r, int c, out WinInfo winInfo)
         {
@@ -95,10 +101,6 @@ namespace TicTacToe
             {
                 antiDiag = antiDiag.Append((i, generic_value - i - 1)).ToArray();
             }
-            /*(int, int)[] row = new[] { (r, 0), (r, 1), (r, 2) };
-            (int, int)[] col = new[] { (0, c), (1, c), (2, c) };
-            (int, int)[] mainDiag = new[] { (0, 0), (1, 1), (2, 2) };
-            (int, int)[] antiDiag = new[] { (0, 2), (1, 1), (2, 0) };*/
 
             if (AreSquaresMarked(row, CurrentPlayer))
             {
@@ -176,5 +178,54 @@ namespace TicTacToe
             GameOver = false;
             GameRestarted?.Invoke();
         }
+
+        public void SaveGame()
+        {
+            // create file save all data
+            FileStream SaveGame = new FileStream("C:\\TicTacToe\\save.txt", FileMode.Create);
+
+            StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
+
+            int turn_passed = 0;
+
+            //Save nxn grid 
+            writer_SaveGame.WriteLine(generic_value);
+
+            //Save grid that PlayersMarked
+            for (int i = 0; i < (generic_value); i++)
+            {
+                for (int j = 0; j < (generic_value); j++)
+                {
+                    if (GameGrid[i, j] != Player.None)
+                    {
+                        writer_SaveGame.Write(GameGrid[i, j].ToString().ToLower());
+
+                        turn_passed++;
+                    }
+
+                    else
+                    {
+                        writer_SaveGame.Write("n");
+
+
+                    }
+
+                }
+            }
+
+            //Save Current_Players
+            writer_SaveGame.WriteLine(" ");
+            writer_SaveGame.WriteLine(CurrentPlayer.ToString().ToLower());
+
+            //Save Turn_passed
+            writer_SaveGame.WriteLine(turn_passed);
+
+
+            writer_SaveGame.Close();
+            SaveGame.Close();
+
+        }
+   
+
     }
 }

@@ -50,6 +50,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nakov.TurtleGraphics" Version="2.0.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Asset\Grid.png" />
     <Resource Include="Asset\O0.png" />
     <Resource Include="Asset\O1.png" />
