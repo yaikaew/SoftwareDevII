@@ -6,8 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-
-
 namespace TicTacToe
 {
     public class WinInfo
@@ -15,7 +13,6 @@ namespace TicTacToe
         public WinType Type { get; set; }
         public int Number { get; set; }
     }
-
 
     public class GameResult
     {
@@ -27,12 +24,18 @@ namespace TicTacToe
     {
         None, X, O
     }
-    
+
+    public enum WinType
+    {
+        Row, Column, MainDiagonal, AntiDiagonal
+    }
+
     public class GameState
     {
+        public int generic_value ;
+      
+       
 
-        public int generic_value = 3;
-        
         public Player[,] GameGrid { get;  set; }
 
         public Player CurrentPlayer { get; set; }
@@ -42,13 +45,13 @@ namespace TicTacToe
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
 
-
-        public GameState()
+        public  GameState()
         {
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
             GameOver = false;
+
         }
 
         private bool CanMakeMove(int r, int c)
@@ -175,6 +178,7 @@ namespace TicTacToe
         }
         public void Reset()
         {
+   
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
@@ -209,10 +213,7 @@ namespace TicTacToe
                     else
                     {
                         writer_SaveGame.Write("n");
-
-
                     }
-
                 }
             }
 
@@ -223,12 +224,8 @@ namespace TicTacToe
             //Save Turn_passed
             writer_SaveGame.WriteLine(turn_passed);
 
-
             writer_SaveGame.Close();
             SaveGame.Close();
-
         }
-   
-
     }
 }
