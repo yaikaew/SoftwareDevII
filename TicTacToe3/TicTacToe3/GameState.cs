@@ -54,13 +54,6 @@ namespace TicTacToe
 
         }
 
-        /*public void startgame()
-        {
-            GameGrid = new Player[generic_value, generic_value];
-            CurrentPlayer = Player.X;
-            TurnsPassed = 0;
-            GameOver = false;
-        }*/
         private bool CanMakeMove(int r, int c)
         {
             return !GameOver && GameGrid[r, c] == Player.None;
