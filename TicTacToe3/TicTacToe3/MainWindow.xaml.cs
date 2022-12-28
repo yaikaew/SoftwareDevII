@@ -24,14 +24,18 @@ namespace TicTacToe
 {
     public partial class MainWindow : Window
     {
+        //Declare var
         public string LoadCurrentPlayer;
         public string TurnPassed;
+
+        //calling image XO
         public Dictionary<Player, ImageSource> imageSources = new()
         {
             { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
             { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
         };
 
+        //animation for image XO
         private readonly Dictionary<Player, ObjectAnimationUsingKeyFrames> animations = new()
         {
             { Player.X, new ObjectAnimationUsingKeyFrames() },
@@ -53,23 +57,21 @@ namespace TicTacToe
         };
 
 
-
+        //Declare canvas name Grounds
         private Canvas[,] Grounds;
-        private Image[,] imageControls ;
 
+        //calling Model(GameState) in name is gameState
         public GameState gameState = new GameState();
   
 
         public MainWindow()
         {
-            imageControls = new Image[gameState.generic_value, gameState.generic_value];
-
+            //start game
             Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
 
             InitializeComponent();
             SetupGameGrid();
-            SetupAnimations();
-
+    
             gameState.MoveMade += OnMoveMade;
             gameState.GameEnded += OnGameEnded;
             gameState.GameRestarted += OnGameRestarted;
@@ -78,6 +80,7 @@ namespace TicTacToe
 
         }
 
+        //made gridline for ui
         public void SetupGrid()
         {
             TheGrid.RowDefinitions.Clear();
@@ -91,6 +94,7 @@ namespace TicTacToe
             }
         }
 
+        //made gridline for calculate
         public void SetupGameGrid()
         {
             GameGrid.Children.Clear();
@@ -110,25 +114,7 @@ namespace TicTacToe
 
         }
 
-        private void SetupAnimations()
-        {
-            animations[Player.X].Duration = TimeSpan.FromSeconds(.25);
-            animations[Player.O].Duration = TimeSpan.FromSeconds(.25);
-
-            for (int i = 0; i < 16; i++)
-            {
-                Uri xUri = new Uri($"pack://application:,,,/Asset/X{i}.png");
-                BitmapImage xImg = new BitmapImage(xUri);
-                DiscreteObjectKeyFrame xKeyFrame = new DiscreteObjectKeyFrame(xImg);
-                animations[Player.X].KeyFrames.Add(xKeyFrame);
-
-                Uri oUri = new Uri($"pack://application:,,,/Asset/O{i}.png");
-                BitmapImage oImg = new BitmapImage(oUri);
-                DiscreteObjectKeyFrame oKeyFrame = new DiscreteObjectKeyFrame(oImg);
-                animations[Player.O].KeyFrames.Add(oKeyFrame);
-            }
-        }
-
+        //fadeout for element to change page 
         private async Task FadeOut(UIElement uiElement)
         {
             uiElement.BeginAnimation(OpacityProperty, fadeOutAnimation);
@@ -136,6 +122,7 @@ namespace TicTacToe
             uiElement.Visibility = Visibility.Hidden;
         }
 
+        //fadein for element to change page 
         private async Task FadeIn(UIElement uiElement)
         {
             uiElement.Visibility = Visibility.Visible;
@@ -143,6 +130,7 @@ namespace TicTacToe
             await Task.Delay(fadeInAnimation.Duration.TimeSpan);
         }
 
+        //change page when end game calling method fadeout/in
         private async Task TransitionToEndScreen(string text, ImageSource winnerImage)
         {
             await Task.WhenAll(FadeOut(TurnPanel), FadeOut(GameCanvas));
@@ -151,6 +139,7 @@ namespace TicTacToe
             await FadeIn(EndScreen);
         }
 
+        //change page when start game calling method fadeout/in
         private async Task TransitionToGameScreen()
         {
             await FadeOut(EndScreen);
@@ -158,10 +147,11 @@ namespace TicTacToe
             await Task.WhenAll(FadeIn(TurnPanel), FadeIn(GameCanvas));
         }
 
+        //find point win
         private (Point, Point) FindLinePoints(WinInfo winInfo)
         {
             double squareSize = GameGrid.Width / gameState.generic_value;
-            double margin = squareSize / gameState.generic_value;
+            double margin = squareSize / 2;
 
             if (winInfo.Type == WinType.Row)
             {
@@ -181,6 +171,7 @@ namespace TicTacToe
             return (new Point(GameGrid.Width, 0), new Point(0, GameGrid.Height));
         }
 
+        //showline by findpoint
         private async Task ShowLine(WinInfo winInfo)
         {
             (Point start, Point end) = FindLinePoints(winInfo);
@@ -208,6 +199,7 @@ namespace TicTacToe
             await Task.Delay(x2Animation.Duration.TimeSpan);
         }
 
+        //Draw X
         private async void Draw_X (int r , int c)
         {
             double squareSize = GameGrid.Width / gameState.generic_value;
@@ -219,6 +211,7 @@ namespace TicTacToe
             line.StrokeThickness = 4;
             line.Stroke = Brushes.Black;
 
+            //line 1
             (Point start, Point end) = (new Point(0, 0), new Point(squareSize, squareSize));
 
             line.X1 = start.X;
@@ -255,7 +248,7 @@ namespace TicTacToe
 
 
 
-            //##############################################################################
+            //line 2##############################################################################
 
             (Point start2, Point end2) = (new Point(squareSize, 0), new Point(0, squareSize));
 
@@ -283,6 +276,7 @@ namespace TicTacToe
 
         }
 
+        // Draw O
         private void Draw_O (int r, int c)
         {
             double squareSize = GameGrid.Width / gameState.generic_value;
@@ -306,12 +300,9 @@ namespace TicTacToe
         }
 
 
-        // DRAW XO HERE!!
+        // DRAW XO HERE when player click!!
         private async void OnMoveMade(int r, int c)
         {
-            //Size of Canvas
-            double squareSize = GameGrid.Width / gameState.generic_value;
-
             //Get player on Grid
             Player player = gameState.GameGrid[r, c];
 
@@ -325,11 +316,11 @@ namespace TicTacToe
                 Draw_O(r, c);
             }
 
-            //imageControls[r, c].BeginAnimation(Image.SourceProperty, animations[player]);
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
         }
 
+        //DRAW XO HERE when Load 
         private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
@@ -363,6 +354,7 @@ namespace TicTacToe
             }
         }
 
+        //when game end
         private async void OnGameEnded(GameResult gameResult)
         {
             await Task.Delay(1000);
@@ -379,6 +371,7 @@ namespace TicTacToe
             }
         }
 
+        //when restart will reset
         private async void OnGameRestarted()
         {
             GameGrid.Children.Clear();
@@ -394,11 +387,11 @@ namespace TicTacToe
                 }
             }
 
-
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
             await TransitionToGameScreen();
         }
 
+        //whenplayer click then get position row column and order to make X O
         private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             double squareSize = GameGrid.Width / gameState.generic_value;
@@ -408,6 +401,7 @@ namespace TicTacToe
             gameState.MakeMove(row, col);
         }
 
+        //Button playagain
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -416,6 +410,8 @@ namespace TicTacToe
                 gameState.Reset();
             }
         }
+
+        // Savegame call model(gamestate)
         private void SaveGame(object sender, RoutedEventArgs e)
         {
 
@@ -427,7 +423,6 @@ namespace TicTacToe
             MessageBoxResult result;
 
             result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-            Trace.WriteLine(result);
 
             if (string.Equals(result.ToString(), "Yes"))
             {
@@ -437,6 +432,7 @@ namespace TicTacToe
 
         }
 
+        //Load game all
         private void LoadGame(object sender, RoutedEventArgs e)
         {
 
@@ -457,7 +453,6 @@ namespace TicTacToe
 
 
             //Clear GameGrid 
-            imageControls = new Image[gameState.generic_value, gameState.generic_value];
             gameState.GameGrid = new Player[gameState.generic_value, gameState.generic_value];
 
             //Set up GameGrid
@@ -500,6 +495,7 @@ namespace TicTacToe
             Console.ReadLine();
         }
 
+        //button for get n grid
         public void Button_getn(object sender, RoutedEventArgs e)
         {
 

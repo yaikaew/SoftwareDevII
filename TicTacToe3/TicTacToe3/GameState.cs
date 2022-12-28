@@ -8,34 +8,38 @@ using System.Windows.Controls;
 
 namespace TicTacToe
 {
+    //keep data winplayer
     public class WinInfo
     {
         public WinType Type { get; set; }
         public int Number { get; set; }
     }
 
+    //keep GameResult
     public class GameResult
     {
         public Player Winner { get; set; }
         public WinInfo WinInfo { get; set; }
     }
 
+    //set player
     public enum Player
     {
         None, X, O
     }
 
+    //set wintype
     public enum WinType
     {
         Row, Column, MainDiagonal, AntiDiagonal
     }
 
+    //Model class
     public class GameState
     {
+        //declare n
         public int generic_value ;
       
-       
-
         public Player[,] GameGrid { get;  set; }
 
         public Player CurrentPlayer { get; set; }
@@ -45,6 +49,7 @@ namespace TicTacToe
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
 
+        //start game
         public  GameState()
         {
             GameGrid = new Player[generic_value, generic_value];
@@ -54,11 +59,13 @@ namespace TicTacToe
 
         }
 
+        //check ch don't have XO ?
         private bool CanMakeMove(int r, int c)
         {
             return !GameOver && GameGrid[r, c] == Player.None;
         }
 
+        //check IsGridFull ?
         private bool IsGridFull()
         {
             return TurnsPassed == (generic_value * generic_value);
@@ -69,6 +76,7 @@ namespace TicTacToe
             CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
         }
 
+        //Use for check win
         private bool AreSquaresMarked((int, int)[] squares, Player player)
         {
 
@@ -83,7 +91,7 @@ namespace TicTacToe
             return true;
         }
 
-
+        //checkwin
         private bool DidMoveWin(int r, int c, out WinInfo winInfo)
         {
             // Check win here !!
@@ -136,6 +144,7 @@ namespace TicTacToe
             return false;
         }
 
+        //condition foe end game
         private bool DidMoveEndGame(int r, int c, out GameResult gameResult)
         {
             if (DidMoveWin(r, c, out WinInfo winInfo))
@@ -154,6 +163,7 @@ namespace TicTacToe
             return false;
         }
 
+        //use when player click
         public void MakeMove(int r, int c)
         {
             if (!CanMakeMove(r, c))
@@ -176,6 +186,7 @@ namespace TicTacToe
                 MoveMade?.Invoke(r, c);
             }
         }
+
         public void Reset()
         {
    
