@@ -382,7 +382,7 @@ namespace TicTacToe
         private async void OnGameRestarted()
         {
             GameGrid.Children.Clear();
-
+            Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
             for (int r = 0; r < gameState.generic_value; r++)
             {
                 for (int c = 0; c < gameState.generic_value; c++)
@@ -394,7 +394,6 @@ namespace TicTacToe
                 }
             }
 
-            
 
             PlayerImage.Source = imageSources[gameState.CurrentPlayer];
             await TransitionToGameScreen();
@@ -500,5 +499,25 @@ namespace TicTacToe
             reader.Close();
             Console.ReadLine();
         }
+
+        public void Button_getn(object sender, RoutedEventArgs e)
+        {
+
+            if (int.TryParse(TextInput.Text, out int value))
+            {
+                // Use the integer value here
+                gameState.generic_value = value;
+                SetupGrid();
+                gameState.Reset();
+            }
+            else
+            {
+                // Show an error message or do something else if the text is not a valid integer
+                MessageBox.Show("The text is not a valid integer.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+            }
+        }
+
+      
     }
 }

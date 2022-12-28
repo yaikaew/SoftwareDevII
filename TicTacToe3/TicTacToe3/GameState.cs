@@ -32,9 +32,10 @@ namespace TicTacToe
 
     public class GameState
     {
+        public int generic_value ;
+      
+       
 
-        public int generic_value = 3;
-        
         public Player[,] GameGrid { get;  set; }
 
         public Player CurrentPlayer { get; set; }
@@ -44,14 +45,22 @@ namespace TicTacToe
         public event Action<GameResult> GameEnded;
         public event Action GameRestarted;
 
-        public GameState()
+        public  GameState()
         {
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;
             GameOver = false;
+
         }
 
+        /*public void startgame()
+        {
+            GameGrid = new Player[generic_value, generic_value];
+            CurrentPlayer = Player.X;
+            TurnsPassed = 0;
+            GameOver = false;
+        }*/
         private bool CanMakeMove(int r, int c)
         {
             return !GameOver && GameGrid[r, c] == Player.None;
@@ -176,6 +185,7 @@ namespace TicTacToe
         }
         public void Reset()
         {
+   
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
             TurnsPassed = 0;

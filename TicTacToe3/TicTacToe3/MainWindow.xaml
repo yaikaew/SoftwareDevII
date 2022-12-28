@@ -22,14 +22,14 @@
                 Margin="934,77,0,0" 
                 Grid.Row="1" 
                 TextWrapping="Wrap" 
-                VerticalAlignment="Top" FontSize="20" TextAlignment="Center" />
+                VerticalAlignment="Top" FontSize="20" TextAlignment="Center"  />
             <Button Content="Play"
                     Background="{StaticResource ButtonColor}"
                     FontSize="24"
                     HorizontalAlignment="Left" 
                     Margin="1084,77,0,0" Grid.Row="1" 
                     VerticalAlignment="Top" 
-                    Width="50" Height="50"/>
+                    Width="50" Height="50" Click="Button_getn"/>
             <Button Content="SaveGame"
                             Background="{StaticResource ButtonColor}"
                             FontSize="34"
