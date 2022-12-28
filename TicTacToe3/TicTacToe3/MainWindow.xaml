@@ -19,10 +19,10 @@
                 Width="137" 
                 Height="50"
                 HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
                 Margin="934,77,0,0" 
                 Grid.Row="1" 
-                TextWrapping="Wrap" 
-                VerticalAlignment="Top" FontSize="20" TextAlignment="Center"  />
+                TextWrapping="Wrap"  FontSize="20" TextAlignment="Center"  />
             <Button Content="Play"
                     Background="{StaticResource ButtonColor}"
                     FontSize="24"
