@@ -70,14 +70,13 @@ namespace TicTacToe
             Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
 
             InitializeComponent();
-            SetupGameGrid();
-    
+            
             gameState.MoveMade += OnMoveMade;
             gameState.GameEnded += OnGameEnded;
             gameState.GameRestarted += OnGameRestarted;
 
             SetupGrid();
-
+            SetupGameGrid();
         }
 
         //made gridline for ui
@@ -98,9 +97,9 @@ namespace TicTacToe
         public void SetupGameGrid()
         {
             GameGrid.Children.Clear();
+            Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
 
-   
-                for (int r = 0; r < gameState.generic_value; r++)
+            for (int r = 0; r < gameState.generic_value; r++)
                 {
                     for (int c = 0; c < gameState.generic_value; c++)
                     {

@@ -38,7 +38,7 @@ namespace TicTacToe
     public class GameState
     {
         //declare n
-        public int generic_value ;
+        public int generic_value  ;
       
         public Player[,] GameGrid { get;  set; }
 
