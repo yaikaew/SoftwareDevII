@@ -19,10 +19,10 @@
                 Width="137" 
                 Height="50"
                 HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
                 Margin="934,77,0,0" 
                 Grid.Row="1" 
-                TextWrapping="Wrap" 
-                VerticalAlignment="Top" FontSize="20" TextAlignment="Center"  />
+                TextWrapping="Wrap"  FontSize="20" TextAlignment="Center"  />
             <Button Content="Play"
                     Background="{StaticResource ButtonColor}"
                     FontSize="24"
@@ -31,19 +31,19 @@
                     VerticalAlignment="Top" 
                     Width="50" Height="50" Click="Button_getn"/>
             <Button Content="SaveGame"
-                            Background="{StaticResource ButtonColor}"
-                            FontSize="34"
-                            Width="200"
-                            Padding="0,0,0,5"			
-                            BorderBrush="Black"
-                            Click="SaveGame" Margin="934,171,34,282" Grid.Row="1"/>
+                    Background="{StaticResource ButtonColor}"
+                    Margin="934,171,34,282" Grid.Row="1"
+                    Width="200"
+                    BorderBrush="Black"
+                    FontSize="34"
+                    Click="SaveGame" />
             <Button Content="LoadGame"
-                            Background="{StaticResource ButtonColor}"
-                            FontSize="34"
-                            Width="200"
-                            Padding="0,0,0,5"			
-                            BorderBrush="Black"
-                            Click="LoadGame" Margin="934,286,34,167" Grid.Row="1"/>
+                    Background="{StaticResource ButtonColor}"
+                    Margin="934,286,34,167" Grid.Row="1"
+                    Width="200"
+                    BorderBrush="Black"
+                    FontSize="34"
+                    Click="LoadGame" />
             <StackPanel x:Name="TurnPanel"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
