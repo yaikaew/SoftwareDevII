@@ -193,16 +193,12 @@ namespace TicTacToe
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
                 CurrentPlayer = Player.X;
-                Trace.WriteLine("t");
-                //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-
 
             }
             else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
                 CurrentPlayer = Player.O;
-                //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
-                Trace.WriteLine("UUUU");
+
             }
 
 
@@ -210,14 +206,12 @@ namespace TicTacToe
             {
                 GameGrid[r, c] = Player.X;
                 Player player = GameGrid[r, c];
-                //Draw_X(r, c);
 
             }
             else if (string.Equals(PlayerMarked, 'o'))
             {
                 GameGrid[r, c] = Player.O;
                 Player player = GameGrid[r, c];
-                //Draw_O(r, c);
 
             }
         }
@@ -275,7 +269,8 @@ namespace TicTacToe
         }
         public void LoadGame()
         {
-
+            
+            Reset();
 
             //Load save all data 
             StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
@@ -288,21 +283,10 @@ namespace TicTacToe
             //Set generic_value = nxn_array
             generic_value = nxn_array;
             Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
-            //LoadSetupValue = nxn_array;
-
-
-
-            //Clear GameGrid 
-            GameGrid = new Player[generic_value, generic_value];
-
-            //Set up GameGrid
-
-            //SetupGrid();
-            //SetupGameGrid();
+   
 
             //Load Grid Marked
             line = reader.ReadLine();
-            //Trace.WriteLine(line);
             int length = line.Length; length--;
             int pos = 0; int row = 0; int col = 0;
 
@@ -317,7 +301,6 @@ namespace TicTacToe
                 if (col == nxn_array)
                 {
                     row++;
-                    Trace.WriteLine("######################");
                     col = 0;
                 }
 
@@ -335,7 +318,6 @@ namespace TicTacToe
 
                 LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
                
-                //Trace.WriteLine(line[pos] + ", " + "row = " + row + ", " + "col = " + col);
                 pos++;
                 col++;
                 
@@ -345,9 +327,8 @@ namespace TicTacToe
 
             //close the file
             reader.Close();
+
             view.Board(CurrentPlayer.ToString());
-            Trace.WriteLine(CurrentPlayer.ToString());
-            //Console.ReadLine();
 
 
 
