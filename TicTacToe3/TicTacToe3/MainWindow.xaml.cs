@@ -22,7 +22,7 @@ using System.Runtime;
 
 namespace TicTacToe
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow 
     {
         //Declare var
         public string LoadCurrentPlayer;
