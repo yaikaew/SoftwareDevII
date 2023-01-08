@@ -325,6 +325,7 @@ namespace TicTacToe
                 if (PlayerMarked.ToString() != "n")
                 {
                     view.arr[pos+1] = PlayerMarked.ToString().ToUpper();
+                    TurnsPassed++;
                 }
                 else
                 {
@@ -333,13 +334,13 @@ namespace TicTacToe
 
 
                 LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
-
+               
                 //Trace.WriteLine(line[pos] + ", " + "row = " + row + ", " + "col = " + col);
-
                 pos++;
                 col++;
+                
 
-            
+
             }
 
             //close the file

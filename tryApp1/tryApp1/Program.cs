@@ -45,7 +45,8 @@ namespace TIC_TAC_TOE
                     // Input can be parsed to an int.
                     // number contains the int value of the input.
                     DigitToArray(number);
-                    
+                    gamestate.MakeMove(row, col);
+
                 }
                 else
                 {
@@ -64,12 +65,10 @@ namespace TIC_TAC_TOE
                 }
 
                 //choice = int.Parse(Console.ReadLine());//Taking users choice
-                
-
 
                 // checking that position where user want to run is marked (with X or O) or not
 
-                gamestate.MakeMove(row, col);
+                
 
                 if (gamestate.GameGrid[row, col] == Player.X) //if chance is of player 2 then mark O else mark X
                 {
