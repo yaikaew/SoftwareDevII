@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,27 +11,21 @@ namespace ConsoleOX1
 {
     class view
     {
-        // arr need to be 1 2 3 4 5 ... nxn
-        public static model gamestate = new model();
-        public static List<string> list = new List<string>();
-        //public static string[] arr = { };
-        public static int i,j,k = 0;
-        //get generic value from model class
-        //private static int generic_va
-        public static void Board(string CurrentPlayer)
+        private int i,j,k = 0;
+
+        public void Board(string CurrentPlayer,int generic_value ,List<string> list)
         {
             Console.Clear();// whenever loop will be again start then screen will be clear
-            Console.WriteLine("Player1:X and Player2:O");
+            Console.WriteLine("Command");
+            Console.WriteLine("save : for save the current game");
+            Console.WriteLine("load : for load the last game that you save");
             Console.WriteLine("\n");
 
-            for (i = 0; i < gamestate.generic_value* gamestate.generic_value + 1; i++)
-            {
-                list.Add(i.ToString());
-            }
 
             String[] arr = list.ToArray();
 
-            if (CurrentPlayer == "X")//checking the chance of the player
+            //checking the chance of the player
+            if (CurrentPlayer == "X")
             {
                 Console.WriteLine("Player X Chance");
             }
@@ -38,17 +33,20 @@ namespace ConsoleOX1
             {
                 Console.WriteLine("Player O Chance");
             }
-            for (i = 0; i < gamestate.generic_value; i++)//start print value
+            Console.WriteLine("\n");
+
+            //generate table format 
+            for (i = 0; i < generic_value; i++)
             {
-                for (j = 0; j < gamestate.generic_value; j++)
+                for (j = 0; j < generic_value; j++)
                 {
-                    if (i * gamestate.generic_value + j + 1 > 9)
+                    if (i * generic_value + j + 1 > 9)
                     {
-                        Console.Write(" | {0} | ", arr[i * gamestate.generic_value + j + 1 ]);
+                        Console.Write(" | {0} | ", arr[i * generic_value + j + 1 ]);
                     }
                     else
                     {
-                        Console.Write(" | {0}  | ", arr[i * gamestate.generic_value + j + 1 ]);
+                        Console.Write(" | {0}  | ", arr[i * generic_value + j + 1 ]);
                     }
                     
                 }
@@ -56,59 +54,16 @@ namespace ConsoleOX1
                 Console.WriteLine(" ");
 
             }
-                /*
-                Console.Write("     ");// print top
-                for(k=0;k<generic_value;k++)
-                {
-                    Console.Write("|     ");
-                }
-                Console.WriteLine(" ");
-                for (i = 0; i < generic_value; i++)//start print value
-                {
-                    for (j = 0; j < generic_value; j++)
-                    {
-                        if(i * 4 + j + 1 > 9)
-                        {
-                            Console.Write("  {0} |", arr[i * 4 + j + 1]);
-                        }
-                        else
-                        {
-                            Console.Write("  {0}  |", arr[i*4+j+1]);
-                        }                                        
-                    }
-                    Console.WriteLine(" ");
-                    Console.Write("_____");
-                    for (k = 0; k < generic_value; k++)
-                    {
-                        Console.Write("|_____");
-                    }
-                    Console.WriteLine(" ");
-                }
-                Console.Write("     ");// print bottom
-                for (k = 0; k < generic_value; k++)
-                {
-                    Console.Write("|     ");
-                }
-                Console.WriteLine(" ");
-                */
-                /*Console.WriteLine("     |     |      ");
-                Console.WriteLine("  {0}  |  {1}  |  {2}", arr[1], arr[2], arr[3]);
-                Console.WriteLine("_____|_____|_____ ");
-                Console.WriteLine("     |     |      ");
-                Console.WriteLine("  {0}  |  {1}  |  {2}", arr[4], arr[5], arr[6]);
-                Console.WriteLine("_____|_____|_____ ");
-                Console.WriteLine("     |     |      ");
-                Console.WriteLine("  {0}  |  {1}  |  {2}", arr[7], arr[8], arr[9]);
-                Console.WriteLine("     |     |      ");*/
+               
             }
 
-        public static void DisplayResult(string winner)
+        public void DisplayResult(string winner )
         {
             Console.WriteLine("\n");
 
             if (winner != "None")
             {
-                Console.WriteLine("WINNER IS " + "PLAYER " + winner);
+                Console.WriteLine("WINNER IS " + "PLAYER : " + winner );
             }
 
             else
@@ -116,5 +71,7 @@ namespace ConsoleOX1
                 Console.WriteLine("DRAW");
             }
         }
+
+
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleOX1
 {
+
     //keep data winplayer
     public class WinInfo
     {
@@ -37,8 +38,8 @@ namespace ConsoleOX1
     public class model
     {
         //declare n
-        public int generic_value = 5;
-
+        public int generic_value ;
+        public List<string> list = new List<string>();
         public Player[,] GameGrid { get; set; }
 
         public Player CurrentPlayer { get; set; }
@@ -69,7 +70,7 @@ namespace ConsoleOX1
             return TurnsPassed == (generic_value * generic_value);
         }
 
-        public void SwitchPlayer()
+        private void SwitchPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
         }
@@ -90,7 +91,7 @@ namespace ConsoleOX1
         }
 
         //checkwin
-        public bool DidMoveWin(int r, int c, out WinInfo winInfo)
+        private bool DidMoveWin(int r, int c, out WinInfo winInfo)
         {
             // Check win here !!
             (int, int)[] row = { };
@@ -211,7 +212,7 @@ namespace ConsoleOX1
             }
         }
 
-        public void Reset()
+        private void Reset()
         {
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
@@ -301,12 +302,12 @@ namespace ConsoleOX1
                 char PlayerMarked = line[pos];
                 if (PlayerMarked.ToString() != "n")
                 {
-                    view.list[pos + 1] = PlayerMarked.ToString().ToUpper();
+                    list[pos + 1] = PlayerMarked.ToString().ToUpper();
                     TurnsPassed++;
                 }
                 else
                 {
-                    view.list[pos + 1] = (pos + 1).ToString();
+                    list[pos + 1] = (pos + 1).ToString();
                 }
 
                 LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
@@ -319,7 +320,7 @@ namespace ConsoleOX1
             //close the file
             reader.Close();
 
-            view.Board(CurrentPlayer.ToString());
+            //View.Board(CurrentPlayer.ToString(), generic_value);
         }
     }
 }

@@ -8,12 +8,15 @@ namespace ConsoleOX1
 {
     class Program
     {
-        public static model gamestate = new model();
-        public static GameResult gameresult = new GameResult();
-        static int row = 0, col = 0;
+
+        private static model gamestate = new model();
+        private static GameResult gameresult = new GameResult();
+        private static WinInfo wininfo = new WinInfo();
+        private static view View = new view();
+        private static int row = 0, col = 0;
 
         //Change number in grid to row and column
-        public static void DigitToArray(int Digit)
+        private static void DigitToArray(int Digit)
         {
             Digit--;
             row = Digit / gamestate.generic_value;// generic value
@@ -21,14 +24,30 @@ namespace ConsoleOX1
         }
         public static void Main(string[] args)
         {
+            //recieve input from user
+            Console.Write("EnterTableSize : ");
+            string generic = Console.ReadLine();
+            Int32.TryParse(generic,out gamestate.generic_value);
+
+            //set gamegrid of table
+            gamestate.GameGrid = new Player[gamestate.generic_value, gamestate.generic_value];
+
+            //create list
+            for (int i = 0; i < gamestate.generic_value * gamestate.generic_value + 1; i++)
+            {
+                gamestate.list.Add(i.ToString());
+                Trace.WriteLine(gamestate.list[i]);
+            }
+
             do
             {
 
-                view.Board(gamestate.CurrentPlayer.ToString());// calling the board Function
+                View.Board(gamestate.CurrentPlayer.ToString(), gamestate.generic_value, gamestate.list);// calling the board Function
 
                 string input = Console.ReadLine();
                 int number ;
                 bool success = Int32.TryParse(input, out number);
+
                 if (success)
                 {
                     // Input can be parsed to an int.
@@ -43,27 +62,33 @@ namespace ConsoleOX1
                     if (input == "save")
                     {
                         gamestate.SaveGame();
+  
                     }
                     else if (input == "load")
                     {
                         gamestate.LoadGame();
+ 
                     }
                 }
 
-                if (gamestate.GameGrid[row, col] == Player.X) //if chance is of player 2 then mark O else mark X
+                //check on gamegrid playermarked and add into list
+                if (gamestate.GameGrid[row, col] == Player.X) 
                 {
-                    view.list[number] = "X";
+
+                    gamestate.list[number] = "X";
+
                 }
                 else
                 {
-                    view.list[number] = "O";
+                    gamestate.list[number] = "O";
                 }
             }
 
             while (!gamestate.DidMoveEndGame(row, col, out gameresult));
+
             Console.Clear();// clearing the console
-            view.Board(gamestate.CurrentPlayer.ToString());// getting filled board again
-            view.DisplayResult(gameresult.Winner.ToString());
+            View.Board(gamestate.CurrentPlayer.ToString(), gamestate.generic_value, gamestate.list);// getting filled board again
+            View.DisplayResult(gameresult.Winner.ToString());//display result of winner
         }
     }
 }
