@@ -101,9 +101,9 @@
                                    FontSize="54"
                                    Text="Winner: "
                                    Margin="0,0,0,15"/>
-                        <!--<Image x:Name="WinnerImage"
+                        <Canvas x:Name="Winner"
                                Height="75"
-                               Source="Asset/X15.png"/>-->
+                                            />
                     </StackPanel>
 
                     <Button Content="Play Again"
@@ -116,6 +116,7 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
+            <Canvas x:Name="Current" Margin="665,15,404,525" Grid.RowSpan="2"/>
 
         </Grid>
     </Viewbox>
