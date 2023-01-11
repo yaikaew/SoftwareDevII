@@ -182,7 +182,7 @@ namespace TicTacToe
 
         }
         //made gridline for ui
-        public void SetupGrid()
+        private void SetupGrid()
         {
             TheGrid.RowDefinitions.Clear();
             TheGrid.ColumnDefinitions.Clear();
@@ -196,7 +196,7 @@ namespace TicTacToe
         }
 
         //made gridline for calculate
-        public void SetupGameGrid()
+        private void SetupGameGrid()
         {
             GameGrid.Children.Clear();
             Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
@@ -624,7 +624,7 @@ namespace TicTacToe
         }
 
         //button for get n grid
-        public void Button_getn(object sender, RoutedEventArgs e)
+        private void Button_getn(object sender, RoutedEventArgs e)
         {
 
             if (int.TryParse(TextInput.Text, out int value))
