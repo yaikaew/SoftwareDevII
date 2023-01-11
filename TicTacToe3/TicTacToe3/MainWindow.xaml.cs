@@ -20,6 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using Nakov.TurtleGraphics;
 using System.Runtime;
 using System.Reflection;
+using static System.Windows.Forms.LinkLabel;
 
 namespace TicTacToe
 {
@@ -78,8 +79,108 @@ namespace TicTacToe
 
             SetupGrid();
             SetupGameGrid();
+            X_drawCurrent();
+
+
+
+
+
         }
 
+        //Draw x for show
+        private void X_drawCurrent()
+        {
+            //line 1
+            Line line1 = new Line();
+
+            line1.X1 = 0;
+            line1.Y1 = 0;
+            line1.X2 = 50;
+            line1.Y2 = 50;
+
+
+            //line 2
+            Line line2 = new Line();
+
+            line2.X1 = 50;
+            line2.Y1 = 0;
+            line2.X2 = 0;
+            line2.Y2 = 50;
+
+            // Create a red Brush  
+            SolidColorBrush blackBrush = new SolidColorBrush();
+            blackBrush.Color = Colors.Black;
+
+            // Set Line's width and color  
+            line1.StrokeThickness = 4;
+            line1.Stroke = blackBrush;
+            line2.StrokeThickness = 4;
+            line2.Stroke = blackBrush;
+
+            Current.Children.Clear();
+            Current.Children.Add(line1);
+            Current.Children.Add(line2);
+        }
+        private void X_drawWinner( )
+        {
+            //line 1
+            Line line1 = new Line();
+
+            line1.X1 = 0;
+            line1.Y1 = 0;
+            line1.X2 = 50;
+            line1.Y2 = 50;
+
+
+            //line 2
+            Line line2 = new Line();
+
+            line2.X1 = 50;
+            line2.Y1 = 0;
+            line2.X2 = 0;
+            line2.Y2 = 50;
+
+            // Create a red Brush  
+            SolidColorBrush blackBrush = new SolidColorBrush();
+            blackBrush.Color = Colors.Black;
+
+            // Set Line's width and color  
+            line1.StrokeThickness = 4;
+            line1.Stroke = blackBrush;
+            line2.StrokeThickness = 4;
+            line2.Stroke = blackBrush;
+
+            Winner.Children.Clear();
+            Winner.Children.Add(line1);
+            Winner.Children.Add(line2);
+        }
+
+        private void O_drawCurrent()
+        {
+            Ellipse circle = new Ellipse()
+            {
+                Width = 50,
+                Height = 50,
+                Stroke = Brushes.White,
+                StrokeThickness = 2
+            };
+            Current.Children.Clear();
+            Current.Children.Add(circle);
+
+        }
+        private void O_drawWinner()
+        {
+            Ellipse circle = new Ellipse()
+            {
+                Width = 50,
+                Height = 50,
+                Stroke = Brushes.White,
+                StrokeThickness = 2
+            };
+            Winner.Children.Clear();
+            Winner.Children.Add(circle);
+
+        }
         //made gridline for ui
         public void SetupGrid()
         {
@@ -314,51 +415,13 @@ namespace TicTacToe
                 Draw_O(r, c);
             }
 
-            Ellipse circle = new Ellipse()
-            {
-                Width = 50,
-                Height = 50,
-                Stroke = Brushes.White,
-                StrokeThickness = 2
-            };
-
-            //line 1
-            Line line1 = new Line();
-
-            line1.X1 = 0;
-            line1.Y1 = 0;
-            line1.X2 = 50;
-            line1.Y2 = 50;
-
-
-            //line 2
-            Line line2 = new Line();
-
-            line2.X1 = 50;
-            line2.Y1 = 0;
-            line2.X2 = 0;
-            line2.Y2 = 50;
-
-            // Create a red Brush  
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set Line's width and color  
-            line1.StrokeThickness = 4;
-            line1.Stroke = blackBrush;
-            line2.StrokeThickness = 4;
-            line2.Stroke = blackBrush;
-
             if (gameState.CurrentPlayer == Player.X)
             {
-                Current.Children.Clear();
-                Current.Children.Add(line1);
-                Current.Children.Add(line2);
+                X_drawCurrent();
             }
             else
             {
-                Current.Children.Clear();
-                Current.Children.Add(circle);
+                O_drawCurrent();
             }
 
         }
@@ -367,47 +430,11 @@ namespace TicTacToe
         //DRAW XO HERE when Load 
         private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
-            Ellipse circle = new Ellipse()
-            {
-                Width = 50,
-                Height = 50,
-                Stroke = Brushes.White,
-                StrokeThickness = 2
-            };
-
-            //line 1
-            Line line1 = new Line();
-
-            line1.X1 = 0;
-            line1.Y1 = 0;
-            line1.X2 = 50;
-            line1.Y2 = 50;
-
-
-            //line 2
-            Line line2 = new Line();
-
-            line2.X1 = 50;
-            line2.Y1 = 0;
-            line2.X2 = 0;
-            line2.Y2 = 50;
-
-            // Create a red Brush  
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set Line's width and color  
-            line1.StrokeThickness = 4;
-            line1.Stroke = blackBrush;
-            line2.StrokeThickness = 4;
-            line2.Stroke = blackBrush;
-
-
+            
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
                 gameState.CurrentPlayer = Player.X;
-                Winner.Children.Add(line1);
-                Winner.Children.Add(line2);
+                X_drawCurrent();
                 //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
 
@@ -415,7 +442,7 @@ namespace TicTacToe
             else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
                 gameState.CurrentPlayer = Player.O;
-                Current.Children.Add(circle);
+                O_drawCurrent();
                 //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
             }
@@ -442,41 +469,6 @@ namespace TicTacToe
         {
             await Task.Delay(1000);
 
-            Ellipse circle = new Ellipse()
-            {
-                Width = 50,
-                Height = 50,
-                Stroke = Brushes.White,
-                StrokeThickness = 2
-            };
-
-            //line 1
-            Line line1 = new Line();
-
-            line1.X1 = 0;
-            line1.Y1 = 0;
-            line1.X2 = 50;
-            line1.Y2 = 50;
-
-
-            //line 2
-            Line line2 = new Line();
-
-            line2.X1 = 50;
-            line2.Y1 = 0;
-            line2.X2 = 0;
-            line2.Y2 = 50;
-
-            // Create a red Brush  
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set Line's width and color  
-            line1.StrokeThickness = 4;
-            line1.Stroke = blackBrush;
-            line2.StrokeThickness = 4;
-            line2.Stroke = blackBrush;
-
             if (gameResult.Winner == Player.None)
             {
                 await TransitionToEndScreen("It's a tie!");
@@ -485,9 +477,14 @@ namespace TicTacToe
             {
                 await ShowLine(gameResult.WinInfo);
                 await Task.Delay(1000);
-                if (gameResult.Winner == Player.O)
+                Current.Children.Clear();
+                if (gameResult.Winner == Player.X)
                 {
-                    Winner.Children.Add(circle);
+                    X_drawWinner();
+                }
+                else
+                {
+                    O_drawWinner();
                 }
 
                 await TransitionToEndScreen("Winner:");
@@ -510,7 +507,15 @@ namespace TicTacToe
                 }
             }
 
-           // PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            if (gameState.CurrentPlayer == Player.X)
+            {
+                X_drawCurrent();
+            }
+            else
+            {
+                O_drawCurrent();
+            }
+
             await TransitionToGameScreen();
         }
 
