@@ -16,17 +16,18 @@ namespace ConsoleOX1
         public static void DigitToArray(int Digit)
         {
             Digit--;
-            row = Digit / 4;// 4 need to change to generic value
-            col = Digit % 4;// 4 need to change to generic value
+            row = Digit / gamestate.generic_value;// generic value
+            col = Digit % gamestate.generic_value;// generic value
         }
         public static void Main(string[] args)
         {
             do
             {
+
                 view.Board(gamestate.CurrentPlayer.ToString());// calling the board Function
 
                 string input = Console.ReadLine();
-                int number;
+                int number ;
                 bool success = Int32.TryParse(input, out number);
                 if (success)
                 {
@@ -51,11 +52,11 @@ namespace ConsoleOX1
 
                 if (gamestate.GameGrid[row, col] == Player.X) //if chance is of player 2 then mark O else mark X
                 {
-                    view.arr[number] = "X";
+                    view.list[number] = "X";
                 }
                 else
                 {
-                    view.arr[number] = "O";
+                    view.list[number] = "O";
                 }
             }
 

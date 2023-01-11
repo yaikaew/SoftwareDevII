@@ -37,7 +37,7 @@ namespace ConsoleOX1
     public class model
     {
         //declare n
-        public int generic_value = 4;
+        public int generic_value = 5;
 
         public Player[,] GameGrid { get; set; }
 
@@ -301,12 +301,12 @@ namespace ConsoleOX1
                 char PlayerMarked = line[pos];
                 if (PlayerMarked.ToString() != "n")
                 {
-                    view.arr[pos + 1] = PlayerMarked.ToString().ToUpper();
+                    view.list[pos + 1] = PlayerMarked.ToString().ToUpper();
                     TurnsPassed++;
                 }
                 else
                 {
-                    view.arr[pos + 1] = (pos + 1).ToString();
+                    view.list[pos + 1] = (pos + 1).ToString();
                 }
 
                 LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);

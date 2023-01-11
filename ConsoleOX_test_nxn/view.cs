@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,24 @@ namespace ConsoleOX1
     class view
     {
         // arr need to be 1 2 3 4 5 ... nxn
-        public static string[] arr = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ,"10","11","12","13","14","15","16"};
+        public static model gamestate = new model();
+        public static List<string> list = new List<string>();
+        //public static string[] arr = { };
         public static int i,j,k = 0;
         //get generic value from model class
-        private static int generic_value=4;
-
+        //private static int generic_va
         public static void Board(string CurrentPlayer)
         {
             Console.Clear();// whenever loop will be again start then screen will be clear
             Console.WriteLine("Player1:X and Player2:O");
             Console.WriteLine("\n");
+
+            for (i = 0; i < gamestate.generic_value* gamestate.generic_value + 1; i++)
+            {
+                list.Add(i.ToString());
+            }
+
+            String[] arr = list.ToArray();
 
             if (CurrentPlayer == "X")//checking the chance of the player
             {
@@ -29,21 +38,23 @@ namespace ConsoleOX1
             {
                 Console.WriteLine("Player O Chance");
             }
-            for (i = 0; i < generic_value; i++)//start print value
+            for (i = 0; i < gamestate.generic_value; i++)//start print value
             {
-                for (j = 0; j < generic_value; j++)
+                for (j = 0; j < gamestate.generic_value; j++)
                 {
-                    if (i * 4 + j + 1 > 9)
+                    if (i * gamestate.generic_value + j + 1 > 9)
                     {
-                        Console.Write("  {0}  ", arr[i * 4 + j + 1]);
+                        Console.Write(" | {0} | ", arr[i * gamestate.generic_value + j + 1 ]);
                     }
                     else
                     {
-                        Console.Write("  {0}   ", arr[i * 4 + j + 1]);
+                        Console.Write(" | {0}  | ", arr[i * gamestate.generic_value + j + 1 ]);
                     }
                     
                 }
                 Console.WriteLine(" ");
+                Console.WriteLine(" ");
+
             }
                 /*
                 Console.Write("     ");// print top
