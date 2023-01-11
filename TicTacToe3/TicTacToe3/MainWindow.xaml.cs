@@ -29,18 +29,18 @@ namespace TicTacToe
         public string TurnPassed;
 
         //calling image XO
-        public Dictionary<Player, ImageSource> imageSources = new()
-        {
-            { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
-            { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
-        };
+        //public Dictionary<Player, ImageSource> imageSources = new()
+        //{
+        //    { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
+        //    { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
+        //};
 
         //animation for image XO
-        private readonly Dictionary<Player, ObjectAnimationUsingKeyFrames> animations = new()
-        {
-            { Player.X, new ObjectAnimationUsingKeyFrames() },
-            { Player.O, new ObjectAnimationUsingKeyFrames() }
-        };
+        //private readonly Dictionary<Player, ObjectAnimationUsingKeyFrames> animations = new()
+        //{
+        //    { Player.X, new ObjectAnimationUsingKeyFrames() },
+        //    { Player.O, new ObjectAnimationUsingKeyFrames() }
+        //};
 
         private readonly DoubleAnimation fadeOutAnimation = new DoubleAnimation
         {
@@ -130,11 +130,11 @@ namespace TicTacToe
         }
 
         //change page when end game calling method fadeout/in
-        private async Task TransitionToEndScreen(string text, ImageSource winnerImage)
+        private async Task TransitionToEndScreen(string text)
         {
             await Task.WhenAll(FadeOut(TurnPanel), FadeOut(GameCanvas));
             ResultText.Text = text;
-            WinnerImage.Source = winnerImage;
+            //WinnerImage.Source = winnerImage;
             await FadeIn(EndScreen);
         }
 
@@ -313,7 +313,7 @@ namespace TicTacToe
                 Draw_O(r, c);
             }
 
-            PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+            //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
         }
 
@@ -323,14 +323,14 @@ namespace TicTacToe
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
                 gameState.CurrentPlayer = Player.X;
-                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+                //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
 
             }
             else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
                 gameState.CurrentPlayer = Player.O;
-                PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+                //PlayerImage.Source = imageSources[gameState.CurrentPlayer];
 
             }
 
@@ -358,13 +358,13 @@ namespace TicTacToe
 
             if (gameResult.Winner == Player.None)
             {
-                await TransitionToEndScreen("It's a tie!", null);
+                await TransitionToEndScreen("It's a tie!");
             }
             else
             {
                 await ShowLine(gameResult.WinInfo);
                 await Task.Delay(1000);
-                await TransitionToEndScreen("Winner:", imageSources[gameResult.Winner]);
+                await TransitionToEndScreen("Winner:");
             }
         }
 
@@ -384,7 +384,7 @@ namespace TicTacToe
                 }
             }
 
-            PlayerImage.Source = imageSources[gameState.CurrentPlayer];
+           // PlayerImage.Source = imageSources[gameState.CurrentPlayer];
             await TransitionToGameScreen();
         }
 

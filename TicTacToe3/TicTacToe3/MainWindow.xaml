@@ -50,9 +50,9 @@
                 <TextBlock FontSize="54"
                            Text="Player:"
                            Margin="0,0,0,15"/>
-                <Image x:Name="PlayerImage"
+                <!--<Image x:Name="PlayerImage"
                        Source="Asset/X15.png"
-                       Height="75"/>
+                       Height="75"/>-->
             </StackPanel>
 
             <Grid x:Name="TheGrid" Width="500" Height="500" Grid.Row ="1" ShowGridLines="True">
@@ -101,9 +101,9 @@
                                    FontSize="54"
                                    Text="Winner: "
                                    Margin="0,0,0,15"/>
-                        <Image x:Name="WinnerImage"
+                        <!--<Image x:Name="WinnerImage"
                                Height="75"
-                               Source="Asset/X15.png"/>
+                               Source="Asset/X15.png"/>-->
                     </StackPanel>
 
                     <Button Content="Play Again"
@@ -116,10 +116,7 @@
                             Click="Button_Click"/>
                 </StackPanel>
             </Grid>
-<<<<<<< HEAD
 
-=======
->>>>>>> d3fdc396d9c3ebe268f052979bc001dab780d0cf
         </Grid>
     </Viewbox>
 
