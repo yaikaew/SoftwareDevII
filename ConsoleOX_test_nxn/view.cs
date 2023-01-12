@@ -55,7 +55,7 @@ namespace ConsoleOX1
 
             }
                
-            }
+        }
 
         public void DisplayResult(string winner )
         {
