@@ -128,17 +128,17 @@ namespace TicTacToe
 
             line1.X1 = 0;
             line1.Y1 = 0;
-            line1.X2 = 50;
-            line1.Y2 = 50;
+            line1.X2 = 70;
+            line1.Y2 = 70;
 
 
             //line 2
             Line line2 = new Line();
 
-            line2.X1 = 50;
+            line2.X1 = 70;
             line2.Y1 = 0;
             line2.X2 = 0;
-            line2.Y2 = 50;
+            line2.Y2 = 70;
 
             // Create a red Brush  
             SolidColorBrush blackBrush = new SolidColorBrush();
@@ -162,7 +162,7 @@ namespace TicTacToe
                 Width = 50,
                 Height = 50,
                 Stroke = Brushes.White,
-                StrokeThickness = 2
+                StrokeThickness = 4
             };
             Current.Children.Clear();
             Current.Children.Add(circle);
@@ -172,10 +172,10 @@ namespace TicTacToe
         {
             Ellipse circle = new Ellipse()
             {
-                Width = 50,
-                Height = 50,
+                Width = 70,
+                Height = 70,
                 Stroke = Brushes.White,
-                StrokeThickness = 2
+                StrokeThickness = 4
             };
             Winner.Children.Clear();
             Winner.Children.Add(circle);
@@ -468,7 +468,7 @@ namespace TicTacToe
         private async void OnGameEnded(GameResult gameResult)
         {
             await Task.Delay(1000);
-
+            Current.Children.Clear();
             if (gameResult.Winner == Player.None)
             {
                 await TransitionToEndScreen("It's a tie!");
@@ -477,7 +477,7 @@ namespace TicTacToe
             {
                 await ShowLine(gameResult.WinInfo);
                 await Task.Delay(1000);
-                Current.Children.Clear();
+
                 if (gameResult.Winner == Player.X)
                 {
                     X_drawWinner();
