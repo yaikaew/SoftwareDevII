@@ -11,7 +11,6 @@ namespace ConsoleOX1
 {
     class view
     {
-        private int i,j,k = 0;
 
         public void Board(string CurrentPlayer,int generic_value ,List<string> list)
         {
@@ -36,9 +35,9 @@ namespace ConsoleOX1
             Console.WriteLine("\n");
 
             //generate table format 
-            for (i = 0; i < generic_value; i++)
+            for (int i = 0; i < generic_value; i++)
             {
-                for (j = 0; j < generic_value; j++)
+                for (int j = 0; j < generic_value; j++)
                 {
                     if (i * generic_value + j + 1 > 9)
                     {
@@ -57,13 +56,14 @@ namespace ConsoleOX1
                
         }
 
-        public void DisplayResult(string winner )
+        public void DisplayResult(string winner , string wininfo )
         {
             Console.WriteLine("\n");
 
             if (winner != "None")
             {
                 Console.WriteLine("WINNER IS " + "PLAYER : " + winner );
+                Console.WriteLine("WINTYPE : " + wininfo);
             }
 
             else

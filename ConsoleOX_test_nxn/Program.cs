@@ -8,29 +8,40 @@ namespace ConsoleOX1
 {
     class Program
     {
-
-        private static model gamestate = new model();
-        private static GameResult gameresult = new GameResult();
-        private static WinInfo wininfo = new WinInfo();
-        private static view View = new view();
-        private static int row = 0, col = 0;
+        //Move in to main function
+        //private static model gamestate = new model();
+        //private static GameResult gameresult = new GameResult();
+        //private static WinInfo wininfo = new WinInfo();
+        //private static view View = new view();
+        //int row = 0, col = 0;
 
         //Change number in grid to row and column
-        private static void DigitToArray(int Digit)
-        {
-            Digit--;
-            row = Digit / gamestate.generic_value;// generic value
-            col = Digit % gamestate.generic_value;// generic value
-        }
+
         public static void Main(string[] args)
         {
+            model gamestate = new model();
+            GameResult gameresult = new GameResult();
+            WinInfo wininfo = new WinInfo();
+            view View = new view();
+
+            int row = 0, col = 0;
+
+            void DigitToArray(int Digit)
+            {
+                Digit--;
+                row = Digit / gamestate.generic_value;// generic value
+                col = Digit % gamestate.generic_value;// generic value
+            }
+
             //recieve input from user
             Console.Write("EnterTableSize : ");
             string generic = Console.ReadLine();
             Int32.TryParse(generic,out gamestate.generic_value);
 
             //set gamegrid of table
-            gamestate.GameGrid = new Player[gamestate.generic_value, gamestate.generic_value];
+            //recommend to use method reset
+            //gamestate.GameGrid = new Player[gamestate.generic_value, gamestate.generic_value];
+            gamestate.Reset();
 
             //create list
             for (int i = 0; i < gamestate.generic_value * gamestate.generic_value + 1; i++)
@@ -88,7 +99,7 @@ namespace ConsoleOX1
 
             Console.Clear();// clearing the console
             View.Board(gamestate.CurrentPlayer.ToString(), gamestate.generic_value, gamestate.list);// getting filled board again
-            View.DisplayResult(gameresult.Winner.ToString());//display result of winner
+            View.DisplayResult(gameresult.Winner.ToString(),gameresult.WinInfo.Type.ToString());//display result of winner
         }
     }
 }

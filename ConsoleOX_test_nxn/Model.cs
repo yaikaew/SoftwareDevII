@@ -186,7 +186,7 @@ namespace ConsoleOX1
             }
         }
 
-        private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
+        private void LoadGrid(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
@@ -212,7 +212,7 @@ namespace ConsoleOX1
             }
         }
 
-        private void Reset()
+        public void Reset()
         {
             GameGrid = new Player[generic_value, generic_value];
             CurrentPlayer = Player.X;
@@ -310,7 +310,7 @@ namespace ConsoleOX1
                     list[pos + 1] = (pos + 1).ToString();
                 }
 
-                LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
+                LoadGrid(row, col, PlayerMarked, LoadCurrentPlayer);
 
                 pos++;
                 col++;
