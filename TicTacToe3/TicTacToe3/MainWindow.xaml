@@ -55,12 +55,12 @@
                        Height="75"/>-->
             </StackPanel>
 
-            <Grid x:Name="TheGrid" Width="500" Height="500" Grid.Row ="1" ShowGridLines="True">
-                <Grid.ColumnDefinitions>
+            <Canvas x:Name="TheGrid" Width="500" Height="500" Grid.Row ="1" >
+                <!--<Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                </Grid.RowDefinitions>
-            </Grid>
+                </Grid.RowDefinitions>-->
+            </Canvas>
 
             <Canvas x:Name="GameCanvas"
                     Grid.Row="1"

@@ -26,7 +26,7 @@ namespace ConsoleOX1
 
             int row = 0, col = 0;
 
-            void DigitToArray(int Digit)
+            void DigitToIndex(int Digit)
             {
                 Digit--;
                 row = Digit / gamestate.generic_value;// generic value
@@ -41,6 +41,8 @@ namespace ConsoleOX1
             //set gamegrid of table
             //recommend to use method reset
             //gamestate.GameGrid = new Player[gamestate.generic_value, gamestate.generic_value];
+
+            //Reset to set generic value
             gamestate.Reset();
 
             //create list
@@ -63,7 +65,7 @@ namespace ConsoleOX1
                 {
                     // Input can be parsed to an int.
                     // number contains the int value of the input.
-                    DigitToArray(number);
+                    DigitToIndex(number);
                     gamestate.MakeMove(row, col);
                 }
                 else

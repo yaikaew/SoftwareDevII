@@ -30,20 +30,6 @@ namespace TicTacToe
         public string LoadCurrentPlayer;
         public string TurnPassed;
 
-        //calling image XO
-        //public Dictionary<Player, ImageSource> imageSources = new()
-        //{
-        //    { Player.X, new BitmapImage(new Uri("pack://application:,,,/Asset/X15.png")) },
-        //    { Player.O, new BitmapImage(new Uri("pack://application:,,,/Asset/O15.png")) }
-        //};
-
-        //animation for image XO
-        //private readonly Dictionary<Player, ObjectAnimationUsingKeyFrames> animations = new()
-        //{
-        //    { Player.X, new ObjectAnimationUsingKeyFrames() },
-        //    { Player.O, new ObjectAnimationUsingKeyFrames() }
-        //};
-
         private readonly DoubleAnimation fadeOutAnimation = new DoubleAnimation
         {
             Duration = TimeSpan.FromSeconds(.5),
@@ -86,7 +72,7 @@ namespace TicTacToe
 
 
         }
-
+        //View
         //Draw x for show
         private void X_drawCurrent()
         {
@@ -121,6 +107,7 @@ namespace TicTacToe
             Current.Children.Add(line1);
             Current.Children.Add(line2);
         }
+        //View
         private void X_drawWinner( )
         {
             //line 1
@@ -154,7 +141,7 @@ namespace TicTacToe
             Winner.Children.Add(line1);
             Winner.Children.Add(line2);
         }
-
+        //View
         private void O_drawCurrent()
         {
             Ellipse circle = new Ellipse()
@@ -168,33 +155,54 @@ namespace TicTacToe
             Current.Children.Add(circle);
 
         }
+        //View
         private void O_drawWinner()
         {
             Ellipse circle = new Ellipse()
             {
                 Width = 70,
                 Height = 70,
-                Stroke = Brushes.White,
+                Stroke = Brushes.Black,
                 StrokeThickness = 4
             };
             Winner.Children.Clear();
             Winner.Children.Add(circle);
 
         }
+        //View
         //made gridline for ui
         private void SetupGrid()
         {
-            TheGrid.RowDefinitions.Clear();
-            TheGrid.ColumnDefinitions.Clear();
-
-            for (int r = 0; r < gameState.generic_value; r++)
+            TheGrid.Children.Clear();
+            double SquareSize = TheGrid.Width / gameState.generic_value ;
+            for (int r = 1; r < gameState.generic_value; r++)
             {
-                TheGrid.RowDefinitions.Add(new RowDefinition());
-                TheGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                Line column_line = new Line()
+                {
+                    X1 = r*SquareSize,
+                    Y1 = 0,
+                    X2 = r*SquareSize,
+                    Y2 = TheGrid.Width,
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 3
+                };
+
+                Line row_line = new Line()
+                {
+                    X1 = 0,
+                    Y1 = r * SquareSize,
+                    X2 = TheGrid.Width,
+                    Y2 = r * SquareSize,
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 3
+                };
+
+                TheGrid.Children.Add(column_line);
+                TheGrid.Children.Add(row_line);
 
             }
         }
-
+        //Controller
         //made gridline for calculate
         private void SetupGameGrid()
         {
@@ -214,7 +222,7 @@ namespace TicTacToe
                 }
 
         }
-
+        //View
         //fadeout for element to change page 
         private async Task FadeOut(UIElement uiElement)
         {
@@ -222,7 +230,7 @@ namespace TicTacToe
             await Task.Delay(fadeOutAnimation.Duration.TimeSpan);
             uiElement.Visibility = Visibility.Hidden;
         }
-
+        //View
         //fadein for element to change page 
         private async Task FadeIn(UIElement uiElement)
         {
@@ -230,7 +238,7 @@ namespace TicTacToe
             uiElement.BeginAnimation(OpacityProperty, fadeInAnimation);
             await Task.Delay(fadeInAnimation.Duration.TimeSpan);
         }
-
+        //View
         //change page when end game calling method fadeout/in
         private async Task TransitionToEndScreen(string text)
         {
@@ -239,7 +247,7 @@ namespace TicTacToe
             //WinnerImage.Source = winnerImage;
             await FadeIn(EndScreen);
         }
-
+        //View
         //change page when start game calling method fadeout/in
         private async Task TransitionToGameScreen()
         {
@@ -247,7 +255,7 @@ namespace TicTacToe
             Line.Visibility = Visibility.Hidden;
             await Task.WhenAll(FadeIn(TurnPanel), FadeIn(GameCanvas));
         }
-
+        //View
         //find point win
         private (Point, Point) FindLinePoints(WinInfo winInfo)
         {
@@ -271,7 +279,7 @@ namespace TicTacToe
 
             return (new Point(GameGrid.Width, 0), new Point(0, GameGrid.Height));
         }
-
+        //View
         //showline by findpoint
         private async Task ShowLine(WinInfo winInfo)
         {
@@ -299,7 +307,7 @@ namespace TicTacToe
             Line.BeginAnimation(Line.Y2Property, y2Animation);
             await Task.Delay(x2Animation.Duration.TimeSpan);
         }
-
+        //View
         //Draw X
         private async void Draw_X (int r , int c)
         {
@@ -374,7 +382,7 @@ namespace TicTacToe
 
 
         }
-
+        //View
         // Draw O
         private void Draw_O (int r, int c)
         {
@@ -398,7 +406,7 @@ namespace TicTacToe
             Grounds[r, c].Children.Add(ellipse);
         }
 
-
+        //View
         // DRAW XO HERE when player click!!
         private async void OnMoveMade(int r, int c)
         {
@@ -426,7 +434,7 @@ namespace TicTacToe
 
         }
 
-        
+        //View
         //DRAW XO HERE when Load 
         private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
@@ -463,7 +471,7 @@ namespace TicTacToe
 
             }
         }
-
+        //View
         //when game end
         private async void OnGameEnded(GameResult gameResult)
         {
@@ -490,7 +498,7 @@ namespace TicTacToe
                 await TransitionToEndScreen("Winner:");
             }
         }
-
+        //View
         //when restart will reset
         private async void OnGameRestarted()
         {
@@ -519,6 +527,7 @@ namespace TicTacToe
             await TransitionToGameScreen();
         }
 
+        //View
         //whenplayer click then get position row column and order to make X O
         private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -529,6 +538,7 @@ namespace TicTacToe
             gameState.MakeMove(row, col);
         }
 
+        //Controller
         //Button playagain
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -539,6 +549,7 @@ namespace TicTacToe
             }
         }
 
+        //Controller
         // Savegame call model(gamestate)
         private void SaveGame(object sender, RoutedEventArgs e)
         {
@@ -560,6 +571,7 @@ namespace TicTacToe
 
         }
 
+        //Controller
         //Load game all
         private void LoadGame(object sender, RoutedEventArgs e)
         {
