@@ -21,6 +21,7 @@ using Nakov.TurtleGraphics;
 using System.Runtime;
 using System.Reflection;
 using static System.Windows.Forms.LinkLabel;
+using TicTacToe3;
 
 namespace TicTacToe
 {
@@ -63,7 +64,7 @@ namespace TicTacToe
             gameState.GameEnded += OnGameEnded;
             gameState.GameRestarted += OnGameRestarted;
 
-            SetupGrid();
+            Draw_GridLine();
             SetupGameGrid();
             X_drawCurrent();
 
@@ -171,7 +172,7 @@ namespace TicTacToe
         }
         //View
         //made gridline for ui
-        private void SetupGrid()
+        public void Draw_GridLine()
         {
             TheGrid.Children.Clear();
             double SquareSize = TheGrid.Width / gameState.generic_value ;
@@ -202,9 +203,9 @@ namespace TicTacToe
 
             }
         }
-        //Controller
+        //View
         //made gridline for calculate
-        private void SetupGameGrid()
+        public void SetupGameGrid()
         {
             GameGrid.Children.Clear();
             Grounds = new Canvas[gameState.generic_value, gameState.generic_value];
@@ -436,7 +437,7 @@ namespace TicTacToe
 
         //View
         //DRAW XO HERE when Load 
-        private void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
+        public void LoadOnMoveMade(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
             
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
@@ -554,7 +555,6 @@ namespace TicTacToe
         private void SaveGame(object sender, RoutedEventArgs e)
         {
 
-            
             string messageBoxText = "Do you want to save this game?";
             string caption = "Save game";
             MessageBoxButton button = MessageBoxButton.YesNo;
@@ -576,63 +576,30 @@ namespace TicTacToe
         private void LoadGame(object sender, RoutedEventArgs e)
         {
 
-
-            //Load save all data 
-            StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
-
-            //Load nxn_array
-            string line;
-            line = reader.ReadLine();
-            int nxn_array = Convert.ToInt32(line);
-
-            //Set generic_value = nxn_array
-            gameState.generic_value = nxn_array;
-            Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
-            //LoadSetupValue = nxn_array;
-
-
-
-            //Clear GameGrid 
-            gameState.GameGrid = new Player[gameState.generic_value, gameState.generic_value];
-
-            //Set up GameGrid
-
-            SetupGrid();
-            SetupGameGrid();
-
-            //Load Grid Marked
-            line = reader.ReadLine();
-            //Trace.WriteLine(line);
-            int length = line.Length; length--;
+            gameState.LoadGame(out string gamegrid, out string loadcurrentplayer);
+            int length = gamegrid.Length; length--;
             int pos = 0; int row = 0; int col = 0;
 
-            //Load CurrentPlayer
-            string LoadCurrentPlayer;
-            LoadCurrentPlayer = reader.ReadLine();
-            Trace.WriteLine("CurrentPlayer is " + LoadCurrentPlayer);
+            Draw_GridLine();
+            SetupGameGrid();
 
             while (pos < length)
             {
-                if (col == nxn_array)
+                if (col == gameState.generic_value)
                 {
                     row++;
                     Trace.WriteLine("######################");
                     col = 0;
                 }
 
-                char PlayerMarked = line[pos];
+                char PlayerMarked = gamegrid[pos];
 
-                LoadOnMoveMade(row, col, PlayerMarked, LoadCurrentPlayer);
-
-                Trace.WriteLine(line[pos] + ", " + "row = " + row + ", " + "col = " + col);
+                LoadOnMoveMade(row, col, PlayerMarked, loadcurrentplayer);
 
                 pos++;
                 col++;
             }
 
-            //close the file
-            reader.Close();
-            Console.ReadLine();
         }
 
         //button for get n grid
@@ -643,7 +610,7 @@ namespace TicTacToe
             {
                 // Use the integer value here
                 gameState.generic_value = value;
-                SetupGrid();
+                Draw_GridLine();
                 gameState.Reset();
             }
             else

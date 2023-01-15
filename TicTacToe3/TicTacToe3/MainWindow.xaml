@@ -30,7 +30,8 @@
                     Margin="1084,77,0,0" Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="50" Height="50" Click="Button_getn"/>
-            <Button Content="SaveGame"
+            <Button 
+                    Content="SaveGame"
                     Background="{StaticResource ButtonColor}"
                     Margin="934,171,34,282" Grid.Row="1"
                     Width="200"
@@ -122,3 +123,4 @@
     </Viewbox>
 
 </Window>
+

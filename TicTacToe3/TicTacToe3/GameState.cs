@@ -238,5 +238,42 @@ namespace TicTacToe
             writer_SaveGame.Close();
             SaveGame.Close();
         }
+
+        public void LoadGame(out string line , out string LoadCurrentPlayer)
+        {
+
+
+            //Load save all data 
+            StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
+
+            //Load nxn_array
+            //string line;
+            line = reader.ReadLine();
+            int nxn_array = Convert.ToInt32(line);
+
+            //Set generic_value = nxn_array
+            generic_value = nxn_array;
+            Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
+            //LoadSetupValue = nxn_array;
+
+            //Clear GameGrid 
+            Reset();
+
+            //Load Grid Marked
+            line = reader.ReadLine();
+            //Trace.WriteLine(line);
+            int length = line.Length; length--;
+            int pos = 0; int row = 0; int col = 0;
+
+            //Load CurrentPlayer
+            //string LoadCurrentPlayer;
+            LoadCurrentPlayer = reader.ReadLine();
+            Trace.WriteLine("CurrentPlayer is " + LoadCurrentPlayer);
+
+
+            //close the file
+            reader.Close();
+            Console.ReadLine();
+        }
     }
 }
