@@ -18,7 +18,7 @@
             <TextBox x:Name="Show" Canvas.Left="418" TextWrapping="Wrap" Text="TextBox" Canvas.Top="40" Width="100
                      " Height="100
                      " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72"/>
-            <Button Content="Rollup" Canvas.Left="400" Canvas.Top="185" Click="Button_Click"/>
+            <Button Content="Rollup" Canvas.Left="400" Canvas.Top="185" Click="Click_Roll_up"/>
             <Button Content="RollDown" Canvas.Left="466" Canvas.Top="185" Click="Click_Roll_down" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Content="RollRight" Canvas.Left="466" Canvas.Top="236" Click="Click_Roll_right" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Content="RollLeft" Canvas.Left="400" Canvas.Top="236" Click="Click_Roll_left" HorizontalAlignment="Left" VerticalAlignment="Top"/>

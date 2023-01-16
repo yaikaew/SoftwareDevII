@@ -31,7 +31,7 @@ namespace Dice1
         View view = new View();
  
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Click_Roll_up(object sender, RoutedEventArgs e)
         {
             model.Roll_Up();
             view.Show_digit(model.front,Show);
