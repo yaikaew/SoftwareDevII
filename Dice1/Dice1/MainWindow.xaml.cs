@@ -22,7 +22,7 @@ namespace Dice1
         public MainWindow()
         {
             InitializeComponent();
-            view.Show_dice(model.front,Show);
+            view.Show_digit(model.front,Show);
             view.Draw_rectangle(Dice);
             view.Draw_point(Point,model.front);
         }
@@ -34,7 +34,7 @@ namespace Dice1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             model.Roll_Up();
-            view.Show_dice(model.front,Show);
+            view.Show_digit(model.front,Show);
             view.Draw_point(Point, model.front);
 
         }
@@ -42,14 +42,14 @@ namespace Dice1
         private void Click_Roll_down(object sender, RoutedEventArgs e)
         {
             model.Roll_Down();
-            view.Show_dice(model.front,Show);
+            view.Show_digit(model.front,Show);
             view.Draw_point(Point, model.front);
         }
 
         private void Click_Roll_right(object sender, RoutedEventArgs e)
         {
             model.Roll_Right();
-            view.Show_dice(model.front,Show);
+            view.Show_digit(model.front,Show);
             view.Draw_point(Point, model.front);
 
         }
@@ -57,7 +57,7 @@ namespace Dice1
         private void Click_Roll_left(object sender, RoutedEventArgs e)
         {
             model.Roll_Left();
-            view.Show_dice(model.front,Show);
+            view.Show_digit(model.front,Show);
             view.Draw_point(Point, model.front);
         }
     }

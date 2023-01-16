@@ -17,7 +17,7 @@ namespace Dice1
     {
 
 
-        public void Show_dice(int front , TextBox Show)
+        public void Show_digit(int front , TextBox Show)
         {
             Show.Text = front.ToString();
         }
