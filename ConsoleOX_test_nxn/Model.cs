@@ -9,74 +9,97 @@ namespace ConsoleOX1
 {
 
     //keep data winplayer
-    public class WinInfo
-    {
-        public WinType Type { get; set; }
-        public int Number { get; set; }
-    }
+    //public class WinInfo
+    //{
+    //    public WinType Type { get; set; }
+    //    public int Number { get; set; }
+    //}
 
     //keep GameResult
-    public class GameResult
-    {
-        public Player Winner { get; set; }
-        public WinInfo WinInfo { get; set; }
-    }
 
     //set player
-    public enum Player
-    {
-        None, X, O
-    }
+    //public enum Player
+    //{
+    //    None, X, O
+    //}
 
     //set wintype
-    public enum WinType
-    {
-        Row, Column, MainDiagonal, AntiDiagonal
-    }
+    //public enum WinType
+    //{
+    //    Row, Column, MainDiagonal, AntiDiagonal
+    //}
 
     //Model class
     public class model
     {
         //declare n
-        public int generic_value ;
-        public List<string> list = new List<string>();
-        public Player[,] GameGrid { get; set; }
+        private int boardSize;
 
-        public Player CurrentPlayer { get; set; }
+        //public List<string> list = new List<string>();
+        private string[,] GameGrid { get; set; }
+        private string CurrentPlayer { get; set; }
         public int TurnsPassed { get; set; }
         public bool GameOver { get; private set; }
-        public event Action<int, int> MoveMade;
-        public event Action<GameResult> GameEnded;
-        public event Action GameRestarted;
+
+        //public event Action<int, int> MoveMade;
+        //public event Action<GameResult> GameEnded;
+        //public event Action GameRestarted;
 
         //start game
         public model()
         {
-            GameGrid = new Player[generic_value, generic_value];
-            CurrentPlayer = Player.X;
+            GameGrid = new string[boardSize, boardSize];
+            CurrentPlayer = "X";
             TurnsPassed = 0;
             GameOver = false;
         }
+        public int GetBoardSize()
+        {
+            return boardSize ;
+        }
+
+        //Get current Turn
+        public string GetCurrentTurn()
+        {
+            return CurrentPlayer.ToString();
+        }
+
+        public string GetBoardValue(int r , int c)
+        {
+            return GameGrid[r,c];
+        }
+
+        public string[,] GetBoardArray()
+        {
+            return GameGrid;
+        }
+
+
+        //public string GetBoardArrayToString()
+        //{
+
+        //    return "x";
+        //}
 
         //check ch don't have XO ?
         private bool CanMakeMove(int r, int c)
         {
-            return !GameOver && GameGrid[r, c] == Player.None;
+            return !GameOver && GameGrid[r, c] == "None";
         }
 
         //check IsGridFull ?
         private bool IsGridFull()
         {
-            return TurnsPassed == (generic_value * generic_value);
+            return TurnsPassed == (boardSize * boardSize);
         }
 
         private void SwitchPlayer()
         {
-            CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
+            CurrentPlayer = CurrentPlayer == "X" ? "O" : "X";
         }
 
         //Use for check win
-        private bool AreSquaresMarked((int, int)[] squares, Player player)
+        private bool AreSquaresMarked((int, int)[] squares, string player)
         {
 
             foreach ((int r, int c) in squares)
@@ -91,60 +114,60 @@ namespace ConsoleOX1
         }
 
         //checkwin
-        private bool DidMoveWin(int r, int c, out WinInfo winInfo)
-        {
-            // Check win here !!
-            (int, int)[] row = { };
-            for (int i = 0; i < generic_value; i++)
-            {
-                row = row.Append((r, i)).ToArray();
-            }
-            (int, int)[] col = { };
-            for (int i = 0; i < generic_value; i++)
-            {
-                col = col.Append((i, c)).ToArray();
-            }
-            (int, int)[] mainDiag = { };
-            for (int i = 0; i < generic_value; i++)
-            {
-                mainDiag = mainDiag.Append((i, i)).ToArray();
-            }
-            (int, int)[] antiDiag = { };
-            for (int i = 0; i < generic_value; i++)
-            {
-                antiDiag = antiDiag.Append((i, generic_value - i - 1)).ToArray();
-            }
+        //private bool DidMoveWin(int r, int c, out WinInfo winInfo)
+        //{
+        //    // Check win here !!
+        //    (int, int)[] row = { };
+        //    for (int i = 0; i < boardSize; i++)
+        //    {
+        //        row = row.Append((r, i)).ToArray();
+        //    }
+        //    (int, int)[] col = { };
+        //    for (int i = 0; i < boardSize; i++)
+        //    {
+        //        col = col.Append((i, c)).ToArray();
+        //    }
+        //    (int, int)[] mainDiag = { };
+        //    for (int i = 0; i < boardSize; i++)
+        //    {
+        //        mainDiag = mainDiag.Append((i, i)).ToArray();
+        //    }
+        //    (int, int)[] antiDiag = { };
+        //    for (int i = 0; i < boardSize; i++)
+        //    {
+        //        antiDiag = antiDiag.Append((i, boardSize - i - 1)).ToArray();
+        //    }
 
-            if (AreSquaresMarked(row, CurrentPlayer))
-            {
-                winInfo = new WinInfo { Type = WinType.Row, Number = r };
-                return true;
-            }
+        //    if (AreSquaresMarked(row, CurrentPlayer))
+        //    {
+        //        winInfo = new WinInfo { Type = WinType.Row, Number = r };
+        //        return true;
+        //    }
 
-            if (AreSquaresMarked(col, CurrentPlayer))
-            {
-                winInfo = new WinInfo { Type = WinType.Column, Number = c };
-                return true;
-            }
+        //    if (AreSquaresMarked(col, CurrentPlayer))
+        //    {
+        //        winInfo = new WinInfo { Type = WinType.Column, Number = c };
+        //        return true;
+        //    }
 
-            if (AreSquaresMarked(mainDiag, CurrentPlayer))
-            {
-                winInfo = new WinInfo { Type = WinType.MainDiagonal };
-                return true;
-            }
+        //    if (AreSquaresMarked(mainDiag, CurrentPlayer))
+        //    {
+        //        winInfo = new WinInfo { Type = WinType.MainDiagonal };
+        //        return true;
+        //    }
 
-            if (AreSquaresMarked(antiDiag, CurrentPlayer))
-            {
-                winInfo = new WinInfo { Type = WinType.AntiDiagonal };
-                return true;
-            }
+        //    if (AreSquaresMarked(antiDiag, CurrentPlayer))
+        //    {
+        //        winInfo = new WinInfo { Type = WinType.AntiDiagonal };
+        //        return true;
+        //    }
 
-            winInfo = null;
-            return false;
-        }
+        //    winInfo = null;
+        //    return false;
+        //}
 
         //condition foe end game
-        public bool DidMoveEndGame(int r, int c, out GameResult gameResult)
+        /*public bool DidMoveEndGame(int r, int c, out GameResult gameResult)
         {
             if (DidMoveWin(r, c, out WinInfo winInfo))
             {
@@ -154,25 +177,101 @@ namespace ConsoleOX1
 
             if (IsGridFull())
             {
-                gameResult = new GameResult { Winner = Player.None };
+                gameResult = new GameResult { Winner = "None" };
                 return true;
             }
 
             gameResult = null;
             return false;
+        }*/
+        public int CheckWin(int r ,int c) // return integers -1(draw) 0(continue) 1(win row) 2(win column) 3(win diag) 4(win counterdiag)
+        {
+            // check row
+            for(int i = 0; i < boardSize; i++)
+            {
+                if (GameGrid[r, i] == CurrentPlayer)
+                {
+                    if (i == boardSize - 1)
+                    {
+                        return 1;
+                    }
+                }
+                else break;
+            }
+            //check column
+            for(int i = 0; i< boardSize; i++)
+            {
+                if (GameGrid[i, c] == CurrentPlayer)
+                {
+                    if (i == boardSize - 1)
+                    {
+                        return 2;
+                    }
+                }
+                else break;
+            }
+            // check diag
+            for (int i = 0; i < boardSize; i++)
+            {
+                if (GameGrid[i, i] == CurrentPlayer)
+                {
+                    if (i == boardSize - 1)
+                    {
+                        return 3;
+                    }
+                }
+                else break;
+            }
+            // check anti diag
+            for (int i = 0; i < boardSize; i++)
+            {
+                if (GameGrid[i, boardSize - i -1] == CurrentPlayer)
+                {
+                    if (i == boardSize - 1)
+                    {
+                        return 4;
+                    }
+                }
+                else break;
+            }
+            // if grid full
+            if(TurnsPassed == boardSize*boardSize)
+            {
+                return -1;
+            }
+            return 0;
         }
 
         //use when player click
         public void MakeMove(int r, int c)
         {
-            if (!CanMakeMove(r, c))
+            /*if (!CanMakeMove(r, c))
+            {
+                return;
+            }*/
+            //check if can make move
+
+            if (GameGrid[r, c] == null)
+            {
+                GameGrid[r, c] = CurrentPlayer;
+                TurnsPassed++;
+                if (CheckWin(r, c) == 0)
+                {
+                    SwitchPlayer();
+                }
+                else return;
+                
+                //CheckWin(r, c); // get -1 0 1 2 3 4
+            }
+            else // already have marked
             {
                 return;
             }
-
+            
+            /*
             GameGrid[r, c] = CurrentPlayer;
-            TurnsPassed++;
-
+            TurnsPassed++;*/
+            /*
             if (DidMoveEndGame(r, c, out GameResult gameResult))
             {
                 GameOver = true;
@@ -183,64 +282,65 @@ namespace ConsoleOX1
             {
                 SwitchPlayer();
                 MoveMade?.Invoke(r, c);
-            }
+            }*/
         }
 
         private void LoadGrid(int r, int c, char PlayerMarked, string LoadCurrentPlayer)
         {
             if (string.Equals(LoadCurrentPlayer[0], 'x'))
             {
-                CurrentPlayer = Player.X;
+                CurrentPlayer = "X";
 
             }
             else if (string.Equals(LoadCurrentPlayer[0], 'o'))
             {
-                CurrentPlayer = Player.O;
+                CurrentPlayer = "O";
             }
 
             if (string.Equals(PlayerMarked, 'x'))
             {
-                GameGrid[r, c] = Player.X;
-                Player player = GameGrid[r, c];
+                GameGrid[r, c] = "X";
+                //Player player = GameGrid[r, c];
 
             }
             else if (string.Equals(PlayerMarked, 'o'))
             {
-                GameGrid[r, c] = Player.O;
-                Player player = GameGrid[r, c];
+                GameGrid[r, c] = "O";
+                //Player player = GameGrid[r, c];
 
             }
         }
 
-        public void Reset()
+        public void NewGame(int size)
         {
-            GameGrid = new Player[generic_value, generic_value];
-            CurrentPlayer = Player.X;
+            boardSize = size;
+            GameGrid = new string[size, size];
+            CurrentPlayer = "X";
             TurnsPassed = 0;
             GameOver = false;
-            GameRestarted?.Invoke();
+            //GameRestarted?.Invoke();
         }
 
-        public void SaveGame()
+        public void SaveGame(string path)
         {
             // create file save all data
-            FileStream SaveGame = new FileStream("C:\\TicTacToe\\save.txt", FileMode.Create);
+            FileStream SaveGame = new FileStream(path, FileMode.Create);
 
             StreamWriter writer_SaveGame = new StreamWriter(SaveGame);
 
             int turn_passed = 0;
 
             //Save nxn grid 
-            writer_SaveGame.WriteLine(generic_value);
-
+            writer_SaveGame.WriteLine(boardSize);
+                
             //Save grid that PlayersMarked
-            for (int i = 0; i < (generic_value); i++)
+            for (int i = 0; i < (boardSize); i++)
             {
-                for (int j = 0; j < (generic_value); j++)
-                {
-                    if (GameGrid[i, j] != Player.None)
+                for (int j = 0; j < (boardSize); j++)
+                {   
+                    if (GameGrid[i, j] != null)
                     {
-                        writer_SaveGame.Write(GameGrid[i, j].ToString().ToLower());
+                        writer_SaveGame.Write(GameGrid[i, j].ToLower());
 
                         turn_passed++;
                     }
@@ -254,7 +354,7 @@ namespace ConsoleOX1
 
             //Save Current_Players
             writer_SaveGame.WriteLine(" ");
-            writer_SaveGame.WriteLine(CurrentPlayer.ToString().ToLower());
+            writer_SaveGame.WriteLine(CurrentPlayer.ToLower());
 
             //Save Turn_passed
             writer_SaveGame.WriteLine(turn_passed);
@@ -262,36 +362,72 @@ namespace ConsoleOX1
             writer_SaveGame.Close();
             SaveGame.Close();
         }
-        public void LoadGame()
+        public void LoadGame(string path)
         {
 
-            Reset();
-
             //Load save all data 
-            StreamReader reader = new StreamReader("C:\\TicTacToe\\Save.txt");
-
+            StreamReader reader = new StreamReader(path);
             //Load nxn_array
             string line;
             line = reader.ReadLine();
             int nxn_array = Convert.ToInt32(line);
 
             //Set generic_value = nxn_array
-            generic_value = nxn_array;
+            boardSize = nxn_array;
             Trace.WriteLine("This is " + nxn_array + "X" + nxn_array + " array");
-
+            
+            NewGame(boardSize);
 
             //Load Grid Marked
             line = reader.ReadLine();
-            int length = line.Length; length--;
-            int pos = 0; int row = 0; int col = 0;
+            int length = line.Length; 
+            length--;
+            int pos = 0; 
+            int row = 0; 
+            int col = 0;
 
             //Load CurrentPlayer
-            string LoadCurrentPlayer;
-            LoadCurrentPlayer = reader.ReadLine();
+            CurrentPlayer = reader.ReadLine().ToUpper();
+            Console.WriteLine("CurrentPlayer is " + CurrentPlayer);
+            //CurrentPlayer.ToUpper();
+            //Console.WriteLine("CurrentPlayer after using ToUpper " + CurrentPlayer);
+            TurnsPassed = Int32.Parse(reader.ReadLine());
+            //Console.WriteLine("Current player is " + CurrentPlayer);
             //view.Board(LoadCurrentPlayer);
-            Trace.WriteLine("CurrentPlayer is " + LoadCurrentPlayer);
+            //pos start at 0
+            for ( row = 0; row < boardSize ;row++)
+            {
+                for ( col = 0; col < boardSize; col++)
+                {
+                    char PlayerMarked = line[pos];
+                    if (PlayerMarked.ToString() != "n")
+                    {
+                        GameGrid[row,col] = PlayerMarked.ToString().ToUpper();
+                        
+                        //TurnsPassed++;
+                    }
+                    else
+                    {
+                        GameGrid[row,col] = null ;
+                        
+                    }
 
-            while (pos < length)
+                    //LoadGrid(row, col, PlayerMarked, LoadCurrentPlayer);
+                    pos++;
+                }
+            }
+            for (row = 0; row < boardSize; row++)
+            {
+                for (col = 0; col < boardSize; col++)
+                {
+                    Console.Write(GameGrid[row, col] + " ");
+                }
+                Console.WriteLine("   new line");
+            }
+            Console.WriteLine("TurnsPassed : " + TurnsPassed);
+            Console.WriteLine("CurrentPlayer : "+ CurrentPlayer);
+
+            /*while (pos < length)
             {
                 if (col == nxn_array)
                 {
@@ -302,7 +438,7 @@ namespace ConsoleOX1
                 char PlayerMarked = line[pos];
                 if (PlayerMarked.ToString() != "n")
                 {
-                    list[pos + 1] = PlayerMarked.ToString().ToUpper();
+                    GameGrid[pos + 1] = PlayerMarked.ToString().ToUpper();
                     TurnsPassed++;
                 }
                 else
@@ -315,7 +451,7 @@ namespace ConsoleOX1
                 pos++;
                 col++;
 
-            }
+            }*/
 
             //close the file
             reader.Close();

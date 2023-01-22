@@ -8,19 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\poywa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\all\\2ndyear\\work\\Softdev2\\SoftwareDevII\\ConsoleOX_test_nxn\\ConsoleOX1.csproj",
+      "projectUniqueName": "C:\\Users\\poywa\\Documents\\GitHub\\SoftwareDevII\\ConsoleOX_test_nxn\\ConsoleOX1.csproj",
       "projectName": "ConsoleOX1",
-      "projectPath": "D:\\all\\2ndyear\\work\\Softdev2\\SoftwareDevII\\ConsoleOX_test_nxn\\ConsoleOX1.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\all\\2ndyear\\work\\Softdev2\\SoftwareDevII\\ConsoleOX_test_nxn\\obj\\",
+      "projectPath": "C:\\Users\\poywa\\Documents\\GitHub\\SoftwareDevII\\ConsoleOX_test_nxn\\ConsoleOX1.csproj",
+      "packagesPath": "C:\\Users\\poywa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\poywa\\Documents\\GitHub\\SoftwareDevII\\ConsoleOX_test_nxn\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\poywa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

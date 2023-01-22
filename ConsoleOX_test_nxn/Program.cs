@@ -13,6 +13,7 @@ namespace ConsoleOX1
         //private static GameResult gameresult = new GameResult();
         //private static WinInfo wininfo = new WinInfo();
         //private static view View = new view();
+        //public List<string> list = new List<string>();
         //int row = 0, col = 0;
 
         //Change number in grid to row and column
@@ -20,42 +21,42 @@ namespace ConsoleOX1
         public static void Main(string[] args)
         {
             model gamestate = new model();
-            GameResult gameresult = new GameResult();
-            WinInfo wininfo = new WinInfo();
+            //GameResult gameresult = new GameResult();
+            //WinInfo wininfo = new WinInfo();
             view View = new view();
+            List<string> Gameboard = gamestate.GetBoardArray().Cast<string>().ToList();
 
             int row = 0, col = 0;
 
             void DigitToIndex(int Digit)
             {
                 Digit--;
-                row = Digit / gamestate.generic_value;// generic value
-                col = Digit % gamestate.generic_value;// generic value
+                row = Digit / gamestate.GetBoardSize();// generic value
+                col = Digit % gamestate.GetBoardSize();// generic value
             }
 
             //recieve input from user
             Console.Write("EnterTableSize : ");
             string generic = Console.ReadLine();
-            Int32.TryParse(generic,out gamestate.generic_value);
+            Int32.TryParse(generic,out int size);
 
             //set gamegrid of table
             //recommend to use method reset
-            //gamestate.GameGrid = new Player[gamestate.generic_value, gamestate.generic_value];
-
             //Reset to set generic value
-            gamestate.Reset();
+            gamestate.NewGame(size);
 
             //create list
-            for (int i = 0; i < gamestate.generic_value * gamestate.generic_value + 1; i++)
+            for (int i = 0; i < gamestate.GetBoardSize() * gamestate.GetBoardSize() + 1; i++)
             {
-                gamestate.list.Add(i.ToString());
-                Trace.WriteLine(gamestate.list[i]);
+
+                Gameboard.Add(i.ToString());
+               
             }
 
             do
             {
 
-                View.Board(gamestate.CurrentPlayer.ToString(), gamestate.generic_value, gamestate.list);// calling the board Function
+                View.Board(gamestate.GetCurrentTurn(), gamestate.GetBoardSize(), gamestate.GetBoardArray());// calling the board Function
 
                 string input = Console.ReadLine();
                 int number ;
@@ -67,6 +68,9 @@ namespace ConsoleOX1
                     // number contains the int value of the input.
                     DigitToIndex(number);
                     gamestate.MakeMove(row, col);
+                    //check on gamegrid playermarked and add into gametable
+                    
+
                 }
                 else
                 {
@@ -74,34 +78,52 @@ namespace ConsoleOX1
                     Console.WriteLine(input);
                     if (input == "save")
                     {
-                        gamestate.SaveGame();
+                        string path = Directory.GetCurrentDirectory();
+                        path += "\\Save.txt";
+                        gamestate.SaveGame(path);
   
                     }
                     else if (input == "load")
                     {
-                        gamestate.LoadGame();
- 
+                        string path = Directory.GetCurrentDirectory();
+                        path += "\\Save.txt";
+                        gamestate.LoadGame(path);
+                        Gameboard = gamestate.GetBoardArray().Cast<string>().ToList();
+                        Trace.WriteLine(Gameboard);
+
                     }
                 }
 
-                //check on gamegrid playermarked and add into list
-                if (gamestate.GameGrid[row, col] == Player.X) 
+                //if (gamestate.GetBoardValue(row, col) == "X")
+                //{
+
+                //    Gameboard[number] = "X";
+
+                //}
+                //else
+                //{
+                //    Gameboard[number] = "O";
+                //}
+
+                //check on gamegrid playermarked and add into gametable
+                /*if (gamestate.GetBoardValue(row, col) == "X")
                 {
 
-                    gamestate.list[number] = "X";
+                    Gameboard[number] = "X";
 
                 }
                 else
                 {
-                    gamestate.list[number] = "O";
-                }
+                    Gameboard[number] = "O";
+                }*/
+
             }
 
-            while (!gamestate.DidMoveEndGame(row, col, out gameresult));
+            while (gamestate.CheckWin(row,col) == 0);
 
             Console.Clear();// clearing the console
-            View.Board(gamestate.CurrentPlayer.ToString(), gamestate.generic_value, gamestate.list);// getting filled board again
-            View.DisplayResult(gameresult.Winner.ToString(),gameresult.WinInfo.Type.ToString());//display result of winner
+            View.Board(gamestate.GetCurrentTurn() , gamestate.GetBoardSize(), gamestate.GetBoardArray());// getting filled board again
+            View.DisplayResult(gamestate.CheckWin(row,col),gamestate.GetCurrentTurn());//display result of winner
         }
     }
 }

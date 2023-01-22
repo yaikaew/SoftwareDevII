@@ -12,7 +12,7 @@ namespace ConsoleOX1
     class view
     {
 
-        public void Board(string CurrentPlayer,int generic_value ,List<string> list)
+        public void Board(string CurrentPlayer,int generic_value, string[,] GameGrid)
         {
             Console.Clear();// whenever loop will be again start then screen will be clear
             Console.WriteLine("Command");
@@ -21,7 +21,7 @@ namespace ConsoleOX1
             Console.WriteLine("\n");
 
 
-            String[] arr = list.ToArray();
+            //String[] arr = Gameboard.ToArray();
 
             //checking the chance of the player
             if (CurrentPlayer == "X")
@@ -39,14 +39,29 @@ namespace ConsoleOX1
             {
                 for (int j = 0; j < generic_value; j++)
                 {
-                    if (i * generic_value + j + 1 > 9)
+                    if (GameGrid[i,j] != null)
                     {
-                        Console.Write(" | {0} | ", arr[i * generic_value + j + 1 ]);
+                        if (i * generic_value + j + 1 > 9)
+                        {
+                            Console.Write(" | {0} | ", GameGrid[i,j]);
+                        }
+                        else
+                        {
+                            Console.Write(" | {0}  | ", GameGrid[i,j]);
+                        }
                     }
                     else
                     {
-                        Console.Write(" | {0}  | ", arr[i * generic_value + j + 1 ]);
+                        if (i * generic_value + j + 1 > 9)
+                        {
+                            Console.Write(" | {0} | ", i*generic_value+j+1);
+                        }
+                        else
+                        {
+                            Console.Write(" | {0}  | ", i * generic_value + j + 1);
+                        }
                     }
+                    
                     
                 }
                 Console.WriteLine(" ");
@@ -56,20 +71,21 @@ namespace ConsoleOX1
                
         }
 
-        public void DisplayResult(string winner , string wininfo )
+        public void DisplayResult(int WinType , string player )
         {
             Console.WriteLine("\n");
+            Console.WriteLine(" WinType : "+ WinType + " Player : " + player);
 
-            if (winner != "None")
-            {
-                Console.WriteLine("WINNER IS " + "PLAYER : " + winner );
-                Console.WriteLine("WINTYPE : " + wininfo);
-            }
+            //if (winner != "None")
+            //{
+            //    Console.WriteLine("WINNER IS " + "PLAYER : " + winner );
+            //    Console.WriteLine("WINTYPE : " + wininfo);
+            //}
 
-            else
-            {
-                Console.WriteLine("DRAW");
-            }
+            //else
+            //{
+            //    Console.WriteLine("DRAW");
+            //}
         }
 
 
