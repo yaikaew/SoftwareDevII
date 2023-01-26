@@ -168,9 +168,10 @@ namespace Rubick
                 }
                 Console.WriteLine(" ");
             }
-            Console.WriteLine("right");
+            Console.WriteLine("          right");
             for (int i = n - 1; i > -1; i--)// for loop only x , z
             {
+                Console.Write("          ");
                 for (int j = 0; j < n; j++)
                 {
                     Console.Write(m.GetDice(n-1, i, j).GetColor(3) + " ");
@@ -189,6 +190,7 @@ namespace Rubick
             while (true)
             {
                 v.display(3, m);
+                Console.WriteLine("Insert command");
                 string command = Console.ReadLine();
                 if (command == "exit")
                 {
@@ -202,9 +204,9 @@ namespace Rubick
                 {
                     char axis = command[0];
                     string p = Console.ReadLine();
-                    int order = Int32.Parse(p);
-                    Console.WriteLine(order);
+                    int order = Int32.Parse(p);                 
                     m.roll(axis, order);
+                    //Console.Clear();
                 }
                 
             }
