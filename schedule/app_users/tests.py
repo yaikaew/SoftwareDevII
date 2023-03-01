@@ -26,4 +26,4 @@ class LoginTestCase(TestCase):
             'password': 'wrongpassword'
         })
         self.assertEqual(response.status_code, 200)
-        ##self.assertContains(response, 'Please enter a correct username and password')
+        self.assertContains(response, 'Please enter a correct username and password')
