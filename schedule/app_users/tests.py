@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class LoginTestCase(TestCase):
+    
     def setUp(self):
         self.user = User.objects.create_user(
             username='testuser',
