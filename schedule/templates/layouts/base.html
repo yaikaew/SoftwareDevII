@@ -16,6 +16,20 @@
         
           <div class="container-fluid">
             <a class="navbar-brand" href="/">Welcome to schedule website!!</a>
+
+            {% if user.is_authenticated %}
+            <span>Hello, {{request.user.username}}</span>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Logout</button>
+            </form>    
+
+            {% else %}
+            <a class="btn btn-primary" href="/users/login" role="button">Login page</a>
+            <a class="btn btn-primary" href="/users/register" role="button">Register page</a>
+            
+            {% endif %}
+           
           </div>
         
       </div>
