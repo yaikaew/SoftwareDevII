@@ -5,6 +5,13 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+class HomePageTest(TestCase):
+    def test_home_page(self):
+        url = reverse('home')  # Replace 'home' with the name of your homepage URL pattern
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+
 class LoginTestCase(TestCase):
     
     def setUp(self):

@@ -14,8 +14,12 @@
 <div class="register">
   <form method="post">
     {% csrf_token %}
-    {{ form }}
-    <button type="submit"> Submit </button>
+    <label class="form-label" for="form2Example1">Email address</label>
+    {{ form.username }}
+    <label class="form-label" for="form2Example1">Password</label>
+    {{ form.password1 }}
+    {{ form.password2 }}
+    <button class="btn btn-primary" type="submit">submit</button>
   </form>
 </div>
 
