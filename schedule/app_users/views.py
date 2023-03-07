@@ -1,10 +1,13 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
+from .models import Gpax
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    data = Gpax.objects.all()
+    context = {'data': data }
+    return render(request, 'home.html',context)
 
 def signup_view(request):
     if request.method == "POST" :
