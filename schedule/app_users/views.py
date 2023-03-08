@@ -1,8 +1,9 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
-from .models import Gpax
+from .models import Gpax , Subjects
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -38,9 +39,10 @@ def logout_view(request) :
         logout(request)
         return redirect('home')
     
-
+@login_required
 def user_page(request, user_id):
     user = get_object_or_404(User, id=user_id)
-    return render(request, 'user_page.html', {'user': user})
+    subject = Subjects.objects.filter(userid = user_id)
+    return render(request, 'user_page.html', {'user': user ,'subject': subject})
     
 
