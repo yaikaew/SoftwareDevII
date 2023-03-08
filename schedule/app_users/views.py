@@ -1,7 +1,8 @@
-from django.shortcuts import render , redirect
-from django.contrib.auth import authenticate, login , logout
+from django.shortcuts import render , redirect , get_object_or_404
+from django.contrib.auth import login , logout
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from .models import Gpax
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -15,7 +16,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
-            return redirect("home")
+            return redirect('user_page',user_id=user.pk)
     else :
         form = UserCreationForm()
     return render(request,'sign-up.html',{"form":form})
@@ -26,7 +27,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home') # replace 'home' with the name of your homepage URL pattern
+            return redirect('user_page',user_id=user.pk) # replace 'home' with the name of your homepage URL pattern
     else:
         form = AuthenticationForm()
         # show an error message
@@ -36,5 +37,10 @@ def logout_view(request) :
     if request.method == "POST" :
         logout(request)
         return redirect('home')
+    
+
+def user_page(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    return render(request, 'user_page.html', {'user': user})
     
 

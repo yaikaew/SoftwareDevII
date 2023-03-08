@@ -5,11 +5,11 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-class HomePageTest(TestCase):
-    def test_home_page(self):
-        url = reverse('home')  # Replace 'home' with the name of your homepage URL pattern
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+# class HomePageTest(TestCase):
+#     def test_home_page(self):
+#         url = reverse('home')  # Replace 'home' with the name of your homepage URL pattern
+#         response = self.client.get(url)
+#         self.assertEqual(response.status_code, 200)
 
 
 class LoginTestCase(TestCase):
@@ -26,7 +26,7 @@ class LoginTestCase(TestCase):
             'password': 'testpass'
         })
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('home'))
+        self.assertRedirects(response, reverse('user_page',args=[self.user.pk]))
 
     def test_login_with_wrong_password(self):
         response = self.client.post(reverse('login'), {
