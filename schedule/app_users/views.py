@@ -39,7 +39,7 @@ def logout_view(request) :
         logout(request)
         return redirect('home')
     
-@login_required
+@login_required(login_url='/login')
 def user_page(request, user_id):
     user = get_object_or_404(User, id=user_id)
     subject = Subjects.objects.filter(userid = user_id)
