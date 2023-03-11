@@ -9,29 +9,64 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>{% block title %} Test {% endblock %}</title>
+    <style>
+      .navbar {
+			  background-color: #D0AD92ff;
+			  overflow: hidden;
+	  		position: fixed;
+	  		top: 0;
+	  		width: 100%;
+	  	}
+      .navbar a {
+  			float: left;
+        background-color: #229310ff;
+        border: #229310ff;
+	  		color: #ffffff;
+		  	text-align: center;
+  			text-decoration: none;
+        margin: 8px 8px 8px auto;
+  			font-size: 16px;
+  		}
+      .navbar button {
+        float: right;
+	  		background-color: #229310ff; /* Change the background color of the button */
+		  	color: white; /* Change the text color of the button */
+			  border: none;
+        margin: 8px 8px auto auto;
+			  font-size: 16px;
+        cursor: pointer;
+		  }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #008080;">
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #D0AD92ff;">
+      <div class="container">
         
           <div class="container-fluid">
-            <a class="navbar-brand" href="/">Welcome to schedule website!!</a>
 
             {% if user.is_authenticated %}
-            <span>Hello, {{request.user.username}}</span>
+            
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
+                <span style="float: left;">
+                  <span style="color: #ffffff; font-size: 30px;">Hello, {{request.user.username}}</span>
+                </span>
                 <button class="btn btn-primary" type="submit">Logout</button>
             </form>    
 
             {% else %}
-            <a class="btn btn-primary" href="/login" role="button">Login page</a>
-            <a class="btn btn-primary" href="/register" role="button">Register page</a>
-            
+            <span style="float: left;">
+              <span style="color: #ffffff; font-size: 30px;">Welcome to schedule website!!</span>
+            </span>
+            <span style="float: right;">
+              <a class="btn btn-primary" href="/login" role="button">Login page</a>
+              <a class="btn btn-primary" href="/register" role="button">Register page</a>
+            </span>
+
             {% endif %}
            
           </div>
-        
+
       </div>
     </nav>
       
