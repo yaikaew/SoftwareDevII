@@ -44,20 +44,15 @@
         
           <div class="container-fluid">
 
+            <span style="float: left;">
+              <span style="color: #ffffff; font-size: 30px;">Select subject, {{request.user.username}}</span>
+            </span>
+
             {% if user.is_authenticated %}
             
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <span style="float: left;">
-                  <span style="color: #ffffff; font-size: 30px;">Hello, {{request.user.username}}</span>
-                </span>
-                
-                <span style="float: right;">
-                <a class="btn btn-primary" href="{% url 'selects_subject' %}" role="button">Select subject</a>
-                <a class="btn btn-primary" href="{% url 'selects_subject' %}" role="button">Schedule</a>
-                <a class="btn btn-primary" href="{% url 'selects_subject' %}" role="button">About us</a>
                 <button class="btn btn-primary" type="submit">Logout</button>
-              </span>
             </form>    
 
             {% else %}

@@ -5,6 +5,7 @@ from .models import Gpax , Subjects
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 def home(request):
     data = Gpax.objects.all()
@@ -29,9 +30,9 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('user_page',user_id=user.pk) # replace 'home' with the name of your homepage URL pattern
+        
     else:
         form = AuthenticationForm()
-        # show an error message
     return render(request, 'login.html',{'form':form})
 
 def logout_view(request) :
