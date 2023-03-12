@@ -1,0 +1,1209 @@
+
+<!-- saved from url=(0077)http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=examTab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-874"><style type="text/css">
+<!--
+body { font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 10pt}
+a:link { color:#0000FF; text-decoration:none }
+a:visited { color:#0000FF; text-decoration:none }
+a:active { color:#0099FF; text-decoration:underline }
+a:hover { color:#0099FF; text-decoration:underline }
+td { font-family: "MS Sans Serif", "Microsoft Sans Serif"; font-size: 10pt}
+-->
+</style>
+
+</head><body data-new-gr-c-s-check-loaded="14.1100.0" data-gr-ext-installed=""><center>
+<table border="0" cellpadding="2" cellspacing="3">
+<tbody><tr align="center">
+	<td colspan="5"><font size="+1"><b>สอบถามข้อมูล</b></font></td>
+</tr>
+<tr align="center">
+	<td><b>|</b> <a href="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=teachTab" target="detail"><b>ตารางสอน</b></a></td>
+	<td><b>|</b> <a href="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=studentTab" target="detail"><b>ตารางเรียน</b></a></td>
+	<td><b>|</b> <a href="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=examTab" target="detail"><b>ตารางสอบ</b></a></td>
+	<td><b>|</b> <a href="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=roomTab" target="detail"><b>การใช้งานห้องเรียน</b></a> </td>
+	<td><b>|</b> <a href="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=openSectionTab" target="detail"><b>ตอนเรียนที่เปิด</b></a> <b>|</b> </td>
+</tr>
+</tbody></table>
+</center>
+
+
+
+
+	
+<table border="0" width="100%" align="center">
+<tbody><tr align="center" bgcolor="#1E90FF"><td>
+	<font size="+1" color="#FFFFFF"><b>ตารางสอบ</b></font>
+</td></tr>
+
+<tr><td>
+	<form method="post" action="http://klogic.kmutnb.ac.th:8080/kris/tess/dataQuerySelector.jsp?query=examTab">
+	<table align="center" border="0">
+	<tbody><tr><td align="right"><b>คณะ </b></td>
+	<td><select name="facCode" onchange="form.submit()">
+	<option value="">- - - เลือกคณะ - - -</option>
+	
+		<option value="01" selected="">
+			01 คณะวิศวกรรมศาสตร์
+		</option>
+	
+		<option value="02">
+			02 คณะครุศาสตร์อุตสาหกรรม
+		</option>
+	
+		<option value="03">
+			03 วิทยาลัยเทคโนโลยีอุตสาหกรรม
+		</option>
+	
+		<option value="04">
+			04 คณะวิทยาศาสตร์ประยุกต์
+		</option>
+	
+		<option value="05">
+			05 คณะอุตสาหกรรมเกษตร
+		</option>
+	
+		<option value="06">
+			06 คณะเทคโนโลยีและการจัดการอุตสาหกรรม
+		</option>
+	
+		<option value="07">
+			07 คณะเทคโนโลยีสารสนเทศและนวัตกรรมดิจิทัล
+		</option>
+	
+		<option value="08">
+			08 คณะศิลปศาสตร์ประยุกต์
+		</option>
+	
+		<option value="09">
+			09 บัณฑิตวิทยาลัยวิศวกรรมศาสตร์นานาชาติฯ
+		</option>
+	
+		<option value="10">
+			10 บัณฑิตวิทยาลัย
+		</option>
+	
+		<option value="11">
+			11 คณะสถาปัตยกรรมและการออกแบบ
+		</option>
+	
+		<option value="12">
+			12 คณะวิศวกรรมศาสตร์และเทคโนโลยี
+		</option>
+	
+		<option value="13">
+			13 คณะวิทยาศาสตร์ พลังงานและสิ่งแวดล้อม
+		</option>
+	
+		<option value="14">
+			14 คณะบริหารธุรกิจ
+		</option>
+	
+		<option value="15">
+			15 วิทยาลัยนานาชาติ
+		</option>
+	
+		<option value="16">
+			16 คณะพัฒนาธุรกิจและอุตสาหกรรม
+		</option>
+	
+		<option value="17">
+			17 คณะบริหารธุรกิจและอุตสาหกรรมบริการ
+		</option>
+	
+		<option value="18">
+			18 อุทยานเทคโนโลยี
+		</option>
+	
+	</select></td></tr>
+
+	<tr><td align="right"><b>หลักสูตร </b></td> 
+	<td><select name="currCode" onchange="form.submit()">
+	<option value="">- - - เลือกหลักสูตร - - -</option>
+	
+		<option value="411004">
+		411004 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="451004">
+		451004 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="501004">
+		501004 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="511004">
+		511004 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="55010014">
+		55010014 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="60010014">
+		60010014 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="65010014">
+		65010014 ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="451144">
+		451144 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="501144">
+		501144 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="511144">
+		511144 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="55010024">
+		55010024 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="60010024">
+		60010024 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="65010024">
+		65010024 AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ
+		</option>
+	
+		<option value="61010034">
+		61010034 I-AE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการบินและอวกาศ (หลักสูตรนานาชาติ)
+		</option>
+	
+		<option value="62010044">
+		62010044 I-ME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล (หลักสูตรนานาชาติ)
+		</option>
+	
+		<option value="455032">
+		455032 MME หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต (สาขาวิชาวิศวกรรมเครื่องกล)
+		</option>
+	
+		<option value="525032">
+		525032 MME หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต (สาขาวิชาวิศวกรรมเครื่องกล)
+		</option>
+	
+		<option value="55010032">
+		55010032 MME หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="60010032">
+		60010032 MME หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="55010052">
+		55010052 MAE วิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="60010052">
+		60010052 MAE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมการบินและอวกาศ (MAE)
+		</option>
+	
+		<option value="56010072">
+		56010072 EMME วิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเครื่องกล (หลักสูตรภาษาอังกฤษ)
+		</option>
+	
+		<option value="62010232">
+		62010232 EMME หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="405143">
+		405143 DME หลักสูตรปรัชญาดุษฏีบัณฑิต วิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="55010043">
+		55010043 DME หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="60010043">
+		60010043 DME หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมเครื่องกล
+		</option>
+	
+		<option value="411014">
+		411014 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="461014">
+		461014 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="511014">
+		511014 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="55010114">
+		55010114 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="60010114">
+		60010114 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="65011014">
+		65011014 EE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="461154">
+		461154 Cpr.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</option>
+	
+		<option value="491154">
+		491154 Cpr.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</option>
+	
+		<option value="54010124">
+		54010124 Cpr.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</option>
+	
+		<option value="59010124">
+		59010124 Cpr.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</option>
+	
+		<option value="64011024" selected="">
+		64011024 Cpr.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</option>
+	
+		<option value="58010154">
+		58010154 E-EE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า (หลักสูตรภาษาอังกฤษ)
+		</option>
+	
+		<option value="63011034">
+		63011034 E-EE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า (หลักสูตรภาษาอังกฤษ)
+		</option>
+	
+		<option value="455042">
+		455042 MEE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="475042">
+		475042 MEE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="55010132">
+		55010132 MEE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="60010132">
+		60010132 MEE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="65011212">
+		65011212 MEE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="455333">
+		455333 DEE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="55010143">
+		55010143 DEE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="60010143">
+		60010143 DEE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="65011513">
+		65011513 DEE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า
+		</option>
+	
+		<option value="411024">
+		411024 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="451024">
+		451024 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="501024">
+		501024 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="55010214">
+		55010214 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="60010214">
+		60010214 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="65012014">
+		65012014 PE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="55010244">
+		55010244 B-RE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมหุ่นยนต์และระบบอัตโนมัติ (หลักสูตรสองภาษา)
+		</option>
+	
+		<option value="58010264">
+		58010264 E-RE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมหุ่นยนต์และระบบอัตโนมัติ (หลักสูตรภาษาอังกฤษ)
+		</option>
+	
+		<option value="63012034">
+		63012034 E-RE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมหุ่นยนต์และระบบอัตโนมัติ (หลักสูตรภาษาอังกฤษ)
+		</option>
+	
+		<option value="455102">
+		455102 MPE วิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="535102">
+		535102 MPE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="58010222">
+		58010222 MPE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="63012212">
+		63012212 MPE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="57010253">
+		57010253 DPE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="62012523">
+		62012523 DPE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมการผลิต
+		</option>
+	
+		<option value="411034">
+		411034 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="461034">
+		461034 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="511034">
+		511034 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="55010314">
+		55010314 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="56010314">
+		56010314 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="61013014">
+		61013014 Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="58010344">
+		58010344 I-Ch.E หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเคมี (หลักสูตรนานาชาติ)
+		</option>
+	
+		<option value="445282">
+		445282 MCHE วิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="525282">
+		525282 MCHE วิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="55010322">
+		55010322 MCHE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="60010322">
+		60010322 MCHE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="65013212">
+		65013212 MCHE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="55010333">
+		55010333 DCHE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="60010333">
+		60010333 DCHE ปรัชญาดุษฎีบัณฑิต (วิศวกรรมเคมี)
+		</option>
+	
+		<option value="65013513">
+		65013513 DCHE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมเคมี
+		</option>
+	
+		<option value="411052">
+		411052 MHT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาเทคโนโลยีขนถ่ายวัสดุ
+		</option>
+	
+		<option value="471052">
+		471052 MHT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต (ต่อเนื่อง) สาขาวิชาเทคโนโลยีขนถ่ายวัสดุ
+		</option>
+	
+		<option value="521052">
+		521052 MHT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาวิชาเทคโนโลยีขนถ่ายวัสดุ (ต่อเนื่อง)
+		</option>
+	
+		<option value="431114">
+		431114 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="451114">
+		451114 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="461114">
+		461114 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="511113">
+		511113 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="511114">
+		511114 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="55010523">
+		55010523 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="55010524">
+		55010524 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="60010523">
+		60010523 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="60010524">
+		60010524 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="65015024">
+		65015024 MHE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุ
+		</option>
+	
+		<option value="531164">
+		531164 LE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโลจิสติกส์
+		</option>
+	
+		<option value="58010534">
+		58010534 LE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโลจิสติกส์
+		</option>
+	
+		<option value="63015034">
+		63015034 LE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโลจิสติกส์
+		</option>
+	
+		<option value="57010542">
+		57010542 MHLE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมขนถ่ายวัสดุและโลจิสติกส์
+		</option>
+	
+		<option value="62015212">
+		62015212 MHLE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมขนถ่ายวัสดุและโลจิสติกส์
+		</option>
+	
+		<option value="411062">
+		411062 PDT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต (ต่อเนื่อง) สาขาวิชาเทคโนโลยีการผลิต
+		</option>
+	
+		<option value="521062">
+		521062 PDT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาวิชาเทคโนโลยีการผลิต (ต่อเนื่อง)
+		</option>
+	
+		<option value="55010612">
+		55010612 PDT หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาวิชาเทคโนโลยีการผลิต (ต่อเนื่อง)
+		</option>
+	
+		<option value="431124">
+		431124 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="451124">
+		451124 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="461124">
+		461124 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต  (วิชาวิศวกรรมวัสดุ)
+		</option>
+	
+		<option value="521124">
+		521124 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="55010624">
+		55010624 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="58010624">
+		58010624 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="63016024">
+		63016024 MATE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="58010654">
+		58010654 I-IME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุเชิงนวัตกรรม (หลักสูตรนานาชาติ)
+		</option>
+	
+		<option value="63016034">
+		63016034 I-IME หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมวัสดุเชิงนวัตกรรม (หลักสูตรนานาชาติ)
+		</option>
+	
+		<option value="55010632">
+		55010632 MPTE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="60010632">
+		60010632 MPTE วิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="65016212">
+		65016212 MPTE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="55010643">
+		55010643 DPTE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="60010643">
+		60010643 DPTE ปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="65016513">
+		65016513 DPTE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมวัสดุ
+		</option>
+	
+		<option value="411072">
+		411072 IET หลักสูตรอุตสาหกรรมศาสตรบัณฑิต (ต่อเนื่อง) สาขาวิชาเทคโนโลยีไฟฟ้าอุตสาหกรรม
+		</option>
+	
+		<option value="521072">
+		521072 IET หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาวิชาเทคโนโลยีไฟฟ้าอุตสาหกรรม  (ต่อเนื่อง)
+		</option>
+	
+		<option value="55010712">
+		55010712 IET หลักสูตรอุตสาหกรรมศาสตรบัณฑิต สาขาวิชาเทคโนโลยีไฟฟ้าอุตสาหกรรม  (ต่อเนื่อง)
+		</option>
+	
+		<option value="431134">
+		431134 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="461134">
+		461134 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="521133">
+		521133 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="521134">
+		521134 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="55010723">
+		55010723 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="55010724">
+		55010724 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="60010723">
+		60010723 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="60010724">
+		60010724 InSE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมระบบเครื่องมือวัด
+		</option>
+	
+		<option value="56010744">
+		56010744 IEE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้าอุตสาหกรรมและพลังงาน
+		</option>
+	
+		<option value="61017034">
+		61017034 IEE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้าอุตสาหกรรมและพลังงาน
+		</option>
+	
+		<option value="65017043">
+		65017043 InAE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องมือวัดและอัตโนมัติ
+		</option>
+	
+		<option value="65017044">
+		65017044 InAE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องมือวัดและอัตโนมัติ
+		</option>
+	
+		<option value="54010732">
+		54010732 MAuE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมอัตโนมัติ
+		</option>
+	
+		<option value="59010732">
+		59010732 MAuE วิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมอัตโนมัติ
+		</option>
+	
+		<option value="64017212">
+		64017212 MAuE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมอัตโนมัติ
+		</option>
+	
+		<option value="411094">
+		411094 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="451094">
+		451094 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="511094">
+		511094 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="55010814">
+		55010814 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="60010814">
+		60010814 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="65018014">
+		65018014 CE หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="445292">
+		445292 MCE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="54010822">
+		54010822 MCE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="59010822">
+		59010822 MCE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="64018212">
+		64018212 MCE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="57010832">
+		57010832 XMCM หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาการบริหารงานก่อสร้าง
+		</option>
+	
+		<option value="62018232">
+		62018232 XMCM หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาการบริหารงานก่อสร้าง
+		</option>
+	
+		<option value="54010843">
+		54010843 DCE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="59010843">
+		59010843 DCE หลักสูตรปรัชญาดุษฎีบัณฑิต  สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="64018513">
+		64018513 DCE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมโยธา
+		</option>
+	
+		<option value="465082">
+		465082 MIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมการจัดการอุตสาหกรรม
+		</option>
+	
+		<option value="411104">
+		411104 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="451104">
+		451104 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="521104">
+		521104 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="55010914">
+		55010914 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="60010914">
+		60010914 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="65019014">
+		65019014 IE. หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="55010922">
+		55010922 MIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต
+		</option>
+	
+		<option value="60010922">
+		60010922 MIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="65019212">
+		65019212 MIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="54010932">
+		54010932 XMIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมการจัดการอุตสาหกรรม
+		</option>
+	
+		<option value="60010932">
+		60010932 XMIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต  สาขาวิชาวิศวกรรมการจัดการอุตสาหกรรม
+		</option>
+	
+		<option value="65019222">
+		65019222 XMIE หลักสูตรวิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมการจัดการอุตสาหกรรม
+		</option>
+	
+		<option value="465463">
+		465463 DIE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="55010943">
+		55010943 DIE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="60010943">
+		60010943 DIE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+		<option value="65019513">
+		65019513 DIE หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ
+		</option>
+	
+	</select></td></tr>
+	</tbody></table>
+	</form>
+</td></tr>
+</tbody></table>
+
+
+	<table align="center">
+		<tbody><tr align="center"><td><b>ปีการศึกษา 2/2565<br>
+		คณะวิศวกรรมศาสตร์<br>
+		64011024 หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์
+		</b></td></tr>
+	</tbody></table>
+
+	<table align="center" border="1" cellpadding="2" cellspacing="0" width="100%" bordercolor="#CCCCCC">
+	<tbody><tr bgcolor="#EA98FF" align="center"><td><b>วิชาที่เปิดใน 2/2565</b></td>
+		<td><b>กลางภาค</b></td>
+		<td><b>ปลายภาค</b></td>
+	</tr>
+
+	
+		<tr><td valign="top">
+		010113138 CIRCUITS AND ELECTRONICS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">พฤ. 30/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010113139 CIRCUITS AND ELECTRONICS LAB
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010113941 PROJECT I
+		3(0-3)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010113942 PROJECT II
+		3(0-3)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123103 ALGORITHMS AND DATA STRUCTUR
+		3(2-1)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">จ. 3/4/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123118 COMPUTER NETWORKS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">อ. 28/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123120 EMBEDDED SYSTEM DESIGN LABOR
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123121 DATABASE SYSTEMS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">จ. 27/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123124 COMPUTER ENGINEERING SEMINAR
+		2(1-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123128 COMPUTER NETWORKS LABORATORY
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123132 SOFTWARE DEVELOPMENT PRACTIC
+		3(0-3)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123134 COMPUTER ORGANIZATION
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">ศ. 7/4/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123135 LINEAR ALGEBRA
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">ศ. 31/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123201 NUMERICAL METHODS FOR COMPUT
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">อ. 28/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123213 ARTIFICIAL INTELLIGENCE
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">อ. 4/4/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123224 REAL TIME OPERATION SYSTEMS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">อ. 4/4/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123301 PRE-COOPERATIVE EDUCATION
+		2(1-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		010123303 CO-OPERATIVE EDUCATION II
+		3(0-3)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040203100 GENERAL MATHEMATICS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">อ. 4/4/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040203111 ENGINEERING MATHEMATICS I
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">จ. 30/1/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">ศ. 31/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040203112 ENGINEERING MATHEMATICS II
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">จ. 30/1/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">ศ. 31/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040313005 PHYSICS I
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">ศ. 3/2/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">จ. 27/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040313007 PHYSICS II
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">ศ. 3/2/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">จ. 27/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040313008 PHYSICS LABORATORY II
+		1(0-1)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF"> <br></td>
+			<td align="center" bgcolor="#FFFFFF">จ. 27/3/2566 <br> 13:00-15:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		040503001 STATISTICS IN EVERYDAY LIFE
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">พ. 1/2/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">ศ. 7/4/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080103002 ENGLISH II
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">พฤ. 2/2/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">อ. 28/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080103018 ENGLISH FOR WORK
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">จ. 30/1/2566 <br>9:00-12:00</td>
+			<td align="center" bgcolor="#FFFFFF">พ. 29/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080103034 ENGLISH CONVERSATION
+		3(3-0)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080203901 MAN AND SOCIETY
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>13:00-15:00</td>
+			<td align="center" bgcolor="#FFFFFF">จ. 27/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080203905 ECONOMY AND EVERYDAY LIFE
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>13:00-15:00</td>
+			<td align="center" bgcolor="#FFFFFF">พฤ. 30/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080203906 ECONOMICS FOR INDIVIDUAL DEV
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>13:00-15:00</td>
+			<td align="center" bgcolor="#FFFFFF">อ. 28/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080203907 BUSINESS AND EVERYDAY LIFE
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>13:00-15:00</td>
+			<td align="center" bgcolor="#FFFFFF">อ. 28/3/2566 <br> 13:00-16:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303103 PSYCHOLOGY FOR HAPPY LIFE
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">อ. 31/1/2566 <br>13:00-16:00</td>
+			<td align="center" bgcolor="#FFFFFF">พ. 29/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303501 BASKETBALL
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303502 VOLLEYBALL
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303505 TABLE TENNIS
+		1(0-1)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303601 HUMAN RELATIONS
+		3(3-0)</td>
+
+		
+			<td align="center" bgcolor="#FFFFFF">จ. 30/1/2566 <br>13:00-16:00</td>
+			<td align="center" bgcolor="#FFFFFF">พ. 29/3/2566 <br> 9:00-12:00</td>
+		
+		</tr>
+
+		
+		<tr><td valign="top">
+		080303701 DESIGN THINKING
+		3(3-0)</td>
+
+		
+			<td>&nbsp;</td><td>&nbsp;</td>
+		
+		</tr>
+
+		
+	</tbody></table>
+	<br>
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
