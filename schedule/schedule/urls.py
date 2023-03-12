@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.home , name = 'home'),
     path('admin/', admin.site.urls),
     path('users/', include("app_users.urls")),
-    path('selects/', include("app_select.urls")),
+    path('select/', include("app_select.urls")),
+    path('schedule/', include("app_schedule.urls")),
 
 ]

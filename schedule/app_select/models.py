@@ -7,4 +7,5 @@ class Subjects_Test_Date(models.Model):
     name = models.CharField(max_length=255,null=True)
     mid = models.CharField(max_length=255,null=True)
     final = models.CharField(max_length=255,null=True)
-
+    class Meta:
+        managed = True
