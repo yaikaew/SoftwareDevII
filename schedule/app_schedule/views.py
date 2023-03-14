@@ -6,3 +6,6 @@ from django.contrib.auth.models import User
 @login_required(login_url='login')
 def schedule_view(request):
     return render(request, 'schedule.html')
+
+def about(request):
+    return render(request, 'about.html')
