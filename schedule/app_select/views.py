@@ -13,12 +13,14 @@ def selects_subject_view(request):
     user_id = request.user.id
     user = User_subjects.objects.filter(user_id_id = user_id)
 
+    # search btn
     if 'q' in request.GET:
         search = request.GET['q']
         multiple_search = Q(Q(name__icontains=search) | Q(code__icontains=search) | Q(prof__icontains=search))
         sub_name = Subjects_info.objects.filter(multiple_search)
     else:
         sub_name = Subjects_info.objects.none()
+
     # select_btn
     if request.method == 'POST':
         subject_id = request.POST.get('id')
@@ -27,11 +29,4 @@ def selects_subject_view(request):
 
     context = {'sub_date':sub_date, 'sub_name':sub_name ,'sub_objects':sub_objects,'users':user}
     return render(request, 'select_subject.html' , context)
-
-
-""" def search_sub(request):
-    sub_name = Subjects_info.objects.all()
-    context = {'sub_name':sub_name}
-    return render(request, 'select_subject.html' , context) """
-
 
