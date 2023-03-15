@@ -254,19 +254,19 @@
 
         <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
 
-        {%for row in sub_date %}
-        <div class="mt-2">
-            <div class="card w-100">
-                <div class="card-body">
-                    <div class="input-group mb-3">
-                        <h5 class="card-title">{{row.name}} </h5>
-                        <p class="card-text"></p>
-                    </div>
-                    <a href="#" class="btn btn-primary">Select</a>
-                </div>
+        {% for row in sub_info %}  
+        <div class="card w-100">
+            <div class="card-body">
+            <h5 class="card-title">{{ row.name }}</h5>
+            <p class="card-text"></p>
+            <form method="post" action="{% url 'selects_subject' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ row.id }}">
+                <button type="submit" class="btn btn-primary">Select</button>
+            </form>
             </div>
         </div>
-        {% endfor %}
+{% endfor %}
 
     </div>
 </div>
