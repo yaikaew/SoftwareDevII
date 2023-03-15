@@ -223,32 +223,39 @@
         </form>
 
         {%for row in sub_name %}
-        <div class="card w-100">
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="card-text"></p>
+        <div class="mt-2">
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                        <p class="card-text"></p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Select</a>
                 </div>
-                <a href="#" class="btn btn-primary">Select</a>
             </div>
         </div>
         {% endfor %}
+
     </div>
 
     <div class="mt-4">
+
         <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
 
         {%for row in sub_date %}
-        <div class="card w-100">
-            <div class="card-body">
-                <h5 class="card-title">{{row.name}} </h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Select</a>
+        <div class="mt-2">
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{row.name}} </h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Select</a>
+                </div>
             </div>
         </div>
         {% endfor %}
+
     </div>
 </div>
 
