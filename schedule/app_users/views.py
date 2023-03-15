@@ -93,11 +93,9 @@ def check_pass_subject(sub_id,u_id):
     #เลือกวิชาทั้งหมดที่มีจาก subjects ของ user คนนั้น
     c.execute("SELECT real_subject_id FROM subjects WHERE UserID = ?", (u_id,))
     data = c.fetchall()
-    print(data)
 
     c.execute("SELECT code FROM app_schedule_subjects_info WHERE ID = ?", (sub_id,))
     sub = c.fetchall()
-    print(sub)
 
     # Close the connections
     conn.close()
