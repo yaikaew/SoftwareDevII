@@ -4,8 +4,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .views import check_pass_subject
-from .models import Subjects
+from .views import *
+
 
 # class HomePageTest(TestCase):
 #     def test_home_page(self):
@@ -17,17 +17,25 @@ from django.test import TestCase
 from app_users.models import Subjects
 from .views import check_credit
 
-class CheckCreditTestCase(TestCase):
+class CheckSelectTestCase(TestCase):
     
     def test_check_credit(self):
         user_id = 3
         sub_id = "010123128"
         result = check_credit(user_id, sub_id)
         self.assertEqual(result,False)
-        
-        #sub_id = "010113010"
-        #result = check_credit( user_id, sub_id)
-        #self.assertEqual(result, False)
+
+    def test_pass_subject(self):
+        user_id = 1
+        sub_id = 26
+        result = check_pass_subject(sub_id, user_id)
+        self.assertEqual(result,False)
+
+    def test_regis_subject(self):
+        user_id = 1
+        sub_id = 5
+        result = check_regis_subject(sub_id, user_id)
+        self.assertEqual(result,False)   
 
 
 class LoginTestCase(TestCase):

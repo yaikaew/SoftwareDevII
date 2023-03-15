@@ -46,7 +46,7 @@ def user_page(request, user_id):
     subject = Subjects.objects.filter(userid = user_id)
     return render(request, 'user_page.html', {'user': user ,'subject': subject})
     
-
+#function check หน่วยกิตไม่เกิน 22
 import sqlite3
 def check_credit(user_id,sub_id):
     conn = sqlite3.connect("w3.db")
@@ -105,3 +105,20 @@ def check_pass_subject(sub_id,u_id):
             return False
         else:
             return True
+        
+#function check ลงไปแล้วหรือยัง
+def check_regis_subject(sub_id,u_id):
+    conn = sqlite3.connect("w3.db")
+    c = conn.cursor()
+
+    #เลือกวิชาทั้งหมดที่มีจาก subjects ของ user คนนั้น
+    c.execute("SELECT sub_id_id FROM app_schedule_user_subjects WHERE user_id_id = ?", (u_id,))
+    data = c.fetchall()
+    #print(data)
+
+    # Close the connections
+    conn.close()
+    for i in data:
+        if sub_id in i :
+            return False
+    return True
