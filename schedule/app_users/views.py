@@ -53,7 +53,7 @@ def check_credit(user_id,sub_id):
     c = conn.cursor()
 
     # Execute the SELECT statement and retrieve the total sum of credits
-    c.execute("SELECT SUM(credit) FROM subjects WHERE UserID = ?",(user_id,))
+    c.execute("SELECT SUM(credit) FROM subjects WHERE UserID = ?",(user_id,)) #เปลี่ยนชื่อตารางจาก subject เป็น ที่สร้างใหม่
     result = c.fetchone()
 
     # Get the total sum of credits from the result tuple
@@ -63,7 +63,7 @@ def check_credit(user_id,sub_id):
     print("Total credits:", total_credits)
 
     # Execute the SELECT statement to retrieve the sum of credits for the specified subject
-    c.execute("SELECT SUM(credit) FROM subjects WHERE real_subject_id = ?", (sub_id,))
+    c.execute("SELECT SUM(credit) FROM subjects WHERE real_subject_id = ?", (sub_id,)) 
     result = c.fetchone()
 
     # Get the sum of credits for the specified subject from the result tuple
