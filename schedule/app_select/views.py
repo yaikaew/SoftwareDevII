@@ -10,6 +10,9 @@ from django.db.models import Q
 def selects_subject_view(request):
     sub_date = Subjects_Test_Date.objects.all()
     sub_objects = Subjects_info.objects.all()
+    user_id = request.user.id
+    user = User_subjects.objects.filter(user_id_id = user_id)
+
     if 'q' in request.GET:
         search = request.GET['q']
         multiple_search = Q(Q(name__icontains=search) | Q(code__icontains=search) | Q(prof__icontains=search))
@@ -19,10 +22,10 @@ def selects_subject_view(request):
     # select_btn
     if request.method == 'POST':
         subject_id = request.POST.get('id')
-        user_id = request.user.id
         # insert name into user table using Django ORM
         User_subjects.objects.create(user_id_id = user_id , sub_id_id = subject_id)
-    context = {'sub_date':sub_date, 'sub_name':sub_name ,'sub_objects':sub_objects}
+
+    context = {'sub_date':sub_date, 'sub_name':sub_name ,'sub_objects':sub_objects,'users':user}
     return render(request, 'select_subject.html' , context)
 
 
