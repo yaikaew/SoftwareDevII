@@ -83,11 +83,27 @@ def check_credit(user_id,sub_id):
     else:
         return True
     
-def check_pass_subject(user_id, sub_id):
-    data = Subjects.objects.filter(userid = user_id) #เอาทุกอย่างในตารางsubjectsของ Userคนนั้น
-    p_sub = data.values_list('real_subject_id', flat=True) #เอาเฉพาะวิชา
-    for i in p_sub:
-        if sub_id in i :
+#function check เรียนไปแล้วหรือยัง (ตาราง subject)
+import sqlite3
+
+def check_pass_subject(sub_id,u_id):
+    conn = sqlite3.connect("w3.db")
+    c = conn.cursor()
+
+    #เลือกวิชาทั้งหมดที่มีจาก subjects ของ user คนนั้น
+    c.execute("SELECT real_subject_id FROM subjects WHERE UserID = ?", (u_id,))
+    data = c.fetchall()
+    print(data)
+
+    c.execute("SELECT code FROM app_schedule_subjects_info WHERE ID = ?", (sub_id,))
+    sub = c.fetchall()
+    print(sub)
+
+    # Close the connections
+    conn.close()
+
+    for i in sub:
+        if i in data:
             return False
-    else :
-        return True
+        else:
+            return True
