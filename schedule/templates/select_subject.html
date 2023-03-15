@@ -39,111 +39,81 @@
             </thead>
             <tbody>
                 <tr>
+                    
                     <td class="align-middle">Monday</td>
-
                     {%for row in users %}
+                    {%if row.sub_id.day == 'M' %}
                     <td>
                         <span
                             class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
                         <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
                         <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                    {% endfor %}
+                    {%endif%}
+                    {%endfor%}
 
 
                 </tr>
 
                 <tr>
                     <td class="align-middle">Tuesday</td>
+                    {%for row in users %}
+                    {%if row.sub_id.day == 'T' %}
                     <td>
-
+                        <span
+                            class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                    <td class="bg-light-gray">
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td class="bg-light-gray">
-
-                    </td>
+                    {%endif%}
+                    {%endfor%}
                 </tr>
 
                 <tr>
                     <td class="align-middle">Wednesday</td>
+                    {%for row in users %}
+                    {%if row.sub_id.day == 'W' %}
                     <td>
-
+                        <span
+                            class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
+                    {%endif%}
+                    {%endfor%}
                 </tr>
 
                 <tr>
                     <td class="align-middle">Thursday</td>
-                    <td class="bg-light-gray">
-
-                    </td>
+                    {%for row in users %}
+                    {%if row.sub_id.day == 'H' %}
                     <td>
-
+                        <span
+                            class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td class="bg-light-gray">
-
-                    </td>
-                    <td>
-
-                    </td>
+                    {%endif%}
+                    {%endfor%}
                 </tr>
 
                 <tr>
                     <td class="align-middle">Friday</td>
+                    {%for row in users %}
+                    {%if row.sub_id.day == 'F' %}
                     <td>
-
+                        <span
+                            class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                    <td>
-
-                    </td>
-                    <td class="bg-light-gray">
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-
-                    </td>
-                    <td>
-
-                    </td>
+                    {%endif%}
+                    {%endfor%}
                 </tr>
             </tbody>
         </table>
     </div>
+ 
 
     <div class="mt-4">
 
@@ -156,25 +126,37 @@
             </div>
         </form>
 
-        {%for row in sub_name %}
+        {% for row in sub_objects %}
         <div class="mt-2">
             <div class="card w-100">
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.code}} </h5> &nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.name}} </h5> &nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.prof}} </h5> &nbsp;&nbsp;&nbsp;
                         <p class="card-text"></p>
                     </div>
-                    <form method="post" action="{% url 'selects_subject' %}">
+                    <form method="post" action="{% url 'selects_subject' %}" >
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
-                        <button type="submit" class="select_btn">Select</button>
+                        <button type="submit" class="select_btn" name="select_btn">Select</button>
                     </form>
+            {% for user in users %}
+                {% if user.sub_id.code == row.code and user.sub_id.section == row.section and user.sub_id.prof == row.prof %}
+                    <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                    </form>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
+
+        
         {% endfor %}
+
 
     </div>
 
@@ -187,19 +169,30 @@
             <div class="card w-100">
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.code}} </h5> &nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.name}} </h5> &nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title"> {{row.prof}} </h5> &nbsp;&nbsp;&nbsp;
                         <p class="card-text"></p>
                     </div>
-                    <form method="post" action="{% url 'selects_subject' %}">
+                    <form method="post" action="{% url 'selects_subject' %}" >
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
-                        <button type="submit" class="select_btn">Select</button>
+                        <button type="submit" class="select_btn" name="select_btn">Select</button>
                     </form>
+            {% for user in users %}
+                {% if user.sub_id.code == row.code and user.sub_id.section == row.section and user.sub_id.prof == row.prof %}
+                    <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                    </form>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
+
+        
         {% endfor %}
 
     </div>

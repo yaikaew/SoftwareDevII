@@ -7,6 +7,7 @@ class Subjects_info(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     code = models.CharField(max_length=255,null=True)
     name = models.CharField(max_length=255,null=True)
+    day = models.CharField(max_length=255,null=True)
     credit = models.IntegerField(null=True)
     section = models.CharField(max_length=255,null=True)
     start_time = models.TimeField(null=True)

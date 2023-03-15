@@ -22,10 +22,17 @@ def selects_subject_view(request):
         sub_name = Subjects_info.objects.none()
 
     # select_btn
-    if request.method == 'POST':
+    
+    if 'select_btn' in request.POST:
+        # The select button was clicked
         subject_id = request.POST.get('id')
         # insert name into user table using Django ORM
-        User_subjects.objects.create(user_id_id = user_id , sub_id_id = subject_id)
+        User_subjects.objects.create(user_id_id=user_id, sub_id_id=subject_id)
+    elif 'delete_btn' in request.POST:
+        # The delete button was clicked
+        subject_id = request.POST.get('id')
+        # Delete subject from user table using Django ORM
+        User_subjects.objects.filter(user_id_id=user_id, sub_id_id=subject_id).delete()
 
     context = {'sub_date':sub_date, 'sub_name':sub_name ,'sub_objects':sub_objects,'users':user}
     return render(request, 'select_subject.html' , context)

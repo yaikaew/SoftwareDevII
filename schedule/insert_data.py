@@ -153,9 +153,10 @@ def get_subject_info() :
             Start_time_info = datetime.strptime(Start_time_info, '%H:%M').time()
             End_time_info = datetime.strptime( End_time_info, '%H:%M').time()
 
-        Subjects_info.objects.create(code=code_subject,
+            Subjects_info.objects.create(code=code_subject,
                                               name=name_subject,
                                               credit=credit_subject,
+                                              day = day_info,
                                               section=sec_info,
                                               start_time=Start_time_info,
                                               end_time=End_time_info,
