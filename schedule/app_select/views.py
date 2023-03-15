@@ -9,3 +9,5 @@ def selects_subject_view(request):
     sub_date = Subjects_Test_Date.objects.all()
     context = {'sub_date':sub_date}
     return render(request, 'select_subject.html' , context)
+
+
