@@ -53,7 +53,8 @@ def check_credit(user_id,sub_id):
     c = conn.cursor()
 
     # Execute the SELECT statement and retrieve the total sum of credits
-    c.execute("SELECT SUM(credit) FROM subjects WHERE UserID = ?",(user_id,)) #เปลี่ยนชื่อตารางจาก subject เป็น ที่สร้างใหม่
+    c.execute("SELECT SUM(app_schedule_subjects_info.credit) FROM app_schedule_subjects_info,app_schedule_user_subjects "+
+              "WHERE app_schedule_user_subjects.user_id_id = ?  AND app_schedule_user_subjects.sub_id_id = app_schedule_subjects_info.ID ",(user_id,)) #เปลี่ยนชื่อตารางจาก subject เป็น ที่สร้างใหม่
     result = c.fetchone()
 
     # Get the total sum of credits from the result tuple
@@ -80,4 +81,13 @@ def check_credit(user_id,sub_id):
     if credits_now >22:
         return False
     else:
+        return True
+    
+def check_pass_subject(user_id, sub_id):
+    data = Subjects.objects.filter(userid = user_id) #เอาทุกอย่างในตารางsubjectsของ Userคนนั้น
+    p_sub = data.values_list('real_subject_id', flat=True) #เอาเฉพาะวิชา
+    for i in p_sub:
+        if sub_id in i :
+            return False
+    else :
         return True

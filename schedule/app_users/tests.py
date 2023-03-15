@@ -4,6 +4,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .views import check_pass_subject
+from .models import Subjects
 
 # class HomePageTest(TestCase):
 #     def test_home_page(self):
@@ -51,3 +53,4 @@ class LoginTestCase(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'username or password not correct')
+
