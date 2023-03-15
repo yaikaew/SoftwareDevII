@@ -255,3 +255,20 @@ html {
     padding: 20px;
 }
 
+.search_btn {
+    background-color: #229310ff;
+    color: white;
+    border: #229310ff;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.select_btn {
+    background-color: #229310ff;
+    color: white;
+    border: #229310ff;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px;
+}

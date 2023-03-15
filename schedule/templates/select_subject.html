@@ -43,31 +43,32 @@
 
                     {%for row in users %}
                     <td>
-                    <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
-                    <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                    <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+                        <span
+                            class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
                     </td>
-                     {% endfor %}
+                    {% endfor %}
 
-                
+
                 </tr>
 
                 <tr>
                     <td class="align-middle">Tuesday</td>
                     <td>
-                       
+
                     </td>
                     <td class="bg-light-gray">
 
                     </td>
                     <td>
-                    
+
                     </td>
                     <td>
-                     
+
                     </td>
                     <td>
-                      
+
                     </td>
                     <td class="bg-light-gray">
 
@@ -77,22 +78,22 @@
                 <tr>
                     <td class="align-middle">Wednesday</td>
                     <td>
-                    
+
                     </td>
                     <td>
-                     
+
                     </td>
                     <td>
-                    
+
                     </td>
                     <td>
-                   
+
                     </td>
                     <td>
-                  
+
                     </td>
                     <td>
-                  
+
                     </td>
                 </tr>
 
@@ -102,42 +103,42 @@
 
                     </td>
                     <td>
-                      
+
                     </td>
                     <td>
-                   
+
                     </td>
                     <td>
-                    
+
                     </td>
                     <td class="bg-light-gray">
 
                     </td>
                     <td>
-                    
+
                     </td>
                 </tr>
 
                 <tr>
                     <td class="align-middle">Friday</td>
                     <td>
-                    
+
                     </td>
                     <td>
-                     
+
                     </td>
                     <td class="bg-light-gray">
 
                     </td>
                     <td>
-                 
+
                     </td>
                     <td>
-                   
-    
+
+
                     </td>
                     <td>
-      
+
                     </td>
                 </tr>
             </tbody>
@@ -151,7 +152,7 @@
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group mb-3">
                 <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="search_btn" type="submit">Search</button>
             </div>
         </form>
 
@@ -168,7 +169,7 @@
                     <form method="post" action="{% url 'selects_subject' %}">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
-                        <button type="submit" class="btn btn-primary">Select</button>
+                        <button type="submit" class="select_btn">Select</button>
                     </form>
                 </div>
             </div>
@@ -181,23 +182,25 @@
 
         <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
 
-        {% for row in sub_objects %}  
-        <div class="card w-100">
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="card-text"></p>
+        {% for row in sub_objects %}
+        <div class="mt-2">
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+                        <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                        <p class="card-text"></p>
+                    </div>
+                    <form method="post" action="{% url 'selects_subject' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="select_btn">Select</button>
+                    </form>
                 </div>
-            <form method="post" action="{% url 'selects_subject' %}">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{ row.id }}">
-                <button type="submit" class="btn btn-primary">Select</button>
-            </form>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
 
     </div>
 </div>
