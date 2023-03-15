@@ -20,20 +20,20 @@ from .views import check_credit
 class CheckSelectTestCase(TestCase):
     
     def test_check_credit(self):
-        user_id = 3
-        sub_id = "010123128"
+        user_id = 1
+        sub_id = "010113138"
         result = check_credit(user_id, sub_id)
-        self.assertEqual(result,False)
+        self.assertEqual(result,True)
 
     def test_pass_subject(self):
         user_id = 1
-        sub_id = 26
+        sub_id = 602
         result = check_pass_subject(sub_id, user_id)
         self.assertEqual(result,False)
 
     def test_regis_subject(self):
         user_id = 1
-        sub_id = 5
+        sub_id = 430
         result = check_regis_subject(sub_id, user_id)
         self.assertEqual(result,False)   
 
