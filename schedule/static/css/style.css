@@ -1,3 +1,24 @@
+@font-face {
+    font-family: FC Paragraph;
+    src: url(fonts/FCParagraph[Non-commercial]-Medium.ttf) format('truetype');
+}
+
+h1 {
+    font-family: FC Paragraph;
+}
+
+h3 {
+    font-family: FC Paragraph;
+}
+
+h4 {
+    font-family: FC Paragraph;
+}
+
+h5 {
+    font-family: FC Paragraph;
+}
+
 body {
     margin-top: 20px;
 }
@@ -233,3 +254,4 @@ html {
     /* Adjust the width of the div as needed */
     padding: 20px;
 }
+
