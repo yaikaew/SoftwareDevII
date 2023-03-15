@@ -7,6 +7,16 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #ffffff !important;
+    }
+</style>
+
 <div class="container">
     <div class="timetable-img text-center">
         <img src="img/content/timetable.png" alt="">
@@ -213,7 +223,7 @@
 
     <div class="mt-4">
 
-        <h1> ค้นหารายวิชาที่ลงได้ </h1>
+        <h1> ค้นหาวิชา </h1>
 
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group mb-3">
@@ -248,8 +258,10 @@
         <div class="mt-2">
             <div class="card w-100">
                 <div class="card-body">
-                    <h5 class="card-title">{{row.name}} </h5>
-                    <p class="card-text"></p>
+                    <div class="input-group mb-3">
+                        <h5 class="card-title">{{row.name}} </h5>
+                        <p class="card-text"></p>
+                    </div>
                     <a href="#" class="btn btn-primary">Select</a>
                 </div>
             </div>
