@@ -21,8 +21,7 @@ def selects_subject_view(request):
     else:
         sub_name = Subjects_info.objects.none()
 
-    # select_btn
-    
+    # select btn
     if 'select_btn' in request.POST:
         # The select button was clicked
         subject_id = request.POST.get('id')

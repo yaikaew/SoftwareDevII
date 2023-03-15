@@ -271,5 +271,25 @@ html {
     border-radius: 4px;
     cursor: pointer;
     padding: 6px;
+    margin-right: 6px;
 }
 
+.delete_btn {
+    background-color: #EA6625ff;
+    color: white;
+    border: #EA6625ff;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px;
+    margin-right: 6px;
+}
+
+.card-body {
+    background: #D0AD92ff;
+    border: none;
+}
+
+.table-responsive {
+    background: #ffffff;
+    border: none;
+}
