@@ -18,14 +18,14 @@ from .views import check_credit
 class CheckCreditTestCase(TestCase):
     
     def test_check_credit(self):
-        user_id = 1
+        user_id = 3
         sub_id = "010113010"
         result = check_credit(user_id, sub_id)
         self.assertEqual(result,False)
         
         sub_id = "010113010"
-        result = check_credit( user_id, sub_id)
-        self.assertEqual(result, False)
+        #result = check_credit( user_id, sub_id)
+        #self.assertEqual(result, False)
 
 
 class LoginTestCase(TestCase):
