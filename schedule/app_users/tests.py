@@ -11,6 +11,22 @@ from django.contrib.auth.models import User
 #         response = self.client.get(url)
 #         self.assertEqual(response.status_code, 200)
 
+from django.test import TestCase
+from app_users.models import Subjects
+from .views import check_credit
+
+class CheckCreditTestCase(TestCase):
+    
+    def test_check_credit(self):
+        user_id = 1
+        sub_id = "010113010"
+        result = check_credit(user_id, sub_id)
+        self.assertEqual(result,False)
+        
+        sub_id = "010113010"
+        result = check_credit( user_id, sub_id)
+        self.assertEqual(result, False)
+
 
 class LoginTestCase(TestCase):
     
