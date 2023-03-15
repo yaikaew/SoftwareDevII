@@ -19,11 +19,11 @@ class CheckCreditTestCase(TestCase):
     
     def test_check_credit(self):
         user_id = 3
-        sub_id = "010113010"
+        sub_id = "010123128"
         result = check_credit(user_id, sub_id)
         self.assertEqual(result,False)
         
-        sub_id = "010113010"
+        #sub_id = "010113010"
         #result = check_credit( user_id, sub_id)
         #self.assertEqual(result, False)
 
