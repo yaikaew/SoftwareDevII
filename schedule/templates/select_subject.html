@@ -121,6 +121,7 @@
     card-text {
         color: #000000;
         font-size: 20px;
+        display: inline;
     }
 </style>
 <div class="select-sub-box">
@@ -299,7 +300,7 @@
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="card-text"></p>
+                    <p class="card-text">
 
                         <form method="post" action="{% url 'selects_subject' %}">
                             {% csrf_token %}
@@ -316,6 +317,7 @@
                         </form>
                         {% endif %}
                         {% endfor %}
+                    </p>
                 </div>
             </section>
 
