@@ -296,6 +296,31 @@ subject-text {
     border: #EA6625ff 1px solid;
 }
 
+#go-top-button {
+    display: none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #EA6625ff;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+}
+#go-top-button:hover {
+    background-color: #ffffff;
+    color: #EA6625ff;
+    border: #EA6625ff 1px solid;
+}
+
 .table-responsive {
     background: #ffffff;
     color: #000000;
