@@ -74,7 +74,7 @@ h5 {
 .nav-submit:hover {
     box-shadow: 1px 5px 7px 1px #00000033;
     background: #ffffff;
-    color: #D0AD92ff;
+    color: #229310ff;
 }
 
 nav-label {
@@ -193,7 +193,7 @@ i {
 }
 
 .submit:hover {
-    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 5px 7px 1px #00000033;
 }
 
 .two-col {
