@@ -1,136 +1,169 @@
-{% extends "layouts/base.html" %}
-
-{% block title %} Login page {% endblock %}
-
-{% block content %}
-
-
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
 
 <style>
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #FEE8D8ff !important;
+  * {
+    font-family: FC Paragraph;
+    background: #FEE8D8ff;
   }
 
-  .user_card {
-    width: 350px;
-    margin-top: auto;
-    margin-bottom: auto;
-    background: #D0AD92ff;
-    position: relative;
+  .login-box {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+  }
+
+  .login-container {
+    width: 350px;
+    display: flex;
     flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-
+    padding: 0 15px 0 15px;
   }
 
-  .form_container {
-    margin-top: 20px;
+  header {
+    color: #D0AD92ff;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
   }
 
-  #form-title {
-    color: #000000;
-    --champagne-pink: #FEE8D8ff;
-    --persimmon: #EA6625ff;
-    --tan: #D0AD92ff;
-    --eerie-black: #222222ff;
-    --forest-green: #229310ff;
+  .input-field {
+    margin: 8px auto auto auto;
   }
 
-  .login_btn {
+  .input-field .input {
+    height: 45px;
+    width: 87%;
+    border:#D0AD92ff 1px solid;
+    border-radius: 30px;
+    color: #D0AD92ff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: #ffffff1a;
+    outline: none;
+  }
+
+  .input-field .form-control {
+    height: 45px;
+    width: 87%;
+    border:#D0AD92ff 1px solid;
+    border-radius: 30px;
+    color: #D0AD92ff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: #ffffff1a;
+    outline: none;
+  }
+
+  i {
+    position: relative;
+    top: -33px;
+    left: 17px;
+    color: #EA6625ff;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #D0AD92ff;
+  }
+
+  .submit {
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
     width: 100%;
-    background: #229310ff !important;
-    color: white !important;
+    color: #222222ff;
+    background: #D0AD92ff;
+    cursor: pointer;
+    transition: .3s;
+    margin: 16px 16px auto auto;
   }
 
-  .login_btn:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
+  .submit:hover {
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
   }
 
-  .login_container {
-    padding: 0 2rem;
-  }
-
-  .input-group-text {
-    background: #EA6625ff !important;
-    color: white !important;
-    border: 0 !important;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-  }
-
-  .input_user,
-  .input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-  }
-
-  #messages {
-    background-color: grey;
-    color: #fff;
-    padding: 10px;
+  .two-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #D0AD92ff;
+    font-size: small;
     margin-top: 10px;
   }
 
-  .center {
-		margin: auto;
-		width: 60%; /* Adjust the width of the div as needed */
-		padding: 20px;
-	}
+  .one {
+    display: flex;
+  }
 
+  .two {
+    display: flex;
+  }
+
+  label {
+    text-decoration: none;
+    color: #D0AD92ff;
+    font-size: 14px;
+  }
+
+  label a {
+    text-decoration: none;
+    color: #D0AD92ff;
+  }
 </style>
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <title>Login Page</title>
+</head>
+
 <body>
-  <div class="center">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <h3 id="form-title">LOGIN</h3>
+  <div class="login-box">
+    <div class="login-container">
+
+      <div class="top">
+        <header>Login</header>
+      </div>
+
+      {% if form.errors %}
+      <label>username or password not correct</label>
+      {% endif %}
+
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="input-field">
+          <i class='bx bx-user'></i>
+          <input type="text" name="username" placeholder="Username" class="form-control">
+
         </div>
-        {% if form.errors %}
-        <p> username or password not correct</p>
-        {% endif %} 
-        <div class="d-flex justify-content-center form_container">
-          <form method="post" action="">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-              <input type="text" name="username" placeholder="Username" class="form-control">
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-              <input type="password" name="password" placeholder="Password" class="form-control">
-            </div>
-            <div class="d-flex justify-content-center mt-3 login_container">
-              <input class="btn login_btn" type="submit" value="Login">
-            </div>
-          </form>
+
+        <div class="input-field">
+          <i class='bx bx-lock-alt'></i>
+          <input type="password" name="password" placeholder="Password" class="form-control">
+
         </div>
-        <div class="mt-4">
-          <div class="d-flex justify-content-center links">
-            Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
-          </div>
+
+        <div class="input-field">
+          <input type="submit" class="submit" value="Login" id="">
+        </div>
+      </form>
+      <div class="two-col">
+        <div class="one">
+          <label>Don't have an account?</label>
+        </div>
+        <div class="two">
+          <label><a href="{% url 'register' %}" class="ml-2">Sign Up</a></label>
         </div>
       </div>
     </div>
   </div>
 </body>
 
-
-{% endblock %}
+</html>

@@ -4,203 +4,309 @@
 
 {% block content %}
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 
 <style>
-    body,
-    html {
+    * {
+        font-family: FC Paragraph;
+    }
+
+    body {
         margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #FEE8D8ff !important;
+        font-family: FC Paragraph;
+        font-size: 17px;
+        color: #000000;
+        background-color: #FEE8D8ff;
+    }
+
+    .select-sub-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px 0 15px;
+    }
+
+    .select-sub-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 15px 0 15px;
+    }
+
+    #section-a {
+        padding: 20px;
+        background: #FEE8D8ff;
+        color: #000000;
+        text-align: left;
+    }
+
+    #section-b {
+        padding: 10px;
+        background: #FEE8D8ff;
+        color: #000000;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .search-field {
+        margin: 8px auto auto auto;
+    }
+
+    .search-field .form-control {
+        height: 40px;
+        width: 87%;
+        border: #D0AD92ff 1px solid;
+        border-radius: 10px;
+        color: #D0AD92ff;
+        font-size: 15px;
+        padding: 0 0 0 45px;
+        background: #ffffff1a;
+        outline: none;
+    }
+
+    .select_btn {
+        background-color: #229310ff;
+        color: white;
+        border: #229310ff;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .select_btn:hover {
+        background-color: #ffffff;
+        color: #229310ff;
+        border: #229310ff 1px solid;
+    }
+
+    .delete_btn {
+        background-color: #EA6625ff;
+        color: white;
+        border: #EA6625ff;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .delete_btn:hover {
+        background-color: #ffffff;
+        color: #EA6625ff;
+        border: #EA6625ff 1px solid;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h5 {
+        display: inline;
+    }
+
+    .subject-card {
+        background-color: #D0AD92ff;
+        border: #D0AD92ff 1px solid;
+        border-radius: 10px;
+        color: #000000;
+        font-size: 20px;
+        padding: 20px 0 0 45px;
+        height: 90px;
+        outline: none;
+        text-align: left;
+        align-items: center;
+    }
+
+    subject-text {
+        color: #000000;
+    }
+
+    card-text {
+        color: #000000;
+        font-size: 20px;
     }
 </style>
+<div class="select-sub-box">
+    <div class="select-sub-container">
+        <section id="section-a">
+            <p>Schedule</p>
+        </section>
 
-<div class="container">
-    <div class="timetable-img text-center">
-        <img src="img/content/timetable.png" alt="">
-    </div>
-    <div class="table-responsive">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr class="bg-light-gray">
-                    <th class="text-uppercase">Time
-                    </th>
-                    <th class="text-uppercase">9:00-10:00</th>
-                    <th class="text-uppercase">10:00-11:00</th>
-                    <th class="text-uppercase">11:00-12:00</th>
-                    <th class="text-uppercase">Break</th>
-                    <th class="text-uppercase">13:00-14:00</th>
-                    <th class="text-uppercase">14:00-15:00</th>
-                    <th class="text-uppercase">15:00-16:00</th>
-                    <th class="text-uppercase">16:00-17:00</th>
-                    <th class="text-uppercase">17:00-18:00</th>
-                    <th class="text-uppercase">18:00-19:00</th>
-                    <th class="text-uppercase">19:00-20:00</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="bg-light-gray">
+                        <th class="text-uppercase">Time
+                        </th>
+                        <th class="text-uppercase">9:00-10:00</th>
+                        <th class="text-uppercase">10:00-11:00</th>
+                        <th class="text-uppercase">11:00-12:00</th>
+                        <th class="text-uppercase">Break</th>
+                        <th class="text-uppercase">13:00-14:00</th>
+                        <th class="text-uppercase">14:00-15:00</th>
+                        <th class="text-uppercase">15:00-16:00</th>
+                        <th class="text-uppercase">16:00-17:00</th>
+                        <th class="text-uppercase">17:00-18:00</th>
+                        <th class="text-uppercase">18:00-19:00</th>
+                        <th class="text-uppercase">19:00-20:00</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
 
-                    <td class="align-middle">Monday</td>
-                    {%for row in users %}
-                    {%if row.sub_id.day == 'M' %}
-                    <td>
-                        <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
-                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.sub_id.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
+                        <td class="align-middle">Monday</td>
+                        {%for row in users %}
+                        {%if row.sub_id.day == 'M' %}
+                        <td>
+                            <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                            <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                            <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+                            <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                                <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                            </form>
 
-                    </td>
+                        </td>
 
-                    {%endif%}
-                    {%endfor%}
-
-
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Tuesday</td>
-                    {%for row in users %}
-                    {%if row.sub_id.day == 'T' %}
-                    <td>
-                        <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
-                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
-
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.sub_id.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
-
-                    </td>
-                    {%endif%}
-                    {%endfor%}
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Wednesday</td>
-                    {%for row in users %}
-                    {%if row.sub_id.day == 'W' %}
-                    <td>
-                        <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
-                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
-
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.sub_id.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
-
-                    </td>
-                    {%endif%}
-                    {%endfor%}
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Thursday</td>
-                    {%for row in users %}
-                    {%if row.sub_id.day == 'H' %}
-                    <td>
-                        <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
-                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
-
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.sub_id.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
-
-                    </td>
-                    {%endif%}
-                    {%endfor%}
-                </tr>
-
-                <tr>
-                    <td class="align-middle">Friday</td>
-                    {%for row in users %}
-                    {%if row.sub_id.day == 'F' %}
-                    <td>
-                        <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
-                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
-                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
-
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.sub_id.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
-
-                    </td>
-                    {%endif%}
-                    {%endfor%}
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                        {%endif%}
+                        {%endfor%}
 
 
-    <div class="mt-4">
+                    </tr>
 
-        <h1> ค้นหาวิชา </h1>
+                    <tr>
+                        <td class="align-middle">Tuesday</td>
+                        {%for row in users %}
+                        {%if row.sub_id.day == 'T' %}
+                        <td>
+                            <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                            <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                            <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
 
-        <form class="form-inline my-2 my-lg-0">
-            <div class="input-group mb-3">
-                <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
-                <button class="search_btn" type="submit">Search</button>
-            </div>
-        </form>
+                            <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                                <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                            </form>
 
-        {%for row in sub_name %}
-        <div class="mt-2">
-            <div class="card w-100">
-                <div class="card-body">
-                    <div class="input-group mb-3">
-                        <h5 class="card-title">{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title">{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                        <p class="card-text"></p>
-                    </div>
+                        </td>
+                        {%endif%}
+                        {%endfor%}
+                    </tr>
+
+                    <tr>
+                        <td class="align-middle">Wednesday</td>
+                        {%for row in users %}
+                        {%if row.sub_id.day == 'W' %}
+                        <td>
+                            <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                            <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                            <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+
+                            <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                                <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                            </form>
+
+                        </td>
+                        {%endif%}
+                        {%endfor%}
+                    </tr>
+
+                    <tr>
+                        <td class="align-middle">Thursday</td>
+                        {%for row in users %}
+                        {%if row.sub_id.day == 'H' %}
+                        <td>
+                            <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                            <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                            <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+
+                            <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                                <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                            </form>
+
+                        </td>
+                        {%endif%}
+                        {%endfor%}
+                    </tr>
+
+                    <tr>
+                        <td class="align-middle">Friday</td>
+                        {%for row in users %}
+                        {%if row.sub_id.day == 'F' %}
+                        <td>
+                            <span class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                            <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                            <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+
+                            <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                                <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                            </form>
+
+                        </td>
+                        {%endif%}
+                        {%endfor%}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <section id="section-a">
+
+            <h1> ค้นหาวิชา </h1>
+
+            <form class="search-field">
+                <section id="section-b">
+                    <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
+                    <button class="select_btn" type="submit">Search</button>
+                </section>
+            </form>
+
+            {%for row in sub_name %}
+            <section id="section-a">
+                <div class="subject-card">
+                    <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                    <p class="card-text"></p>
                     <form method="post" action="{% url 'selects_subject' %}">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
                         <button type="submit" class="select_btn" name="select_btn">Select</button>
                     </form>
                 </div>
-            </div>
-        </div>
-        {% endfor %}
+            </section>
+            {% endfor %}
 
-    </div>
+        </section>
 
-    <div class="mt-4">
 
-        <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
+        <section id="section-a">
 
-        {% for row in sub_objects %}
-        <div class="mt-2">
-            <div class="card w-100">
-                <div class="card-body">
-                    <div class="input-group mb-3">
-                        <h5 class="card-title"> {{row.code}} </h5> &nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title"> {{row.name}} </h5> &nbsp;&nbsp;&nbsp;
-                        <h5 class="card-title"> {{row.prof}} </h5> &nbsp;&nbsp;&nbsp;
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="input-group mb-3">
+            <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
+
+            {% for row in sub_objects %}
+
+            <section id="section-a">
+                <div class="subject-card">
+
+                    <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                    <p class="card-text"></p>
+
                         <form method="post" action="{% url 'selects_subject' %}">
                             {% csrf_token %}
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <button type="submit" class="select_btn" name="select_btn">Select</button>
                         </form>
+
                         {% for user in users %}
                         {% if user.sub_id.code == row.code and user.sub_id.section == row.section and user.sub_id.prof == row.prof %}
                         <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
@@ -210,17 +316,14 @@
                         </form>
                         {% endif %}
                         {% endfor %}
-                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
 
+            {% endfor %}
 
-        {% endfor %}
-
+        </section>
     </div>
 </div>
-
 
 
 {% endblock %}
