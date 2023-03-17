@@ -4,7 +4,8 @@
 
 {% block content %}
 
-
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 <style>
     * {
@@ -19,113 +20,10 @@
         background-color: #FEE8D8ff;
     }
 
-    .select-sub-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 15px 0 15px;
-    }
-
-    .select-sub-container {
-        display: flex;
-        flex-direction: column;
-        padding: 0 15px 0 15px;
-    }
-
-    #section-a {
-        padding: 20px;
-        background: #FEE8D8ff;
-        color: #000000;
-        text-align: left;
-    }
-
-    #section-b {
-        padding: 10px;
-        background: #FEE8D8ff;
-        color: #000000;
-        text-align: center;
-        justify-content: space-between;
-    }
-
-    .search-field {
-        margin: 8px auto auto auto;
-    }
-
-    .search-field .form-control {
-        height: 40px;
-        width: 87%;
-        border: #D0AD92ff 1px solid;
-        border-radius: 10px;
-        color: #D0AD92ff;
-        font-size: 15px;
-        padding: 0 0 0 45px;
-        background: #ffffff1a;
-        outline: none;
-    }
-
-    .select_btn {
-        background-color: #229310ff;
-        color: white;
-        border: #229310ff;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .select_btn:hover {
-        background-color: #ffffff;
-        color: #229310ff;
-        border: #229310ff 1px solid;
-    }
-
-    .delete_btn {
-        background-color: #EA6625ff;
-        color: white;
-        border: #EA6625ff;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .delete_btn:hover {
-        background-color: #ffffff;
-        color: #EA6625ff;
-        border: #EA6625ff 1px solid;
-    }
-
-    h1 {
-        font-size: 36px;
-    }
-
-    h5 {
-        display: inline;
-    }
-
-    .subject-card {
-        background-color: #D0AD92ff;
-        border: #D0AD92ff 1px solid;
-        border-radius: 10px;
-        color: #000000;
-        font-size: 20px;
-        padding: 20px 0 0 45px;
-        height: 90px;
-        outline: none;
-        text-align: left;
-        align-items: center;
-    }
-
-    subject-text {
-        color: #000000;
-    }
-
-    card-text {
-        color: #000000;
-        font-size: 20px;
-        display: inline;
-    }
 </style>
-<div class="select-sub-box">
-    <div class="select-sub-container">
+
+<div class="box">
+    <div class="container">
         <section id="section-a">
             <p>Schedule</p>
         </section>
@@ -263,7 +161,7 @@
             <h1> ค้นหาวิชา </h1>
 
             <form class="search-field">
-                <section id="section-b">
+                <section id="section-c">
                     <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
                     <button class="select_btn" type="submit">Search</button>
                 </section>
@@ -275,7 +173,7 @@
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="card-text"></p>
+                    <p class="subject-text"></p>
                     <form method="post" action="{% url 'selects_subject' %}">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
@@ -300,7 +198,7 @@
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="card-text">
+                    <p class="subject-text">
 
                         <form method="post" action="{% url 'selects_subject' %}">
                             {% csrf_token %}
