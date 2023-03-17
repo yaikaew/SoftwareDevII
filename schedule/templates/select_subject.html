@@ -19,7 +19,25 @@
         color: #000000;
         background-color: #FEE8D8ff;
     }
-
+    #go-top-button {
+        display: none;
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: #EA6625ff;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        text-align: center;
+        align-items: center;
+    }
 </style>
 
 <div class="box">
@@ -200,24 +218,25 @@
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <p class="subject-text">
+                    <p class="subject-text"></p>
 
-                        <form method="post" action="{% url 'selects_subject' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.id }}">
-                            <button type="submit" class="select_btn" name="select_btn">Select</button>
-                        </form>
+                    <form method="post" action="{% url 'selects_subject' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="select_btn" name="select_btn">Select</button>
+                    </form>
 
-                        {% for user in users %}
-                        {% if user.sub_id.code == row.code and user.sub_id.section == row.section and user.sub_id.prof == row.prof %}
-                        <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
-                            {% csrf_token %}
-                            <input type="hidden" name="id" value="{{ row.id }}">
-                            <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
-                        </form>
-                        {% endif %}
-                        {% endfor %}
-                    </p>
+                    {% for user in users %}
+                    {% if user.sub_id.code == row.code and user.sub_id.section == row.section and user.sub_id.prof == row.prof %}
+                    <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                    </form>
+
+                    {% endif %}
+                    {% endfor %}
+
                 </div>
             </section>
 
@@ -225,6 +244,28 @@
 
         </section>
 
+
+        <button id="go-top-button" onclick="goToTop()">Top</button>
+        
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("go-top-button").style.display = "block";
+                } else {
+                    document.getElementById("go-top-button").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function goToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        
     </div>
 </div>
 
