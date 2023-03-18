@@ -45,8 +45,8 @@
     
                     <td class="align-middle">Monday</td>
                     {%for row in users %}
-                    {%if row.sub_id.day == 'M' %}
-                    <td> 
+                    {%if row.sub_id.day == 'M' and row.sub_id.start_time|time:"H:i:s" == "09:00:00" %}
+                    <td>
                         <span
                             class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
                         <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
@@ -56,10 +56,25 @@
                         <input type="hidden" name="id" value="{{ row.sub_id.id }}">
                         <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
                     </form>
-                
-                </td>  
-                        
+                    </td>
                     {%endif%}
+
+                    {%if row.sub_id.day == 'M' and row.sub_id.start_time|time:"H:i:s" == "10:00:00" %}
+                    <td>
+                        <span
+                            class="text-black font-size16 xs-font-size16">{{row.sub_id.name}}</span>
+                        <div class="margin-10px-top font-size14">{{row.sub_id.code}}</div>
+                        <div class="font-size13 text-light-gray">{{row.sub_id.prof}}</div>
+                    <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ row.sub_id.id }}">
+                        <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                    </form>
+                    </td>
+                    {%endif%}
+ 
+
+
                     {%endfor%}
 
 
