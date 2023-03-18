@@ -4,179 +4,189 @@
 
 {% block content %}
 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
 <style>
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #ffffff !important;
+    * {
+        font-family: FC Paragraph;
     }
+
+    body {
+        margin: 0;
+        font-family: FC Paragraph;
+        font-size: 17px;
+        color: #000000;
+        background-color: #FEE8D8ff;
+    }
+
 </style>
 
-<div class="container">
-    <div class="timetable-img text-center">
-        <img src="img/content/timetable.png" alt="">
-    </div>
-    <div class="table-responsive">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr class="bg-light-gray">
-                    <th class="text-uppercase">Time
-                    </th>
-                    <th class="text-uppercase">9:00</th>
-                    <th class="text-uppercase">10:00</th>
-                    <th class="text-uppercase">11:00</th>
-                    <th class="text-uppercase">12:00</th>
-                    <th class="text-uppercase">13:00</th>
-                    <th class="text-uppercase">14:00</th>
-                    <th class="text-uppercase">15:00</th>
-                    <th class="text-uppercase">16:00</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="align-middle">Monday</td>
-                    <td>
+<div class="box">
+    <div class="container">
+        <section id="section-b"><p>Schedule</p></section>
 
-                    </td>
-                    <td>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="bg-light-gray">
+                        <th class="text-uppercase">Time
+                        </th>
+                        <th class="text-uppercase">9:00</th>
+                        <th class="text-uppercase">10:00</th>
+                        <th class="text-uppercase">11:00</th>
+                        <th class="text-uppercase">12:00</th>
+                        <th class="text-uppercase">13:00</th>
+                        <th class="text-uppercase">14:00</th>
+                        <th class="text-uppercase">15:00</th>
+                        <th class="text-uppercase">16:00</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">Monday</td>
+                        <td>
 
-                    </td>
+                        </td>
+                        <td>
 
-                    <td>
+                        </td>
 
-                    </td>
-                    <td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                </tr>
+                        </td>
+                        <td>
 
-                <tr>
-                    <td class="align-middle">Tuesday</td>
-                    <td>
+                        </td>
+                    </tr>
 
-                    </td>
-                    <td class="bg-light-gray">
+                    <tr>
+                        <td class="align-middle">Tuesday</td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td class="bg-light-gray">
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td class="bg-light-gray">
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td class="bg-light-gray">
 
-                    </td>
-                </tr>
+                        </td>
+                        <td>
 
-                <tr>
-                    <td class="align-middle">Wednesday</td>
-                    <td>
+                        </td>
+                    </tr>
 
-                    </td>
-                    <td>
+                    <tr>
+                        <td class="align-middle">Wednesday</td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                </tr>
+                        </td>
+                        <td>
 
-                <tr>
-                    <td class="align-middle">Thursday</td>
-                    <td class="bg-light-gray">
+                        </td>
+                    </tr>
 
-                    </td>
-                    <td>
+                    <tr>
+                        <td class="align-middle">Thursday</td>
+                        <td class="bg-light-gray">
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td class="bg-light-gray">
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td class="bg-light-gray">
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                </tr>
+                        </td>
+                        <td>
 
-                <tr>
-                    <td class="align-middle">Friday</td>
-                    <td>
+                        </td>
+                    </tr>
 
-                    </td>
-                    <td>
+                    <tr>
+                        <td class="align-middle">Friday</td>
+                        <td>
 
-                    </td>
-                    <td class="bg-light-gray">
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td class="bg-light-gray">
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                    <td>
+                        </td>
+                        <td>
 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

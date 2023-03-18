@@ -1,136 +1,105 @@
-{% extends "layouts/base_select_subject.html" %}
+<!doctype html>
+<html lang="en">
+
+{% extends "layouts/base.html" %}
 
 {% block title %} About Us {% endblock %}
 
 {% block content %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+<head>
+  <style>
+    * {
+      font-family: FC Paragraph;
+    }
 
-<style>
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #FEE8D8ff !important;
-  }
-</style>
+    body {
+      margin: 0;
+      font-family: FC Paragraph;
+      font-size: 17px;
+      color: #000000;
+      background-color: #FEE8D8ff;
+    }
+
+    #aboutpage {
+      background-color: rgb(254, 216, 238);
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      margin-top: 80px;
+    }
+
+    #aboutpage h1 {
+      font-size: 60px;
+      color: #D0AD92ff;
+      line-height: 1.2;
+    }
+
+    #aboutpage p {
+      font-size: 20px;
+      color: #d09295;
+      padding: 14px 16px;
+    }
+
+
+  </style>
+</head>
 
 <body>
-
-  <div class="center">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <h3 id="form-title">About Us</h3>
-        </div>
-      </div>
+  <div class="box">
+    <div class="container">
+      <p>About Us</p>
+      <section id="section-b">
+        <h1>Professor</h1>
+        <img src="https://ece.eng.kmutnb.ac.th/home/wp-content/uploads/2018/02/p9.jpg" alt="spn" width="200"
+          height="200">
+        <p>prof. Sopon Apiromvorakarn</p>
+      </section>
+      <section id="section-b">
+        <h1>Members</h1>
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPyF60kDwmxAvvkytu2yj14byURr_Tag6vArfZh_v-cj_YdmInqXc8BfBDNUrmMe3Q3o7-7YlCH0Dy-6bjN1QVPoy_94Q496W6woy2jtsxOP-8fiq4qGqaGxAfySf6dwht44wBWxyN_sEiXs6tshHm0HNcEcf75j9HO11NlFct6JDOhviZxe6FqmEjIg/s1483/1593576265310.jpg"
+          alt="karn" width="300" height="400">
+        <p>Manopas Tanetsakunwatana 6301012630141</p>
+      </section>
+      <section id="section-b">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrxjkvCCrTMtuvhxQ7YJ6JZXOdaaf2k0yIU0EEYTsUnz_e8tJzVV9HTqpSBDk6P_syJS7VJKL947UwxfAvoMqDL_zsKnI-0TP0ztYg1VsOXGxjwtEeoYPUltKLKkyltjWXYYP4meZ16XPQ8fLUqosd4dHtY4HsRn31jX0JTmTq8BIZRMiChtZq81QqNg/s1479/1673158476723.jpg"
+          alt="amp" width="300" height="400">
+        <p>Napawan Nakasuwan 6401012620048</p>
+      </section>
+      <section id="section-b">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFL1u_v8mSK5y3n_8YGnRkDHm_2Ij51YHLLUq0tZmBdEgex9e8m0HHovUUZk-PPjhuVEtmrlBdK15WkWdrf6-DUZTL2SzMyM0pHT28DG7zsBkqBeteVsm4iLygdRVvceCanL1RozIa3RguKjvkbKNO6MqpauYYBL3nqfbOjWk3J8bx9BJbPCiGOtnW/s4032/20230101_034127106_iOS.heic"
+          alt="bew" width="300" height="400">
+        <p>Supitchaya Rodchomchin 6401012620137</p>
+      </section>
+      <section id="section-b">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgph_2s_HrCvwNqVrf2J8ZeFqotJroOyVzMrqlnITAehwMITEUSRbhZN0h9IxQS3UM1j-mmrxB08oLyCBYkDDn3Ii-J9qP60aTfZZoqcAlYYXzcw9kX66S6btjUpEEKcVNtegDzAuy7PnXxbO9YU0Ucg9MJxjHB7nXs_GaohpBcRRwb7UsyJER8LTIvgw/s1109/11.jpg"
+          alt="yaikaew" width="300" height="300">
+        <p>Punyawee Dokkum 6401012630108</p>
+      </section>
+      <section id="section-b">
+        <img src="" alt="poy" width="300" height="400">
+        <p>Anecha Khumjun 6401012630141</p>
+      </section>
     </div>
   </div>
-
-  <div class="center">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center">
-          <h4 id="form-title">Professor</h4>
-        </div>
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img src="https://ece.eng.kmutnb.ac.th/home/wp-content/uploads/2018/02/p9.jpg" alt="spn" width="200"
-              height="200">
-          </div>
-          <div class="d-flex justify-content-center links">
-            prof. Sopon Apiromvorakarn
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="center">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-
-        <div class="d-flex justify-content-center">
-          <h4 id="form-title">Members</h4>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img src="" alt="karn" width="300" height="300">
-          </div>
-          <div class="d-flex justify-content-center links">
-            Manopas Tanetsakunwatana
-          </div>
-          <div class="d-flex justify-content-center links">
-            6301012630141
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrxjkvCCrTMtuvhxQ7YJ6JZXOdaaf2k0yIU0EEYTsUnz_e8tJzVV9HTqpSBDk6P_syJS7VJKL947UwxfAvoMqDL_zsKnI-0TP0ztYg1VsOXGxjwtEeoYPUltKLKkyltjWXYYP4meZ16XPQ8fLUqosd4dHtY4HsRn31jX0JTmTq8BIZRMiChtZq81QqNg/s1479/1673158476723.jpg"
-              alt="amp" width="300" height="400">
-          </div>
-          <div class="d-flex justify-content-center links">
-            Napawan Nakasuwan
-          </div>
-          <div class="d-flex justify-content-center links">
-            6401012620048
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFL1u_v8mSK5y3n_8YGnRkDHm_2Ij51YHLLUq0tZmBdEgex9e8m0HHovUUZk-PPjhuVEtmrlBdK15WkWdrf6-DUZTL2SzMyM0pHT28DG7zsBkqBeteVsm4iLygdRVvceCanL1RozIa3RguKjvkbKNO6MqpauYYBL3nqfbOjWk3J8bx9BJbPCiGOtnW/s4032/20230101_034127106_iOS.heic"
-              alt="bew" width="300" height="400">
-          </div>
-          <div class="d-flex justify-content-center links">
-            Supitchaya Rodchomchin
-          </div>
-          <div class="d-flex justify-content-center links">
-            6401012620137
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgph_2s_HrCvwNqVrf2J8ZeFqotJroOyVzMrqlnITAehwMITEUSRbhZN0h9IxQS3UM1j-mmrxB08oLyCBYkDDn3Ii-J9qP60aTfZZoqcAlYYXzcw9kX66S6btjUpEEKcVNtegDzAuy7PnXxbO9YU0Ucg9MJxjHB7nXs_GaohpBcRRwb7UsyJER8LTIvgw/s1109/11.jpg"
-              alt="yaikaew" width="300" height="300">
-          </div>
-          <div class="d-flex justify-content-center links">
-            Punyawee Dokkum
-          </div>
-          <div class="d-flex justify-content-center links">
-            6401012630108
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <div class="d-flex justify-content-center form_container">
-            <img src="" alt="poy" width="300" height="300">
-          </div>
-          <div class="d-flex justify-content-center links">
-            Anecha Khumjun
-          </div>
-          <div class="d-flex justify-content-center links">
-            6401012630141
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 </body>
 
 
+
+
+
 {% endblock %}
+
+</html>

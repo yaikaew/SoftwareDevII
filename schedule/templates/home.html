@@ -1,25 +1,71 @@
-{% extends "layouts/base.html" %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-{% block title %} Home page {% endblock %}
+<style>
+  * {
+    font-family: FC Paragraph;
+  }
+
+  body {
+    margin: 0;
+    font-family: FC Paragraph;
+    font-size: 17px;
+    color: #FEE8D8ff;
+    line-height: 1.6;
+  }
+
+  #homepage {
+    background-color: #D0AD92ff;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  #homepage h1 {
+    color: #FEE8D8ff;
+    font-size: 50px;
+  }
+
+  #homepage p {
+    color: #FEE8D8ff;
+    font-size: 30px;
+  }
+
+  #homepage .button {
+    font-size: 24px;
+    text-decoration: none;
+    background-color: #229310ff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  #homepage .button:hover {
+    background-color: #ffffff;
+    color: #EA6625ff;
+    border: #EA6625ff 1px solid;
+  }
+
+</style>
 
 {% block content %}
 
-<h1> Home </h1>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-      </tr>
-    </thead>
-    <tbody>
-      {%for item in data %}
-      <tr>
-        <th scope="row">{{item.gpaxid}}</th>
-        <td>{{item.gpax}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<header id="homepage">
+  <h1>Welcome to schedule website!!</h1>
+  <p>Software Development II Group 2</p>
+  <section id="section-b2">
+    <a class="button" href="{% url 'login' %}" role="button">Login</a>
+    <a class="button" href="{% url 'register' %}" role="button">Register</a>
+  </section>
+</header>
+
 
 {% endblock %}

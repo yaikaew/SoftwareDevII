@@ -4,24 +4,51 @@
 
 {% block content %}
 
-<h1> Schedule {{user.username}}</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-    </tr>
-  </thead>
-  <tbody>
-{%for item in subject %}
-      <tr>
-        <th scope="row">{{item.userid}}</th>
-        <td>{{item.subject_name}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+<style>
+  * {
+    font-family: FC Paragraph;
+  }
+
+  body {
+    margin: 0;
+    font-size: 17px;
+    height: 100%;
+    line-height: 1.6;
+  }
+
+  #user-page {
+    background-color: #FEE8D8ff;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  #user-page h1 {
+    color: #D0AD92ff;
+    font-size: 50px;
+    line-height: 1.2;
+  }
+
+  #user-page p {
+    color: #D0AD92ff;
+    font-size: 20px;
+  }
+</style>
+
+
+<header id="user-page">
+  <h1>Welcome to schedule website!!</h1>
+  <p>Software Development II Group 2</p>
+</header>
 
 
 {% csrf_token %}
