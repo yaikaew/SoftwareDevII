@@ -61,6 +61,7 @@
                                 <span class="text-black font-size16 xs-font-size16">{{ user.sub_id.name }}</span>
                                 <div class="margin-10px-top font-size14">{{ user.sub_id.code }}</div>
                                 <div class="font-size13 text-light-gray">{{ user.sub_id.prof }}</div>
+                                <div class="text-black font-size16 xs-font-size16">{{ user.sub_id.credit }}</div>
                                 <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
                                   {% csrf_token %}
                                   <input type="hidden" name="id" value="{{ user.sub_id.id }}">
@@ -139,9 +140,21 @@
 
         <!-- วิชาที่สามารถลงได้ในเทอมนี้ -->
         <section id="section-a">
-            
             <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
 
+            {% if not Is_subjects_registed %}
+            <h1> subjects was registed </h1>
+            {% elif not Is_subjects_passed %}
+            <h1> You already passed this sub </h1>
+            {% elif not Is_over_credit %}
+            <h1> Over Credit </h1>
+            {% elif not Is_day_overlapse %}
+            <h1> Day and time overlapse </h1>
+            {% elif not Is_midterm_overlapse %}
+            <h1> Midterm day overlapse </h1>
+            {% elif not Is_final_overlapse  %}
+            <h1> Final day overlapse </h1>
+            {%endif%}
             {% for row in sub_objects %}
 
             <section id="section-b">
