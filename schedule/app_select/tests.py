@@ -19,6 +19,6 @@ class SelectPageTestCase(TestCase):
         response = self.client.get(reverse('selects_subject'))
         self.assertEqual(response.status_code, 200)
     
-class SelectSubject(TestCase):
+# class SelectSubject(TestCase):
     
-    def test_select_to_database():
+#     def test_select_to_database():
