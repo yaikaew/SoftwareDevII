@@ -77,13 +77,10 @@
                               </td>
                             {% endif %} 
                           {% endfor %} 
-                      {% endfor %}
+                        {% endfor %}
                     </tr>
-                      {% endfor %}
-                            
-                    
-
-                  
+                        {% endfor %}
+  
                 </tbody>
             </table>
         </div>
@@ -94,25 +91,45 @@
 
             <h1> ค้นหาวิชา </h1>
 
-            <form class="search-field">
-                <section id="section-c">
-                    <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
-                    <button class="select_btn" type="submit">Search</button>
-                </section>
-            </form>
-
+            <section id="section-d">
+                <form class="search-field">
+                    <section id="section-c">
+                        <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
+                        <button class="search_btn" type="submit">Search</button>
+                    </section>
+                </form>
+            </section>
             {%for row in sub_name %}
-            <section id="section-a">
+            <section id="section-b">
                 <div class="subject-card">
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
+
+                    {%if users%}
+
+                    <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
+                        {% csrf_token %}
+                        {% if row.id in user_subj %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="delete_btn" name="delete_btn">Delete</button>
+                        {% else %}
+                        <input type="hidden" name="id" value="{{ row.id }}">
+                        <button type="submit" class="select_btn" name="select_btn">Select</button>
+                        {% endif %}
+                    </form>
+
+                    {%else%}
+
                     <form method="post" action="{% url 'selects_subject' %}">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{ row.id }}">
                         <button type="submit" class="select_btn" name="select_btn">Select</button>
                     </form>
+
+                    {% endif %}
+
                 </div>
             </section>
             {% endfor %}
@@ -127,7 +144,7 @@
 
             {% for row in sub_objects %}
 
-            <section id="section-a">
+            <section id="section-b">
                 <div class="subject-card">
 
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
