@@ -31,7 +31,6 @@ h5 {
     background: #FEE8D8ff;
     color: #000000;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
 }
@@ -73,6 +72,13 @@ h5 {
 
 #section-e .box-1, #section-e .box-2 {
     background-color: #D0AD92ff;
+}
+
+#section-f {
+    padding: 20px;
+    background: #FEE8D8ff;
+    color: #000000;
+    text-align: center;
 }
 /* navbar */
 
