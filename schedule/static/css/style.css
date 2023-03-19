@@ -96,21 +96,39 @@ h5 {
 
 .nav-submit {
     border: none;
-    border-radius: 8px;
-    font-size: 18px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: FC Paragraph;
     outline: none;
     color: #ffffff;
-    background: #229310ff;
+    background-color: transparent;
     cursor: pointer;
-    transition: .3s;
     margin: 8px 8px auto auto;
     padding: 10px 14px;
 }
 
 .nav-submit:hover {
-    box-shadow: 1px 5px 7px 1px #00000033;
-    background: #ffffff;
-    color: #229310ff;
+    margin: 8px 8px auto auto;
+    color: #D0AD92ff;
+    background-color: #FEE8D8ff;
+}
+
+.nav-logout {
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: FC Paragraph;
+    outline: none;
+    color: #ffffff;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 8px 8px auto auto;
+    padding: 10px 14px;
+}
+
+.nav-logout:hover {
+    margin: 8px 8px auto auto;
+    background-color: #EA6625ff;
 }
 
 nav-label {
@@ -296,6 +314,7 @@ label a {
 }
 
 .search_btn:hover {
+    padding: 9px 9px 9px 9px;
     background-color: #ffffff;
     color: #229310ff;
     border: #229310ff 1px solid;
@@ -322,6 +341,13 @@ subject-text {
     display: inline;
 }
 
+subject-head {
+    font-family: FC Paragraph;
+    color: #EA6625ff;
+    font-size: 20px;
+    display: inline;
+}
+
 .select_btn {
     background-color: #229310ff;
     color: white;
@@ -332,6 +358,7 @@ subject-text {
 }
 
 .select_btn:hover {
+    padding: 9px 9px 9px 9px;
     background-color: #ffffff;
     color: #229310ff;
     border: #229310ff 1px solid;
@@ -347,6 +374,7 @@ subject-text {
 }
 
 .delete_btn:hover {
+    padding: 9px 9px 9px 9px;
     background-color: #ffffff;
     color: #EA6625ff;
     border: #EA6625ff 1px solid;
@@ -363,18 +391,18 @@ subject-text {
     font-size: 18px;
     border: none;
     outline: none;
-    background-color: #EA6625ff;
-    color: #fff;
     cursor: pointer;
     padding: 10px;
     border-radius: 50%;
     text-align: center;
     align-items: center;
+    background-image: url('images/up-arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 #go-top-button:hover {
-    background-color: #ffffff;
-    color: #EA6625ff;
-    border: #EA6625ff 1px solid;
+    background-image: url('images/up-arrow-1.png');
 }
 
 .table-responsive {
