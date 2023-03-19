@@ -70,11 +70,7 @@
                               </td>
                               {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
                               <td>
-                                start : 
-                                {{start_time}}
-                                {{start_times_used}}
-                                user_start:
-                                {{user.sub_id.start_time|time:'H:i'}}
+
                               </td>
                             {% endif %} 
                           {% endfor %} 
