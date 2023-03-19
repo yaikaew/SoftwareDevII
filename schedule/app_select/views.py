@@ -10,8 +10,6 @@ from django import template
 
 register = template.Library()
 
-
-
 user_sub = []
 day_start_times_used = {'M':[],'T':[],'W':[],'H':[],'F':[],'S':[]}
 start_times = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00']

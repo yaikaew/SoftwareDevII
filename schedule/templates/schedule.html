@@ -7,6 +7,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+{% load custom_tags %}
 
 <style>
     * {
@@ -31,162 +32,85 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr class="bg-light-gray">
-                        <th class="text-uppercase">Time
-                        </th>
-                        <th class="text-uppercase">9:00</th>
-                        <th class="text-uppercase">10:00</th>
-                        <th class="text-uppercase">11:00</th>
-                        <th class="text-uppercase">12:00</th>
-                        <th class="text-uppercase">13:00</th>
-                        <th class="text-uppercase">14:00</th>
-                        <th class="text-uppercase">15:00</th>
-                        <th class="text-uppercase">16:00</th>
+                        <th class="text-uppercase">Time</th>
+                        <th class="text-uppercase" >8:00-9:00</th>
+                        <th class="text-uppercase" >9:00-10:00</th>
+                        <th class="text-uppercase" >10:00-11:00</th>
+                        <th class="text-uppercase" >11:00-12:00</th>
+                        <th class="text-uppercase" >Break </th>
+                        <th class="text-uppercase" >13:00-14:00</th>
+                        <th class="text-uppercase" >14:00-15:00</th>
+                        <th class="text-uppercase" >15:00-16:00</th>
+                        <th class="text-uppercase" >16:00-17:00</th>
+                        <th class="text-uppercase" >17:00-18:00</th>
+                        <th class="text-uppercase" >18:00-19:00</th>
+                        <th class="text-uppercase" >19:00-20:00</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="align-middle">Monday</td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
+                        {%for day in days %}
+                        <td class="align-middle">{{day}}</td> 
+                        {%for start_time in start_times %}
+                        {% for user in users %}
+                            {% if user.sub_id.start_time|time:'H:i' == start_time and user.sub_id.day == day %}
+                              <td colspan="{{user.sub_id.get_duration}}">
+                                <span class="text-black font-size16 xs-font-size16">{{ user.sub_id.name }}</span>
+                                <div class="margin-10px-top font-size14">{{ user.sub_id.code }}</div>
+                                <div class="font-size13 text-light-gray">{{ user.sub_id.prof }}</div>
+                              </td>
+                              {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
+                              <td>
+                                {% comment %} start : 
+                                {{start_time}}
+                                {{start_times_used}}
+                                user_start:
+                                {{user.sub_id.start_time|time:'H:i'}} {% endcomment %}
+                              </td>
+                            {% endif %} 
+                          {% endfor %} 
+                      {% endfor %}
                     </tr>
-
-                    <tr>
-                        <td class="align-middle">Tuesday</td>
-                        <td>
-
-                        </td>
-                        <td class="bg-light-gray">
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td class="bg-light-gray">
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="align-middle">Wednesday</td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="align-middle">Thursday</td>
-                        <td class="bg-light-gray">
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td class="bg-light-gray">
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="align-middle">Friday</td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td class="bg-light-gray">
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
+                      {% endfor %}
                 </tbody>
             </table>
         </div>
+
+<!-- วิชาที่สามารถลงได้ในเทอมนี้ -->
+<section id="section-a">
+
+    <h1> รายวิชาวันสอบ </h1>
+
+    {% for row in sub_date %}
+
+    {% for user in users %}
+
+    {% if row.code and row.code == user.sub_id.code %}
+
+    <section id="section-a">
+        <div class="subject-card">
+
+            <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
+            <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+            <h5>mid_term-day : {{row.mid_numday}} </h5>&nbsp;&nbsp;&nbsp;
+            <h5>time : {{row.mid_starttime}} - {{row.mid_endtime}} </h5>&nbsp;&nbsp;&nbsp;
+            <h5>fin_term-day : {{row.fin_numday}} </h5>&nbsp;&nbsp;&nbsp;
+            <h5>time : {{row.fin_starttime}} - {{row.fin_endtime}} </h5>&nbsp;&nbsp;&nbsp;
+            <p class="subject-text"></p>
+
+        </div>
+    </section>
+
+    {% else %}
+
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+</section>
+
+
+
     </div>
 </div>
 
