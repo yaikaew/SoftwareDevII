@@ -30,7 +30,9 @@
             <p>Schedule</p>
         </section>
 
-            {% if not Is_subjects_registed %}
+            {% if Is_subjects_registed is none %}
+            <!-- <h2></h2> -->
+            {% elif not Is_subjects_registed %}
             <h2> subjects was registed </h2>
             {% elif not Is_subjects_passed %}
             <h2> You already passed this subject </h2>
