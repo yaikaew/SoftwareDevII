@@ -275,20 +275,20 @@ def check_midterm_day(sub_id,user_id):
             day = Subjects_Test_Date.objects.filter(code=x).values_list('mid_numday', flat=True).first()
             if day is not None :
                 day = day.strftime('%Y-%m-%d')
-                day_mid.append(day)
-                print(day_mid)
+            day_mid.append(day)
+            print(day_mid)
             
             starttime = Subjects_Test_Date.objects.filter(code=x).values_list('mid_starttime', flat=True).first()
             if starttime is not None :
                 starttime = starttime.strftime('%H:%M:%S')
-                starttime_mid.append(starttime)
-                print(starttime_mid)
+            starttime_mid.append(starttime)
+            print(starttime_mid)
 
             endtime = Subjects_Test_Date.objects.filter(code=x).values_list('mid_endtime', flat=True).first()
             if endtime is not None :
                 endtime = endtime.strftime('%H:%M:%S')
-                endtime_mid.append(endtime)
-                print(endtime_mid)
+            endtime_mid.append(endtime)
+            print(endtime_mid)
 
     #วิชาที่กำลังจะเลือก
     code_select = Subjects_info.objects.filter(id=sub_id).values_list('code', flat=True).first()
@@ -317,31 +317,38 @@ def check_midterm_day(sub_id,user_id):
 
     #check
     print(day_mid)
-    for x in all_code_sub:
-        if x is not None and day_mid != [] and starttime_mid != [] and endtime_mid != []:
+    for y in all_code_sub:
+        if y is not None and day_mid != [] and starttime_mid != [] and endtime_mid != []:
             for x in range(0,len(all_code_sub)):
-                pass
-                sub_selected = day_mid[x].split("-") #split day_fin
-                year,month,day = int(sub_selected[0]),int(sub_selected[1]),int(sub_selected[2])
-                print(year,month,day)
-                day_subject_selected = date(year,month,day)                                     # day จาก subject ที่ user ได้ select ไปแล้ว
-                starttime_subject_selected = starttime_mid[x]                                      # start time จาก subject ที่ user ได้ select ไปแล้ว
-                print(starttime_subject_selected)
-                endtime_subject_selected = endtime_mid[x]                                            # end time จาก subject ที่ user ได้ select ไปแล้ว
-                print(day_subject_selected,starttime_subject_selected,endtime_subject_selected)
+                if x is not None and day_mid[x] is not None:
+                    sub_selected = day_mid[x].split("-") #split day_fin
+                    year,month,day = int(sub_selected[0]),int(sub_selected[1]),int(sub_selected[2])
+                    print(year,month,day)
+                    day_subject_selected = date(year,month,day)                                     # day จาก subject ที่ user ได้ select ไปแล้ว
+                    starttime_subject_selected = starttime_mid[x]                                      # start time จาก subject ที่ user ได้ select ไปแล้ว
+                    print(starttime_subject_selected)
+                    endtime_subject_selected = endtime_mid[x]                                            # end time จาก subject ที่ user ได้ select ไปแล้ว
+                    print(day_subject_selected,starttime_subject_selected,endtime_subject_selected)
+                else:
+                    day_subject_selected = None
 
-                sub_select = select_day_mid[x].split("-")
-                year,month,day = int(sub_select[0]),int(sub_select[1]),int(sub_select[2])
-                day_subject_select = date(year,month,day)                                       # dayจาก subject ที่ user ต้องการ select 
-                starttime_subject_select = select_starttime_mid[x]                                 # start time จาก subject ที่ user ต้องการ select 
-                endtime_subject_select = select_endtime_mid[x]                                  # end time จาก subject ที่ user ต้องการ select
-                print(day_subject_select,starttime_subject_select,endtime_subject_select)
-
-                if day_subject_select == day_subject_selected:
+                if select_day_mid != []:
+                    sub_select = select_day_mid[0].split("-")
+                    year,month,day = int(sub_select[0]),int(sub_select[1]),int(sub_select[2])
+                    day_subject_select = date(year,month,day)                                       # dayจาก subject ที่ user ต้องการ select 
+                    starttime_subject_select = select_starttime_mid[0]                                 # start time จาก subject ที่ user ต้องการ select 
+                    endtime_subject_select = select_endtime_mid[0]                                  # end time จาก subject ที่ user ต้องการ select
+                    print(day_subject_select,starttime_subject_select,endtime_subject_select)
+                else:
+                    day_subject_select = None
+                
+                if day_subject_select == None or day_subject_selected == None:
+                    return True
+                elif day_subject_select == day_subject_selected:
                     if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                         return True
                     else: 
-                        return False
+                            return False
     return True
 
 def check_final_day(sub_id,user_id):
@@ -363,17 +370,20 @@ def check_final_day(sub_id,user_id):
     for x in all_code_sub:
         if x is not None :
             day = Subjects_Test_Date.objects.filter(code=x).values_list('fin_numday', flat=True).first()
-            day = day.strftime('%Y-%m-%d')
+            if day is not None:
+                day = day.strftime('%Y-%m-%d')
             day_fin.append(day)
             print(day_fin)
             
             starttime = Subjects_Test_Date.objects.filter(code=x).values_list('fin_starttime', flat=True).first()
-            starttime = starttime.strftime('%H:%M:%S')
+            if starttime is not None:
+                starttime = starttime.strftime('%H:%M:%S')
             starttime_fin.append(starttime)
             print(starttime_fin)
 
             endtime = Subjects_Test_Date.objects.filter(code=x).values_list('fin_endtime', flat=True).first()
-            endtime = endtime.strftime('%H:%M:%S')
+            if endtime is not None:
+                endtime = endtime.strftime('%H:%M:%S')
             endtime_fin.append(endtime)
             print(endtime_fin)
 
@@ -383,26 +393,29 @@ def check_final_day(sub_id,user_id):
 
     select_day_fin = []
     select_day = Subjects_Test_Date.objects.filter(code=code_select).values_list('fin_numday', flat=True).first()
-    select_day = select_day.strftime('%Y-%m-%d')
-    select_day_fin.append(select_day)
+    if select_day is not None:
+        select_day = select_day.strftime('%Y-%m-%d')
+        select_day_fin.append(select_day)
     print(select_day_fin)
 
     select_starttime_fin = []
     select_starttime = Subjects_Test_Date.objects.filter(code=code_select).values_list('fin_starttime', flat=True).first()
-    select_starttime = select_starttime.strftime('%H:%M:%S')
-    select_starttime_fin.append(select_starttime)
+    if select_starttime is not None:
+        select_starttime = select_starttime.strftime('%H:%M:%S')
+        select_starttime_fin.append(select_starttime)
     print(select_starttime_fin)
 
     select_endtime_fin = []
     select_endtime = Subjects_Test_Date.objects.filter(code=code_select).values_list('fin_endtime', flat=True).first()
-    select_endtime = select_endtime.strftime('%H:%M:%S')
-    select_endtime_fin.append(select_endtime)
+    if select_endtime is not None:
+        select_endtime = select_endtime.strftime('%H:%M:%S')
+        select_endtime_fin.append(select_endtime)
     print(select_endtime_fin)
 
     #check
     print(day_fin)
     for x in range(0,len(all_code_sub)):
-        if day_fin != [] :
+        if day_fin != [] and day_fin[x] is not None :
             sub_selected = day_fin[x].split("-") #split day_fin
             year,month,day = int(sub_selected[0]),int(sub_selected[1]),int(sub_selected[2])
             print(year,month,day)
@@ -411,15 +424,22 @@ def check_final_day(sub_id,user_id):
             print(starttime_subject_selected)
             endtime_subject_selected = endtime_fin[x]                                            # end time จาก subject ที่ user ได้ select ไปแล้ว
             print(day_subject_selected,starttime_subject_selected,endtime_subject_selected)
+        else:
+            day_subject_selected = None
 
-            sub_select = select_day_fin[x].split("-")
+        if select_day_fin != []:
+            sub_select = select_day_fin[0].split("-")
             year,month,day = int(sub_select[0]),int(sub_select[1]),int(sub_select[2])
             day_subject_select = date(year,month,day)                                       # dayจาก subject ที่ user ต้องการ select 
-            starttime_subject_select = select_starttime_fin[x]                                 # start time จาก subject ที่ user ต้องการ select 
-            endtime_subject_select = select_endtime_fin[x]                                  # end time จาก subject ที่ user ต้องการ select
+            starttime_subject_select = select_starttime_fin[0]                                 # start time จาก subject ที่ user ต้องการ select 
+            endtime_subject_select = select_endtime_fin[0]                                  # end time จาก subject ที่ user ต้องการ select
             print(day_subject_select,starttime_subject_select,endtime_subject_select)
+        else:
+            day_subject_select = None
 
-        if day_subject_select == day_subject_selected:
+        if day_subject_select == None or day_subject_selected == None:
+            return True
+        elif day_subject_select == day_subject_selected:
             if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                 return True
             else: 
