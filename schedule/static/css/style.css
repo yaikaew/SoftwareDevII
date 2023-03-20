@@ -9,6 +9,10 @@ h1 {
     font-size: 36px;
 }
 
+h2 {
+    text-align: center;
+}
+
 h5 {
     display: inline;
 }

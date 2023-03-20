@@ -30,6 +30,20 @@
             <p>Schedule</p>
         </section>
 
+            {% if not Is_subjects_registed %}
+            <h2> subjects was registed </h2>
+            {% elif not Is_subjects_passed %}
+            <h2> You already passed this subject </h2>
+            {% elif not Is_over_credit %}
+            <h2> Over Credit </h2>
+            {% elif not Is_day_overlapse %}
+            <h2> Day and time overlapse </h2>
+            {% elif not Is_midterm_overlapse %}
+            <h2> Midterm day overlapse </h2>
+            {% elif not Is_final_overlapse  %}
+            <h2> Final day overlapse </h2>
+            {%endif%}
+
         <!-- ตาราง -->
         <div class="table-responsive">
             <table class="table table-bordered text-center">
@@ -101,7 +115,11 @@
                 <div class="subject-card">
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.section}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.get_duration}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.day}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.start_time}} </h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
 
                     {%if users%}
@@ -136,23 +154,24 @@
 
         <!-- วิชาที่สามารถลงได้ในเทอมนี้ -->
         <section id="section-a">
-            <h1> วิชาที่สามารถลงได้ในเทอมนี้ </h1>
+            <h1> วิชาทั้งหมดที่เปิดสอน </h1>
 
-            {% if not Is_subjects_registed %}
-            <h1> subjects was registed </h1>
-            {% elif not Is_subjects_passed %}
-            <h1> You already passed this sub </h1>
-            {% elif not Is_over_credit %}
-            <h1> Over Credit </h1>
-            {% elif not Is_day_overlapse %}
-            <h1> Day and time overlapse </h1>
-            {% elif not Is_midterm_overlapse %}
-            <h1> Midterm day overlapse </h1>
-            {% elif not Is_final_overlapse  %}
-            <h1> Final day overlapse </h1>
-            {%endif%}
+                <!-- {% if not Is_subjects_registed %}
+                <h2> subjects was registed </h2>
+                {% elif not Is_subjects_passed %}
+                <h2> You already passed this sub </h2>
+                {% elif not Is_over_credit %}
+                <h2> Over Credit </h2>
+                {% elif not Is_day_overlapse %}
+                <h2> Day and time overlapse </h2>
+                {% elif not Is_midterm_overlapse %}
+                <h2> Midterm day overlapse </h2>
+                {% elif not Is_final_overlapse  %}
+                <h2> Final day overlapse </h2>
+                {%endif%} -->
+
             {% for row in sub_objects %}
-
+            
             <section id="section-b">
                 <div class="subject-card">
 
