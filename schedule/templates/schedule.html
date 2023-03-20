@@ -58,7 +58,7 @@
                         <td colspan="{{user.sub_id.get_duration}}">
                             <span class="text-black font-size16 xs-font-size16">{{ user.sub_id.name }}</span>
                             <div class="margin-10px-top font-size14">{{ user.sub_id.code }}</div>
-                            <div class="font-size13 text-light-gray">{{ user.sub_id.prof }}</div>
+                            <div class="font-size13 text-black">{{ user.sub_id.prof }}</div>
                         </td>
                         {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
                         <td>

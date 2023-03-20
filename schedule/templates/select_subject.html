@@ -50,6 +50,7 @@
         <div class="table-responsive">
             <table class="table table-bordered text-center">
                 <thead>
+                    <!-- หัวตาราง -->
                     <tr class="bg-light-gray">
                         <th class="text-uppercase">Time</th>
                         <th class="text-uppercase" >8:00-9:00</th>
@@ -76,7 +77,7 @@
                               <td colspan="{{user.sub_id.get_duration}}">
                                 <span class="text-black font-size16 xs-font-size16">{{ user.sub_id.name }}</span>
                                 <div class="margin-10px-top font-size14">{{ user.sub_id.code }}</div>
-                                <div class="font-size13 text-light-gray">{{ user.sub_id.prof }}</div>
+                                <div class="font-size13 text-black">{{ user.sub_id.prof }}</div>
                                 <div class="text-black font-size16 xs-font-size16">{{ user.sub_id.credit }}</div>
                                 <form method="post" action="{% url 'selects_subject' %}" name="delete_btn">
                                   {% csrf_token %}
