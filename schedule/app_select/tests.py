@@ -21,17 +21,20 @@ class SelectPageTestCase(TestCase):
 
 from app_schedule.models import Subjects_info , User_subjects
 from app_select.models import Subjects_Test_Date
-from .views import check_already_regis,check_over_credit,check_study_day,check_final_day,check_midterm_day
+from .views import check_already_regis,check_over_credit,check_study_day,check_final_day,check_midterm_day,Check_time_Overlapse
 from datetime import time
+
 class CheckSelect(TestCase):
     
     def setUp(self):
         self.user_id = 1
+
+        #วิชาที่userกด select ไปแล้ว
         self.User_subjects = User_subjects.objects.create(
             sub_id_id=1,
             user_id_id=1
         )
-        #วิชาที่เคย regis ไปแล้ว
+
         self.Subjects_info = Subjects_info.objects.create(
             id = 1,
             code = '123',
@@ -89,51 +92,51 @@ class CheckSelect(TestCase):
             fin_endtime=time(12, 30),
         )
 
-    def testcheck_study_day_can_regis(self):
+    def test_study_day_can_regis(self):
         #9:30-12:30 & 12:30-15:30 M
         result = check_study_day(2,self.user_id)
         self.assertEqual(result,True)
 
-    def testcheck_study_day_can_not_regis(self):
+    def test_study_day_can_not_regis(self):
         #9:30-12:30 & 10:30-12:30 M
         result = check_study_day(3,self.user_id)
         self.assertEqual(result,False)
 
-    def testcheck_midterm_day_can_regis(self):
+    def test_midterm_day_can_regis(self):
         #2566-03-20 9:30-12:30 & 2566-03-20 12:30-15:30
         result = check_midterm_day(2,self.user_id)
         self.assertEqual(result,True)
 
-    def testcheck_midterm_day_can_not_regis(self):
+    def test_midterm_day_can_not_regis(self):
         #2566-03-20 9:30-12:30 & 2566-03-20 10:30-12:30
         result = check_midterm_day(3,self.user_id)
         self.assertEqual(result,False)
 
-    def testcheck_final_day_can_regis(self):
+    def test_final_day_can_regis(self):
         #2566-05-20 9:30-12:30 & 2566-05-20 12:30-15:30
         result = check_final_day(2,self.user_id)
         self.assertEqual(result,True)
 
-    def testcheck_final_day_can_not_regis(self):
+    def test_final_day_can_not_regis(self):
         #2566-05-20 9:30-12:30 & 2566-05-20 10:30-12:30
         result = check_final_day(3,self.user_id)
         self.assertEqual(result,False)
 
-    def testcheck_not_over_credit(self):
+    def test_not_over_credit(self):
         #20 + 2 = 22
         result = check_over_credit(self.user_id,2)
         self.assertEqual(result,True)
 
-    def testcheck_over_credit(self):
+    def test_over_credit(self):
         #20 + 3 = 23
         result = check_over_credit(self.user_id,3)
         self.assertEqual(result,False)
 
-    def testcheck_never_regis(self):
+    def test_never_regis(self):
         result = check_already_regis(2,self.user_id)
         self.assertEqual(result,True)
 
-    def testcheck_already_regis(self):
+    def test_already_regis(self):
         result = check_already_regis(1,self.user_id)
         self.assertEqual(result,False)
 
@@ -141,3 +144,22 @@ class CheckSelect(TestCase):
         self.User_subjects.delete()
         self.Subjects_info.delete()
         self.Subjects_Test_Date.delete()
+
+class Check_Time(TestCase):
+
+    #มีวิชาใดวิชาหนึ่งจบก่อนที่อีกวิชาจะเริ่ม
+    def setUp(self):
+        self.starttime_1 = "9:00:00"
+        self.endtime_1 = "9:30:00"
+        self.starttime_2 = "9:30:00"
+        self.endtime_2 = "12:00:00"
+
+    def test_time_is_not_overlapse(self):
+        result = Check_time_Overlapse(self.starttime_1,self.endtime_1,self.starttime_2,self.endtime_2)
+        self.assertTrue(result)
+
+'''     def test_time_is_overlapse(self):
+        result = Check_time_Overlapse(self.starttime_1,self.endtime_1,self.starttime_2,self.endtime_2)
+        self.assertFalse(result) '''
+
+
