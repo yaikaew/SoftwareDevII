@@ -262,7 +262,7 @@ def check_study_day(sub_id,user_id):
             if Check_time_Overlapse(starttime_subject_selected[y],endtime_subject_selected[y],starttime_subject_select,endtime_subject_select):
                     return True
             else: 
-                    return " Subject overlapse between {} and {} ".format(subject_name_select,name_subject_selected[y][0])
+                    return " Date-Time overlapse between {} and {} ".format(subject_name_select,name_subject_selected[y][0])
     return True
 
 #function check วันเวลาสอบกลางภาค
@@ -370,7 +370,7 @@ def check_midterm_day(sub_id,user_id):
                     if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                         return True
                     else: 
-                            return " Mid-term overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
+                            return " Midterm Examday overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
     return True
 
 def check_final_day(sub_id,user_id):
@@ -474,5 +474,5 @@ def check_final_day(sub_id,user_id):
             if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                 return True
             else: 
-                return " Final overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
+                return " Final Examday overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
     return True 
