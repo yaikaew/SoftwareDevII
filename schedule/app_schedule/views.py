@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render 
 from app_select.models import Subjects_Test_Date
 from app_schedule.models import Subjects_info , User_subjects
-from app_select.views import day_start_times_used,start_times
+from app_select.views import start_times,user_data
 
 
 # Create your views here.
@@ -13,6 +13,8 @@ def schedule_view(request):
     user_id = request.user.id
     user = User_subjects.objects.filter(user_id_id = user_id)
 
+    day_start_times_used = user_data[user_id]['day_start_times_used']
+    
     days = {
     "M": "Monday",
     "T": "Tuesday",

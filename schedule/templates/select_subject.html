@@ -32,18 +32,18 @@
 
             {% if Is_subjects_registed is none %}
             <!-- <h2></h2> -->
-            {% elif not Is_subjects_registed %}
-            <h2> subjects was registed </h2>
-            {% elif not Is_subjects_passed %}
-            <h2> You already passed this subject </h2>
-            {% elif not Is_over_credit %}
-            <h2> Over Credit </h2>
-            {% elif not Is_day_overlapse %}
-            <h2> Day and time overlapse </h2>
-            {% elif not Is_midterm_overlapse %}
-            <h2> Midterm day overlapse </h2>
-            {% elif not Is_final_overlapse  %}
-            <h2> Final day overlapse </h2>
+            {% elif Is_subjects_registed is not True %}
+            <h2> {{Is_subjects_registed}} </h2>
+            {% elif Is_subjects_passed is not True %}
+            <h2> {{Is_subjects_passed}} </h2>
+            {% elif Is_over_credit is not True  %}
+            <h2> {{Is_over_credit}} </h2>
+            {% elif Is_day_overlapse is not True %}
+            <h2> {{Is_day_overlapse}}</h2>
+            {% elif Is_midterm_overlapse is not True %}
+            <h2> {{Is_midterm_overlapse}} </h2>
+            {% elif Is_final_overlapse is not True  %}
+            <h2> {{Is_final_overlapse}} </h2>
             {%endif%}
 
         <!-- ตาราง -->
@@ -87,6 +87,7 @@
                               </td>
                               {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
                               <td>
+                                {{start_time}}
 
                               </td>
                             {% endif %} 
@@ -122,7 +123,7 @@
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.get_duration}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.day}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5>{{row.start_time}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.start_time|time:'H:i'}} - {{row.end_time|time:'H:i'}}</h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
 
                     {%if users%}
@@ -183,7 +184,7 @@
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.get_duration}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.day}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5>{{row.start_time}} </h5>&nbsp;&nbsp;&nbsp;
+                    <h5>{{row.start_time|time:'H:i'}} - {{row.end_time|time:'H:i'}}</h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
 
 

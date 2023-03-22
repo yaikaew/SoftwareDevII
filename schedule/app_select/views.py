@@ -10,21 +10,29 @@ from datetime import date
 import datetime
 from django import template
 import sqlite3
+from collections import defaultdict
 
+# Initialize dictionary to store user data
+user_data = defaultdict(dict)
 
 register = template.Library()
 
-user_sub = []
-day_start_times_used = {'M':[],'T':[],'W':[],'H':[],'F':[],'S':[]}
 start_times = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00']
 
+
+
 @register.simple_tag
-def get_dict_value(day) :
-    return day_start_times_used[day]
+def get_dict_value(day,user_id) :
+    return user_data[user_id]['day_start_times_used'][day]
 
 # Create your views here.
 @login_required(login_url='login')
 def selects_subject_view(request):
+    
+    user_id = request.user.id
+
+    if user_id not in user_data:
+        user_data[user_id] = {'user_sub': [], 'day_start_times_used': {'M':[],'T':[],'W':[],'H':[],'F':[],'S':[]}}
 
     Is_subjects_registed = None
     Is_subjects_passed =  None
@@ -36,8 +44,10 @@ def selects_subject_view(request):
     duration = 1
     sub_date = Subjects_Test_Date.objects.all()
     sub_objects = Subjects_info.objects.all()
-    user_id = request.user.id
     user = User_subjects.objects.filter(user_id_id = user_id)
+
+    user_sub = user_data[user_id]['user_sub']
+    day_start_times_used = user_data[user_id]['day_start_times_used']
 
 
     days = {
@@ -48,7 +58,6 @@ def selects_subject_view(request):
     "F": "Friday",
     "S": "Sunday",
 }
-    
     
     # search btn
     if 'q' in request.GET:
@@ -69,7 +78,7 @@ def selects_subject_view(request):
         Is_midterm_overlapse = check_midterm_day(subject_id,user_id) 
         Is_final_overlapse = check_final_day(subject_id,user_id)
         
-        if Is_subjects_registed and Is_subjects_passed and Is_day_overlapse and Is_final_overlapse and Is_over_credit and Is_midterm_overlapse :
+        if Is_subjects_registed is True and Is_subjects_passed is True and Is_day_overlapse is True and Is_final_overlapse is True and Is_over_credit is True and Is_midterm_overlapse is True :
             # insert name into user table using Django ORM
             User_subjects.objects.create(user_id_id=user_id, sub_id_id=subject_id)
             # duration_time of subject
@@ -224,11 +233,13 @@ def check_study_day(sub_id,user_id):
     day_subject_selected = []
     starttime_subject_selected = []
     endtime_subject_selected = []
+    name_subject_selected = []
 
     if totalsubject != []:
         for x in totalsubject:
             if x is not None :
                 day_subject_selected.append(Subjects_info.objects.filter(id=x).values_list("day",flat=True))
+                name_subject_selected.append(Subjects_info.objects.filter(id=x).values_list("name",flat=True))
 
                 starttime = Subjects_info.objects.filter(id=x).values_list("start_time",flat=True)[0]
                 endtime = Subjects_info.objects.filter(id=x).values_list("end_time",flat=True)[0]
@@ -238,6 +249,7 @@ def check_study_day(sub_id,user_id):
     
     #เก็บ  day,start time,end time ของวิชาที่ user ต้องการ select ตอนนี้
     day_subject_select = Subjects_info.objects.filter(id=sub_id).values_list("day",flat=True)
+    subject_name_select = Subjects_info.objects.filter(id=sub_id).values_list("name",flat=True)[0]
 
     starttime = Subjects_info.objects.filter(id=sub_id).values_list("start_time",flat=True)[0]
     endtime = Subjects_info.objects.filter(id=sub_id).values_list("end_time",flat=True)[0]
@@ -250,7 +262,7 @@ def check_study_day(sub_id,user_id):
             if Check_time_Overlapse(starttime_subject_selected[y],endtime_subject_selected[y],starttime_subject_select,endtime_subject_select):
                     return True
             else: 
-                    return False
+                    return " Subject overlapse between {} and {} ".format(subject_name_select,name_subject_selected[y][0])
     return True
 
 #function check วันเวลาสอบกลางภาค
@@ -270,6 +282,8 @@ def check_midterm_day(sub_id,user_id):
     day_mid = []
     starttime_mid = []
     endtime_mid = []
+    subject_name = []
+
     for x in all_code_sub:
         if x is not None :
             day = Subjects_Test_Date.objects.filter(code=x).values_list('mid_numday', flat=True).first()
@@ -277,6 +291,9 @@ def check_midterm_day(sub_id,user_id):
                 day = day.strftime('%Y-%m-%d')
             day_mid.append(day)
             print(day_mid)
+
+            name = Subjects_Test_Date.objects.filter(code=x).values_list('name', flat=True).first()
+            subject_name.append(name)
             
             starttime = Subjects_Test_Date.objects.filter(code=x).values_list('mid_starttime', flat=True).first()
             if starttime is not None :
@@ -293,6 +310,11 @@ def check_midterm_day(sub_id,user_id):
     #วิชาที่กำลังจะเลือก
     code_select = Subjects_info.objects.filter(id=sub_id).values_list('code', flat=True).first()
     print(code_select)
+
+    select_subject_name = []
+    select_name = Subjects_Test_Date.objects.filter(code=code_select).values_list('name', flat=True).first()
+    select_subject_name.append(select_name)
+
 
     select_day_mid = []
     select_day = Subjects_Test_Date.objects.filter(code=code_select).values_list('mid_numday', flat=True).first()
@@ -348,7 +370,7 @@ def check_midterm_day(sub_id,user_id):
                     if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                         return True
                     else: 
-                            return False
+                            return " Mid-term overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
     return True
 
 def check_final_day(sub_id,user_id):
@@ -367,6 +389,8 @@ def check_final_day(sub_id,user_id):
     day_fin = []
     starttime_fin = []
     endtime_fin = []
+    subject_name = []
+
     for x in all_code_sub:
         if x is not None :
             day = Subjects_Test_Date.objects.filter(code=x).values_list('fin_numday', flat=True).first()
@@ -374,6 +398,9 @@ def check_final_day(sub_id,user_id):
                 day = day.strftime('%Y-%m-%d')
             day_fin.append(day)
             print(day_fin)
+
+            name = Subjects_Test_Date.objects.filter(code=x).values_list('name', flat=True).first()
+            subject_name.append(name)
             
             starttime = Subjects_Test_Date.objects.filter(code=x).values_list('fin_starttime', flat=True).first()
             if starttime is not None:
@@ -390,6 +417,10 @@ def check_final_day(sub_id,user_id):
     #วิชาที่กำลังจะเลือก
     code_select = Subjects_info.objects.filter(id=sub_id).values_list('code', flat=True).first()
     print(code_select)
+
+    select_subject_name = []
+    select_name = Subjects_Test_Date.objects.filter(code=code_select).values_list('name', flat=True).first()
+    select_subject_name.append(select_name)
 
     select_day_fin = []
     select_day = Subjects_Test_Date.objects.filter(code=code_select).values_list('fin_numday', flat=True).first()
@@ -443,5 +474,5 @@ def check_final_day(sub_id,user_id):
             if Check_time_Overlapse(starttime_subject_selected,endtime_subject_selected,starttime_subject_select,endtime_subject_select):
                 return True
             else: 
-                return False
+                return " Final overlapse between {} and {} ".format(select_subject_name[0],subject_name[x])
     return True 

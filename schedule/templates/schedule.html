@@ -102,19 +102,19 @@
 
                     <section id="section-e">
                         <div class="box-1">
-                            <p class="subject-text">Midterm : {{row.mid_numday}}</p>
+                            <p class="subject-text">Midterm : {{row.mid_numday|date:"d/m/Y"}}</p>
                         </div>
                         <div class="box-2">
-                            <p class="subject-text">Time : {{row.mid_starttime}} - {{row.mid_endtime}}</p>
+                            <p class="subject-text">Time : {{row.mid_starttime|time:'H:i'}} - {{row.mid_endtime|time:'H:i'}}</p>
                         </div>
                     </section>
 
                     <section id="section-e">
                         <div class="box-1">
-                            <p class="subject-text">Final : {{row.fin_numday}}</p>
+                            <p class="subject-text">Final : {{row.fin_numday|date:"d/m/Y"}}</p>
                         </div>
                         <div class="box-2">
-                            <p class="subject-text">Time : {{row.fin_starttime}} - {{row.fin_endtime}}</p>
+                            <p class="subject-text">Time : {{row.fin_starttime|time:'H:i'}} - {{row.fin_endtime|time:'H:i'}}</p>
                         </div>
                     </section>
 
