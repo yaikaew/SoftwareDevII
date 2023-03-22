@@ -121,7 +121,6 @@
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.section}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5>{{row.get_duration}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.day}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.start_time|time:'H:i'}} - {{row.end_time|time:'H:i'}}</h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
@@ -160,20 +159,6 @@
         <section id="section-a">
             <h1> วิชาทั้งหมดที่เปิดสอน </h1>
 
-                <!-- {% if not Is_subjects_registed %}
-                <h2> subjects was registed </h2>
-                {% elif not Is_subjects_passed %}
-                <h2> You already passed this sub </h2>
-                {% elif not Is_over_credit %}
-                <h2> Over Credit </h2>
-                {% elif not Is_day_overlapse %}
-                <h2> Day and time overlapse </h2>
-                {% elif not Is_midterm_overlapse %}
-                <h2> Midterm day overlapse </h2>
-                {% elif not Is_final_overlapse  %}
-                <h2> Final day overlapse </h2>
-                {%endif%} -->
-
             {% for row in sub_objects %}
             
             <section id="section-b">
@@ -182,7 +167,6 @@
                     <h5>{{row.code}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.name}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.prof}} </h5>&nbsp;&nbsp;&nbsp;
-                    <h5>{{row.get_duration}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.day}} </h5>&nbsp;&nbsp;&nbsp;
                     <h5>{{row.start_time|time:'H:i'}} - {{row.end_time|time:'H:i'}}</h5>&nbsp;&nbsp;&nbsp;
                     <p class="subject-text"></p>
