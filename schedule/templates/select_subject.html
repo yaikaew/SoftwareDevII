@@ -33,11 +33,11 @@
             {% if Is_subjects_registed is none %}
             <!-- <h2></h2> -->
             {% elif Is_subjects_registed is not True %}
-            <h2> {{Is_subjects_registed}} </h2>
+            <h2> subjects was registed </h2>
             {% elif Is_subjects_passed is not True %}
-            <h2> {{Is_subjects_passed}} </h2>
+            <h2> You already passed this subject </h2>
             {% elif Is_over_credit is not True  %}
-            <h2> {{Is_over_credit}} </h2>
+            <h2> Over Credit </h2>
             {% elif Is_day_overlapse is not True %}
             <h2> {{Is_day_overlapse}}</h2>
             {% elif Is_midterm_overlapse is not True %}
@@ -87,7 +87,7 @@
                               </td>
                               {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
                               <td>
-                                {{start_time}}
+                                
 
                               </td>
                             {% endif %} 
