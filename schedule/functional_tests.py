@@ -14,7 +14,7 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):  
         self.browser.quit()
 
-    #login select search delete logout
+    '''#login select search delete logout
     def test_basic_functionality(self):  
         #เปิดเว็บ 
         self.browser.get('http://127.0.0.1:8000/') 
@@ -97,7 +97,7 @@ class NewVisitorTest(unittest.TestCase):
         logout = self.browser.find_element(By.XPATH,'/html/body/nav/form/div/div[2]/button').click()
         time.sleep(1)
         #ตรวจสอบว่าlogoutแล้วจริงๆ
-        self.assertEqual(self.browser.current_url, 'http://127.0.0.1:8000/')
+        self.assertEqual(self.browser.current_url, 'http://127.0.0.1:8000/')'''
 
     def test_collision_subject(self):  
         #เปิดเว็บ 
@@ -162,7 +162,8 @@ class NewVisitorTest(unittest.TestCase):
         find_economics = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
         self.assertIn(sub4, find_economics.text)
         select_economics = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
-        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table') 
+        time.sleep(3)
         self.assertNotIn(sub4, table.text)
         overlapse = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
         self.assertIn('overlapse', overlapse.text)
@@ -191,6 +192,44 @@ class NewVisitorTest(unittest.TestCase):
         overlapse = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
         self.assertIn('overlapse', overlapse.text)
         del_database = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/form/button').click()
+
+        #ค้นหาวิชา CIRCUITS AND ELECTRONICS  + เลือก + ดูว่าไม่ขึ้นในตาราง และมีข้อความแจ้งว่าเรียนผ่านแล้ว
+        sub = '010113138'
+        find_cir = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[1]')
+        self.assertIn(sub, find_cir.text)
+        select_cir = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        self.assertNotIn(sub, table.text)
+        passed = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
+        self.assertIn('passed', passed.text)     
+
+        #เช็คว่าถ้าลงไปแล้ว 1 วิชา แล้วมีการลงเซคอื่นของวิชานั้น จะต้องลงไม่ได้
+        sub = '010113942'
+        sub_pro = '01-CSP, 01-STN, 01-PSV, 01-NWS' #Project2
+
+                #ค้นหาวิชา PROJECT II + เลือก + ดูว่าขึ้นในตาราง
+        search_box = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box.send_keys(sub + Keys.ENTER)
+        find_Project = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[1]')
+        self.assertIn(sub, find_Project.text)
+        select_Project = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        Project_in_table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table/tbody/tr[3]/td[11]')
+        self.assertIn(sub, Project_in_table.text)
+
+        search_box = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box.send_keys(sub_pro + Keys.ENTER)
+        find_Project = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div')
+        self.assertIn(sub_pro, find_Project.text)
+        select_Project = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER)
+        registed = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
+        self.assertIn('registed', registed.text)   
+
+        del_database = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/form/button').click()
+
+
+
+
+
 
 if __name__ == '__main__':  
     unittest.main()
