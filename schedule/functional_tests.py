@@ -223,12 +223,7 @@ class NewVisitorTest(unittest.TestCase):
         select_Project = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER)
         registed = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
         self.assertIn('registed', registed.text)   
-
-        del_database = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/form/button').click()
-
-
-
-
+        del_Project = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[3]/td[11]/form/button').click()
 
 
 if __name__ == '__main__':  
