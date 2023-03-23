@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
-
 username = 'sopon888'
 password = '8888'
 class NewVisitorTest(unittest.TestCase):  
@@ -15,7 +14,8 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):  
         self.browser.quit()
 
-    def test_login_and_select(self):  
+    #login select search delete logout
+    def test_basic_functionality(self):  
         #เปิดเว็บ 
         self.browser.get('http://127.0.0.1:8000/') 
         time.sleep(1)
@@ -98,6 +98,99 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         #ตรวจสอบว่าlogoutแล้วจริงๆ
         self.assertEqual(self.browser.current_url, 'http://127.0.0.1:8000/')
+
+    def test_collision_subject(self):  
+        #เปิดเว็บ 
+        self.browser.get('http://127.0.0.1:8000/') 
+        time.sleep(1)
+        #ไปหน้า login
+        login = self.browser.find_element(By.XPATH, '//*[@id="section-b2"]/a[1]').click()
+        self.assertEqual(self.browser.current_url, 'http://127.0.0.1:8000/users/login/')
+
+        #ใส่username & password 
+        input_user = self.browser.find_element(By.XPATH, '/html/body/div/div/form/div[1]/input')
+        input_user.send_keys(username)
+        time.sleep(1)
+        input_password = self.browser.find_element(By.XPATH, '/html/body/div/div/form/div[2]/input')
+        input_password.send_keys(password + Keys.ENTER)
+        time.sleep(1)
+
+        #ไปหน้า select
+        select_subjectbtn =  self.browser.find_element(By.XPATH,'/html/body/nav/form/nav/div[2]/a[1]').click()
+        time.sleep(1)
+        self.assertEqual(self.browser.current_url, 'http://127.0.0.1:8000/select/') 
+
+        #ดูว่าถ้าลงวิชาที่มีเวลาเรียน จะต้องลงวิชาที่ 2 ไม่ได้
+        sub1 = 'DATABASE'
+        sub2 = 'ECONOMY'
+        #ค้นหาวิชา database + เลือก + ดูว่าขึ้นในตาราง
+        search_box = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box.send_keys(sub1 + Keys.ENTER)
+        find_database = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
+        self.assertIn(sub1, find_database.text)
+        select_database = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        database_in_table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/span')
+        self.assertIn(sub1, database_in_table.text)
+
+        #ค้นหาวิชา economy + เลือก + ดูว่าไม่ขึ้นในตาราง และมีข้อความแจ้งว่าเวลาชนกัน
+        search_box2 = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box2.send_keys(sub2 + Keys.ENTER)
+        find_economy = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
+        self.assertIn(sub2, find_economy.text)
+        select_economy = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        self.assertNotIn(sub2, table.text)
+        overlapse = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
+        self.assertIn('overlapse', overlapse.text)
+        del_database = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/form/button').click()
+
+        #ดูว่าถ้าลงวิชาที่มีเวลาสอบกลางภาคตรงกัน จะต้องลงวิชาที่ 2 ไม่ได้
+        sub3 = 'MAN'
+        sub4 = 'ECONOMICS'
+        #ค้นหาวิชา MAN AND SOCIETY + เลือก + ดูว่าขึ้นในตาราง
+        search_box = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box.send_keys(sub3 + Keys.ENTER)
+        find_man = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
+        self.assertIn(sub3, find_man.text)
+        select_man = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        man_in_table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        self.assertIn(sub3, man_in_table.text)
+
+        #ค้นหาวิชา ECONOMICS FOR INDIVIDUAL DEV + เลือก + ดูว่าไม่ขึ้นในตาราง และมีข้อความแจ้งว่าเวลาชนกัน
+        search_box2 = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box2.send_keys(sub4 + Keys.ENTER)
+        find_economics = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
+        self.assertIn(sub4, find_economics.text)
+        select_economics = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        self.assertNotIn(sub4, table.text)
+        overlapse = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
+        self.assertIn('overlapse', overlapse.text)
+        del_man = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[3]/td[7]/form/button').click()
+
+        #ดูว่าถ้าลงวิชาที่มีเวลาสอบกลางภาคตรงกัน จะต้องลงวิชาที่ 2 ไม่ได้
+        sub1 = 'DATABASE'
+        sub5 = '010123128' #computer network lab
+        #ค้นหาวิชา DATABASE + เลือก + ดูว่าขึ้นในตาราง
+        search_box = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box.send_keys(sub1 + Keys.ENTER)
+        find_database = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/h5[2]')
+        self.assertIn(sub1, find_database.text)
+        select_database = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        database_in_table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/span')
+        self.assertIn(sub1, database_in_table.text)
+
+        #ค้นหาวิชา COMPUTER NETWORKS LABORATORY  + เลือก + ดูว่าไม่ขึ้นในตาราง และมีข้อความแจ้งว่าเวลาชนกัน
+        search_box2 = self.browser.find_element(By.XPATH, '//*[@id="section-c"]/input')
+        search_box2.send_keys(sub5 + Keys.ENTER)
+        find_com = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div')
+        self.assertIn(sub5, find_com.text)
+        select_com = self.browser.find_element(By.XPATH, '//*[@id="section-b"]/div/form/button').send_keys(Keys.ENTER) 
+        table =self.browser.find_element(By.XPATH, '/html/body/div/div/div/div/table')
+        self.assertNotIn(sub5, table.text)
+        overlapse = self.browser.find_element(By.XPATH, '/html/body/div/div/div/h2')
+        self.assertIn('overlapse', overlapse.text)
+        del_database = self.browser.find_element(By.XPATH,'/html/body/div/div/div/div/table/tbody/tr[5]/td[3]/form/button').click()
 
 if __name__ == '__main__':  
     unittest.main()
