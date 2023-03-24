@@ -1,0 +1,71 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<style>
+  * {
+    font-family: FC Paragraph;
+  }
+
+  body {
+    margin: 0;
+    font-family: FC Paragraph;
+    font-size: 18px;
+    color: #FEE8D8ff;
+  }
+
+  #homepage {
+    background-color: #D0AD92ff;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  #homepage h1 {
+    color: #FEE8D8ff;
+    font-size: 50px;
+  }
+
+  #homepage p {
+    color: #FEE8D8ff;
+    font-size: 30px;
+  }
+
+  #homepage .button {
+    font-size: 30px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #229310ff;
+    border: #229310ff 1px solid;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 50px;
+    margin-top: 20px;
+  }
+
+  #homepage .button:hover {
+    padding: 17px 37px;
+    border: #229310ff 3px solid;
+    color: #229310ff;
+  }
+
+</style>
+
+{% block content %}
+
+<header id="homepage">
+  <h1>Welcome to schedule website!!</h1>
+  <p>Software Development II Group 2</p>
+  <section id="section-b2">
+    <a class="button" href="{% url 'login' %}" role="button">Login</a>
+    <a class="button" href="{% url 'register' %}" role="button">Register</a>
+  </section>
+</header>
+
+
+{% endblock %}

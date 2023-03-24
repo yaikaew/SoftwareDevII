@@ -1,0 +1,159 @@
+{% extends "layouts/base_select_subject.html" %}
+
+{% block title %} Schedule of {{request.user.username}} {% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% load custom_tags %}
+
+<style>
+    * {
+        font-family: FC Paragraph;
+    }
+
+    body {
+        margin: 0;
+        font-family: FC Paragraph;
+        font-size: 17px;
+        color: #000000;
+        background-color: #FEE8D8ff;
+    }
+</style>
+
+<div class="box">
+    <div class="container">
+        <section id="section-b">
+            <p>Schedule</p>
+        </section>
+
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="bg-light-gray">
+                        <th class="text-uppercase">Time</th>
+                        <th class="text-uppercase">8:00-9:00</th>
+                        <th class="text-uppercase">9:00-10:00</th>
+                        <th class="text-uppercase">10:00-11:00</th>
+                        <th class="text-uppercase">11:00-12:00</th>
+                        <th class="text-uppercase">Break </th>
+                        <th class="text-uppercase">13:00-14:00</th>
+                        <th class="text-uppercase">14:00-15:00</th>
+                        <th class="text-uppercase">15:00-16:00</th>
+                        <th class="text-uppercase">16:00-17:00</th>
+                        <th class="text-uppercase">17:00-18:00</th>
+                        <th class="text-uppercase">18:00-19:00</th>
+                        <th class="text-uppercase">19:00-20:00</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {%for day in days %}
+                        <td class="align-middle">{{day}}</td>
+                        {%for start_time in start_times %}
+                        {% for user in users %}
+                        {% if user.sub_id.start_time|time:'H:i' == start_time and user.sub_id.day == day %}
+                        <td colspan="{{user.sub_id.get_duration}}">
+                            <span class="text-black font-size16 xs-font-size16">{{ user.sub_id.name }}</span>
+                            <div class="margin-10px-top font-size14">{{ user.sub_id.code }}</div>
+                            <div class="font-size13 text-black">{{ user.sub_id.prof }}</div>
+                        </td>
+                        {% elif start_time not in day_start_times_used|get_list:day and forloop.last %}
+                        <td>
+                            {% comment %} start :
+                            {{start_time}}
+                            {{start_times_used}}
+                            user_start:
+                            {{user.sub_id.start_time|time:'H:i'}} {% endcomment %}
+                        </td>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- วิชาที่สามารถลงได้ในเทอมนี้ -->
+        <section id="section-a">
+
+            <h1> วันและเวลาสอบ </h1>
+
+            {% for row in sub_date %}
+
+            {% for user in users %}
+
+            {% if row.code and row.code == user.sub_id.code %}
+
+            <section id="section-a">
+                <div class="subject-card">
+
+                    <section id="section-e">
+                        <div class="box-1">
+                            <p class="subject-head">{{row.code}}</p>
+                        </div>
+                        <div class="box-2">
+                            <p class="subject-head">{{row.name}}</p>
+                        </div>
+                    </section>
+
+                    <section id="section-e">
+                        <div class="box-1">
+                            <p class="subject-text">Midterm : {{row.mid_numday|date:"d/m/Y"}}</p>
+                        </div>
+                        <div class="box-2">
+                            <p class="subject-text">Time : {{row.mid_starttime|time:'H:i'}} - {{row.mid_endtime|time:'H:i'}}</p>
+                        </div>
+                    </section>
+
+                    <section id="section-e">
+                        <div class="box-1">
+                            <p class="subject-text">Final : {{row.fin_numday|date:"d/m/Y"}}</p>
+                        </div>
+                        <div class="box-2">
+                            <p class="subject-text">Time : {{row.fin_starttime|time:'H:i'}} - {{row.fin_endtime|time:'H:i'}}</p>
+                        </div>
+                    </section>
+
+                </div>
+            </section>
+
+            {% else %}
+
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
+        </section>
+
+        <!-- go on top button -->
+        <button id="go-top-button" onclick="goToTop()"></button>
+        
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("go-top-button").style.display = "block";
+                } else {
+                    document.getElementById("go-top-button").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function goToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Login Page</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<style>
+  * {
+    font-family: FC Paragraph;
+    background: #FEE8D8ff;
+  }
+</style>
+
+
+<body>
+  <div class="login-box">
+    <div class="login-container">
+
+      <div class="top">
+        <header>Login</header>
+      </div>
+
+      {% if form.errors %}
+      <label>username or password not correct</label>
+      {% endif %}
+
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="input-field">
+          <i class='bx bx-user'></i>
+          <input type="text" name="username" placeholder="Username" class="form-control">
+
+        </div>
+
+        <div class="input-field">
+          <i class='bx bx-lock-alt'></i>
+          <input type="password" name="password" placeholder="Password" class="form-control">
+
+        </div>
+
+        <div class="input-field">
+          <input type="submit" class="submit" value="Login" id="">
+        </div>
+      </form>
+      <div class="two-col">
+        <div class="one">
+          <label>Don't have an account?</label>
+        </div>
+        <div class="two">
+          <label><a href="{% url 'register' %}" class="ml-2">Sign Up</a></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

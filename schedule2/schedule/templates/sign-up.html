@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Register Page</title>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<style>
+  * {
+    font-family: FC Paragraph;
+    background: #FEE8D8ff;
+  }
+</style>
+
+
+<body>
+  <div class="login-box">
+    <div class="login-container">
+
+      <div class="top">
+        <header>Register</header>
+      </div>
+
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="input-field">
+          <i class='bx bx-user'></i>
+          <input type="text" name="username" placeholder="Username" class="form-control">
+        </div>
+
+        <div class="input-field">
+          <i class='bx bx-lock-alt'></i>
+          <input type="email" name="email" placeholder="Email" class="form-control">
+        </div>
+
+        <div class="input-field">
+          <i class='bx bx-lock-alt'></i>
+          <input type="password" name="password1" placeholder="Enter password" class="form-control">
+        </div>
+
+        <div class="input-field">
+          <i class='bx bx-lock-alt'></i>
+          <input type="password" name="password2" placeholder="Re-enter Password" class="form-control">
+        </div>
+
+        <div class="input-field">
+          <input type="submit" class="submit" value="Register Account" id="">
+        </div>
+      </form>
+      <div class="two-col">
+        <div class="one">
+          <label>Already have an account?</label>
+        </div>
+        <div class="two">
+          <label><a href="{% url 'login' %}" class="ml-2">Login</a></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
