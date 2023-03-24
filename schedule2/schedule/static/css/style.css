@@ -4,11 +4,6 @@
 }
 
 /* heading */
-
-h1 {
-    font-size: 36px;
-}
-
 h2 {
     text-align: center;
     color: #EA6625ff;
@@ -162,15 +157,7 @@ a {
     text-decoration: none;
 }
 
-
 /* page */
-
-.box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px 0 15px;
-}
 
 .login-box {
     display: flex;
@@ -286,13 +273,15 @@ label a {
 /* select subject */
 
 .search-field {
+    display: flex;
     margin: 8px auto auto auto;
     width: 100%;
 }
 
 .search-field .form-control {
     height: 40px;
-    width: 90%;
+    /* width: 90%; */
+    display: flex;
     border: #D0AD92ff 1px solid;
     border-radius: 10px;
     color: #D0AD92ff;

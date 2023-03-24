@@ -1,16 +1,22 @@
 <!doctype html>
 <html lang="en">
 
-{% extends "layouts/base.html" %}
-
-{% block title %} About Us {% endblock %}
-
-{% block content %}
-
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  {% load custom_tags %}
+
+  <title>About Us</title>
+
   <style>
     * {
       font-family: FC Paragraph;
@@ -48,60 +54,91 @@
       color: #d09295;
       padding: 14px 16px;
     }
-
-
   </style>
 </head>
 
-<body>
-  <div class="box">
-    <div class="container">
-      <p>About Us</p>
-      <section id="section-f">
-        <h1>Professor</h1>
-        <img src="https://ece.eng.kmutnb.ac.th/home/wp-content/uploads/2018/02/p9.jpg" alt="spn" width="200"
-          height="200">
-        <p>prof. Sopon Apiromvorakarn</p>
-      </section>
-      <section id="section-f">
-        <h1>Members</h1>
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPyF60kDwmxAvvkytu2yj14byURr_Tag6vArfZh_v-cj_YdmInqXc8BfBDNUrmMe3Q3o7-7YlCH0Dy-6bjN1QVPoy_94Q496W6woy2jtsxOP-8fiq4qGqaGxAfySf6dwht44wBWxyN_sEiXs6tshHm0HNcEcf75j9HO11NlFct6JDOhviZxe6FqmEjIg/s1483/1593576265310.jpg"
-          alt="karn" width="300" height="400">
-        <p>Manopas Tanetsakunwatana 6301012630141</p>
-      </section>
-      <section id="section-f">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrxjkvCCrTMtuvhxQ7YJ6JZXOdaaf2k0yIU0EEYTsUnz_e8tJzVV9HTqpSBDk6P_syJS7VJKL947UwxfAvoMqDL_zsKnI-0TP0ztYg1VsOXGxjwtEeoYPUltKLKkyltjWXYYP4meZ16XPQ8fLUqosd4dHtY4HsRn31jX0JTmTq8BIZRMiChtZq81QqNg/s1479/1673158476723.jpg"
-          alt="amp" width="300" height="400">
-        <p>Napawan Nakasuwan 6401012620048</p>
-      </section>
-      <section id="section-f">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFL1u_v8mSK5y3n_8YGnRkDHm_2Ij51YHLLUq0tZmBdEgex9e8m0HHovUUZk-PPjhuVEtmrlBdK15WkWdrf6-DUZTL2SzMyM0pHT28DG7zsBkqBeteVsm4iLygdRVvceCanL1RozIa3RguKjvkbKNO6MqpauYYBL3nqfbOjWk3J8bx9BJbPCiGOtnW/s4032/20230101_034127106_iOS.heic"
-          alt="bew" width="300" height="400">
-        <p>Supitchaya Rodchomchin 6401012620137</p>
-      </section>
-      <section id="section-f">
-        <img
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgph_2s_HrCvwNqVrf2J8ZeFqotJroOyVzMrqlnITAehwMITEUSRbhZN0h9IxQS3UM1j-mmrxB08oLyCBYkDDn3Ii-J9qP60aTfZZoqcAlYYXzcw9kX66S6btjUpEEKcVNtegDzAuy7PnXxbO9YU0Ucg9MJxjHB7nXs_GaohpBcRRwb7UsyJER8LTIvgw/s1109/11.jpg"
-          alt="yaikaew" width="300" height="300">
-        <p>Punyawee Dokkum 6401012630108</p>
-      </section>
-      <section id="section-f">
-        <img 
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxcuGy-hsS5qrGjoIDclNzm9j51H4nkhK5AQZbCfCaJR6h2mVk8bs-mlhhZT3z9u01dGZsiXm-r_OBJSLZZpZxfXXu6cqggj2tdyXIKqGh4sVvnoxqf6jJAE99Tm93JY75Ong1P9uDEgbyVLFX1ihR3yv-gqYPAFRBQtwzmtvRtBAYqMPrcCuxRkeGFw/s300/unnamed.jpg" 
-          alt="poy" width="300" height="300">
-        <p>Anecha Khumjun 6401012630141</p>
-      </section>
-    </div>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #D0AD92ff; color: #ffff;">
+  <form class="form-inline my-2 my-lg-0">
+    <h1>Hello, {{request.user.username}}</h1>
+  </form>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active"></li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-submit" href="{% url 'test' %}" role="button">Test</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-submit" href="{% url 'selects_subject' %}" role="button">Select subject</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-submit" href="{% url 'schedule' %}" role="button">Schedule</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-submit" href="{% url 'about' %}" role="button">About us</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button class="nav-logout" type="submit">Logout</button>
+    </form>
   </div>
+</nav>
+
+<body>
+  <h1>About Us</h1>
+  <section id="section-f">
+    <h1>Professor</h1>
+    <img src="https://ece.eng.kmutnb.ac.th/home/wp-content/uploads/2018/02/p9.jpg" alt="spn" width="200" height="200">
+    <p>prof. Sopon Apiromvorakarn</p>
+  </section>
+  <section id="section-f">
+    <h1>Members</h1>
+    <img
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPyF60kDwmxAvvkytu2yj14byURr_Tag6vArfZh_v-cj_YdmInqXc8BfBDNUrmMe3Q3o7-7YlCH0Dy-6bjN1QVPoy_94Q496W6woy2jtsxOP-8fiq4qGqaGxAfySf6dwht44wBWxyN_sEiXs6tshHm0HNcEcf75j9HO11NlFct6JDOhviZxe6FqmEjIg/s1483/1593576265310.jpg"
+      alt="karn" width="300" height="400">
+    <p>Manopas Tanetsakunwatana 6301012630141</p>
+  </section>
+  <section id="section-f">
+    <img
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrxjkvCCrTMtuvhxQ7YJ6JZXOdaaf2k0yIU0EEYTsUnz_e8tJzVV9HTqpSBDk6P_syJS7VJKL947UwxfAvoMqDL_zsKnI-0TP0ztYg1VsOXGxjwtEeoYPUltKLKkyltjWXYYP4meZ16XPQ8fLUqosd4dHtY4HsRn31jX0JTmTq8BIZRMiChtZq81QqNg/s1479/1673158476723.jpg"
+      alt="amp" width="300" height="400">
+    <p>Napawan Nakasuwan 6401012620048</p>
+  </section>
+  <section id="section-f">
+    <img
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFL1u_v8mSK5y3n_8YGnRkDHm_2Ij51YHLLUq0tZmBdEgex9e8m0HHovUUZk-PPjhuVEtmrlBdK15WkWdrf6-DUZTL2SzMyM0pHT28DG7zsBkqBeteVsm4iLygdRVvceCanL1RozIa3RguKjvkbKNO6MqpauYYBL3nqfbOjWk3J8bx9BJbPCiGOtnW/s4032/20230101_034127106_iOS.heic"
+      alt="bew" width="300" height="400">
+    <p>Supitchaya Rodchomchin 6401012620137</p>
+  </section>
+  <section id="section-f">
+    <img
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgph_2s_HrCvwNqVrf2J8ZeFqotJroOyVzMrqlnITAehwMITEUSRbhZN0h9IxQS3UM1j-mmrxB08oLyCBYkDDn3Ii-J9qP60aTfZZoqcAlYYXzcw9kX66S6btjUpEEKcVNtegDzAuy7PnXxbO9YU0Ucg9MJxjHB7nXs_GaohpBcRRwb7UsyJER8LTIvgw/s1109/11.jpg"
+      alt="yaikaew" width="300" height="300">
+    <p>Punyawee Dokkum 6401012630108</p>
+  </section>
+  <section id="section-f">
+    <img
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxcuGy-hsS5qrGjoIDclNzm9j51H4nkhK5AQZbCfCaJR6h2mVk8bs-mlhhZT3z9u01dGZsiXm-r_OBJSLZZpZxfXXu6cqggj2tdyXIKqGh4sVvnoxqf6jJAE99Tm93JY75Ong1P9uDEgbyVLFX1ihR3yv-gqYPAFRBQtwzmtvRtBAYqMPrcCuxRkeGFw/s300/unnamed.jpg"
+      alt="poy" width="300" height="300">
+    <p>Anecha Khumjun 6401012630141</p>
+  </section>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
-
-
-
-
-
-{% endblock %}
 
 </html>
